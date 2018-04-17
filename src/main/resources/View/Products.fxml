@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1218.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainBody" fx:id="xxx">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductsController" fx:id="xxx">
    <children>
-      <HBox prefHeight="50.0" prefWidth="1218.0" />
-      <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1218.0" AnchorPane.topAnchor="50.0">
+      <HBox prefHeight="50.0" prefWidth="1210.0">
+         <children>
+            <Label text="Label">
+               <HBox.margin>
+                  <Insets left="1200.0" />
+               </HBox.margin>
+            </Label>
+         </children></HBox>
+      <TableView fx:id="productsTable" layoutX="14.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="50.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="idColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="ID" />
+          <TableColumn fx:id="nameColumn" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" resizable="false" text="Product" />
+            <TableColumn fx:id="categoryColumn" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" resizable="false" text="Category" />
+            <TableColumn fx:id="remainingColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" text="Qty" />
+            <TableColumn fx:id="salespriceColumn" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" resizable="false" text="Sales price" />
+            <TableColumn fx:id="importpriceColumn" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" resizable="false" text="Import price" />
+            <TableColumn fx:id="hellColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="Category" />
+            <TableColumn fx:id="nationColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="Nation" />
         </columns>
       </TableView>
+      <JFXButton layoutX="1048.0" layoutY="65.0" />
+
    </children>
+   <padding>
+      <Insets left="4.0" />
+   </padding>
 </AnchorPane>

@@ -145,6 +145,13 @@ public class SceneManager {
         if(!trimmedMenuTitle.equals(currentMenu))
         {
             mainBodyPane.getChildren().removeAll(mainBodyPane.getChildren());
+
+
+            if(trimmedMenuTitle.equals("Products"))
+            {
+                setProductsTable();
+            }
+
             mainBodyPane.getChildren().add(getNode(trimmedMenuTitle));
 
             currentMenu = trimmedMenuTitle;
@@ -225,6 +232,13 @@ public class SceneManager {
         }
 
         return result;
+    }
+
+
+    private void setProductsTable()
+    {
+        ProductsController pc = productsLoader.getController();
+        pc.setData();
     }
 
 }

@@ -10,9 +10,9 @@ public class Book extends Product {
     private int length;
     private Date publicationDate;
 
-    public Book(String _productID, String _title, int _remaining, double _salesPrice, double _receivedPrice, List<String> _listAuthors, String _language, int _length, Date _publicationDate)
+    public Book(String _productID, String _name, String _category, String _nation, int _remaining, double _salesPrice, double _receivedPrice, List<String> _listAuthors, String _language, int _length, Date _publicationDate)
     {
-        super(_productID, _title, _remaining, _salesPrice, _receivedPrice);
+        super(_productID, _name, _category, _nation, _remaining, _salesPrice, _receivedPrice);
         this.listAuthors = _listAuthors;
         this.language = _language;
         this.length = _length;
@@ -21,11 +21,11 @@ public class Book extends Product {
 
 
     public String getTitle() {
-        return title;
+        return getName();
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.setName(title);
     }
 
     public List<String> getListAuthors() {

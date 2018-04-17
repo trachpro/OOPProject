@@ -8,8 +8,9 @@ public class Movie extends Product {
 
     private String language;
     private String genre;
+    private float imdbPoint;
 
-    public Movie(String _productID, String _title, int _remaining, double _salesPrice, double _receivedPrice) {
-        super(_productID, _title, _remaining, _salesPrice, _receivedPrice);
+    public Movie(String _productID, String _name, String _category, String _nation, int _remaining, double _salesPrice, double _receivedPrice) {
+        super(_productID, _name, _category, _nation, _remaining, _salesPrice, _receivedPrice);
     }
 }
