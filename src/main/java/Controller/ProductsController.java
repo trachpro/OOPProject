@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Product;
+import com.jfoenix.controls.JFXButton;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,10 +23,17 @@ public class ProductsController implements Initializable {
     @FXML private TableColumn<Product, String> hellColumn;
     @FXML private TableColumn<Product, String> nationColumn;
 
+    @FXML private JFXButton addButton;
+
+    //ProductsManager productsManager;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        addButton.setOnAction(e -> {
+            System.out.println(addButton.getText());
+            App.dataManager.getProductsManager().getProducts().add(new Product());
+        });
     }
 
     public void setData()
@@ -41,11 +49,19 @@ public class ProductsController implements Initializable {
         salespriceColumn.setCellValueFactory(new PropertyValueFactory<>("salesPrice"));
         nationColumn.setCellValueFactory(new PropertyValueFactory<>("nation"));
         importpriceColumn.setCellValueFactory(new PropertyValueFactory<>("importPrice"));
+        hellColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, String> cdf) -> {
+            Product p = cdf.getValue();
+            String isActive;
+            if(p.isActive()) isActive = "Active";
+            else isActive = "Inactive";
+
+            return new SimpleStringProperty(isActive);
+        });
 //        hellColumn.setCellValueFactory(cellData -> cellData.getValue().);
 
-        ProductsManager a = new ProductsManager();
-        System.out.println(a.getProducts());
-        productsTable.setItems(a.getProducts());
+        //productsManager = new ProductsManager();
+        //System.out.println(productsManager.getProducts());
+        productsTable.setItems(App.dataManager.getProductsManager().getProducts());
         System.out.println(productsTable.getColumns());
     }
 }
