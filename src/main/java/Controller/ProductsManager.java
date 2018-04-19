@@ -21,6 +21,45 @@ public class ProductsManager {
         getProducts().add(new Product("1", "ABC", "Book", "Vietnam", 342,12000, 10000));
         getProducts().add(new Product("2", "ABCD", "Book", "China", 12, 12000, 10000));
         getProducts().add(new Product("3", "ABCE", "Book", "Germany", 23, 12000, 10000));
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product());
+        getProducts().add(new Product("4", "ABCE", "Book", "Germany", 23, 12000, 10000));
 
     }
 

@@ -234,6 +234,81 @@ public class SceneManager {
         return result;
     }
 
+    public FXMLLoader getLoader(String name)
+    {
+        FXMLLoader result;
+        switch (name)
+        {
+            case "Dashboard":
+            {
+                result = dashboardLoader;
+                break;
+            }
+
+            case "Sales":
+            {
+                result = salesLoader;
+                break;
+            }
+
+            case "Products":
+            {
+                result =  productsLoader;
+                break;
+            }
+
+            case "Customers":
+            {
+                result = customersLoader;
+                break;
+            }
+
+            case "Stock order":
+            {
+                result = stockorderLoader;
+                break;
+            }
+
+            case "Inventory":
+            {
+                result = inventoryLoader;
+                break;
+            }
+
+            case "Revenue":
+            {
+                result = revenueLoader;
+                break;
+            }
+
+            case "Cashflow":
+            {
+                result = cashflowLoader;
+                break;
+            }
+
+            case "Profit":
+            {
+                result = profitLoader;
+                break;
+            }
+
+            case "Settings":
+            {
+                result = settingsLoader;
+                break;
+            }
+
+            default:
+            {
+                result = null;
+                break;
+            }
+        }
+        return result;
+    }
+
+
 
     private void setProductsTable()
     {

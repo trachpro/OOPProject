@@ -30,7 +30,7 @@
             <TableColumn fx:id="nationColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="Nation" />
         </columns>
       </TableView>
-      <JFXButton layoutX="1048.0" layoutY="65.0" />
+      <JFXButton fx:id="addButton" layoutX="1048.0" layoutY="65.0" style="-fx-background-color: #2f3640;" text="Add" textFill="WHITE" />
 
    </children>
    <padding>
