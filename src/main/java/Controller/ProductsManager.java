@@ -70,4 +70,13 @@ public class ProductsManager {
     public void setProducts(ObservableList<Product> products) {
         this.products = products;
     }
+
+//    public ObservableList<Product> search(String _idOrName, String _category, String _nation, boolean _isDeleted)
+//    {
+//        ObservableList<Product> result;
+//
+//        if(_isDeleted)
+//        result = products.filtered(p -> p.isActive() && p.getCategory().equals(_category) && p.getNation().equals(_nation) && p.getName().contains(_idOrName) || p.getProductID().contains(_idOrName));
+//        return result;
+//    }
 }

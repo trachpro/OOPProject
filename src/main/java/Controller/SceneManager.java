@@ -39,12 +39,7 @@ public class SceneManager {
     public SceneManager()
     {
         currentMenu = "xxx";
-        new Thread() {
-            @Override
-            public void run() {
-                setLoaders();
-            }
-        }.start();
+        setLoaders();
     }
 
     private void setLoaders()
@@ -313,7 +308,7 @@ public class SceneManager {
     private void setProductsTable()
     {
         ProductsController pc = productsLoader.getController();
-        pc.setData();
+        pc.bindTableData();
     }
 
 }
