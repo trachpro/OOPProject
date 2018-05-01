@@ -1,7 +1,6 @@
 package Controller;
 
-import Model.Book;
-import Model.Product;
+import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -18,9 +17,6 @@ public class ProductsManager {
 //        getProducts().add(new Book("2", "ABCD", "Book", "China", 12, 12000, 10000, null, "English", 69, new Date(1998, 11, 12)));
 //        getProducts().add(new Book("3", "ABCE", "Book", "Germany", 23, 12000, 10000, null, "English", 69, new Date(1998, 11, 12)));
 
-        getProducts().add(new Product("1", "ABC", "Book", "Vietnam", 342,12000, 10000));
-        getProducts().add(new Product("2", "ABCD", "Book", "China", 12, 12000, 10000));
-        getProducts().add(new Product("3", "ABCE", "Book", "Germany", 23, 12000, 10000));
         getProducts().add(new Product());
         getProducts().add(new Product());
         getProducts().add(new Product());
@@ -59,7 +55,8 @@ public class ProductsManager {
         getProducts().add(new Product());
         getProducts().add(new Product());
         getProducts().add(new Product());
-        getProducts().add(new Product("4", "ABCE", "Book", "Germany", 23, 12000, 10000));
+        getProducts().add(new Product());
+        getProducts().add(new Product("PR1000", "Hihi", Category.BOOK, Status.ACTIVE, 100, 1000000, 1200000, Nation.UNITED_KINGDOM, null, 0));
 
     }
 
