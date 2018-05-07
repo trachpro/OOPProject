@@ -1,5 +1,7 @@
 package Model;
 
+import java.sql.SQLOutput;
+
 public class Product {
     private String productID;
     private String name;
@@ -128,6 +130,21 @@ public class Product {
 
     public void setDiscount(int discount) {
         this.discount = discount;
+    }
+
+    public void printDetail()
+    {
+        System.out.println("ID: "+getProductID());
+        System.out.println("Name: "+getName());
+        System.out.println("Category: "+getCategory().toString());
+        System.out.println("Status: "+getStatus().toString());
+        System.out.println("Quantity: "+getQuantity());
+
+        System.out.println("BuyPrice: "+getBuyingPrice());
+        System.out.println("SellPrice: "+getSellingPrice());
+        System.out.println("Nation: "+getNation().toString());
+        System.out.println("Img: "+getImageUrl());
+        System.out.println("Discount: "+getDiscount());
     }
 }
 

@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Arrays;
+
 public enum BookGenre {
     CLASSIC,
     GRAPHIC_NOVEL,
@@ -25,4 +27,6 @@ public enum BookGenre {
     THRILLER,
     TALL_TALE,
     WESTERN
+
+
 }

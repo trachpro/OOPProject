@@ -1,5 +1,6 @@
 package Model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -9,9 +10,9 @@ public class Book extends Product {
     private Enum<Language> language;
     private Enum<BookGenre> genre;
     private int length;
-    private Date publicDate;
+    private LocalDate publicDate;
 
-    public Book(String _productID, String _name, Enum<Category> _category, Enum<Status> _status, int _quantity, double _buyingPrice, double _sellingPrice, Enum<Nation> _nation, String _imageUrl, int _discount, List<String> _listAuthors, Enum<Language> _language, Enum<BookGenre> _genre, int _length, Date _publicDate)
+    public Book(String _productID, String _name, Enum<Category> _category, Enum<Status> _status, int _quantity, double _buyingPrice, double _sellingPrice, Enum<Nation> _nation, String _imageUrl, int _discount, List<String> _listAuthors, Enum<Language> _language, Enum<BookGenre> _genre, int _length, LocalDate _publicDate)
     {
         super(_productID, _name, _category, _status, _quantity, _buyingPrice, _sellingPrice, _nation, _imageUrl, _discount);
 
@@ -22,6 +23,10 @@ public class Book extends Product {
         this.setPublicDate(_publicDate);
     }
 
+    public Book(Product _product)
+    {
+        super(_product.getProductID(), _product.getName(), _product.getCategory(), _product.getStatus(), _product.getQuantity(), _product.getBuyingPrice(), _product.getSellingPrice(), _product.getNation(), _product.getImageUrl(), _product.getDiscount());
+    }
 
     public List<String> getListAuthors() {
         return listAuthors;
@@ -55,11 +60,21 @@ public class Book extends Product {
         this.length = length;
     }
 
-    public Date getPublicDate() {
+    public LocalDate getPublicDate() {
         return publicDate;
     }
 
-    public void setPublicDate(Date publicDate) {
+    public void setPublicDate(LocalDate publicDate) {
         this.publicDate = publicDate;
+    }
+
+    public void printDetail()
+    {
+        super.printDetail();
+        System.out.println("List Authors: "+getListAuthors());
+        System.out.println("Language: "+getLanguage().toString());
+        System.out.println("Genre: "+getGenre().toString());
+        System.out.println("Length: "+getLength());
+        System.out.println("Date: "+getPublicDate().toString());
     }
 }

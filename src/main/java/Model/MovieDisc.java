@@ -1,5 +1,6 @@
 package Model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -12,9 +13,14 @@ public class MovieDisc extends Product {
     private Enum<MovieGenre> genre;
     private int length;
     private float imdbPoint;
-    private Date publicDate;
+    private LocalDate publicDate;
 
-    public MovieDisc(String _productID, String _name, Enum<Category> _category, Enum<Status> _status, int _quantity, double _buyingPrice, double _sellingPrice, Enum<Nation> _nation, String _imageUrl, int _discount, List<String> _listActors, String _director, Enum<Language> _language,  Enum<Language> _subtitle, Enum<MovieGenre> _genre, int _length, float _imdbPoint, Date _publicDate)
+    public MovieDisc(Product _product)
+    {
+        super(_product.getProductID(), _product.getName(), _product.getCategory(), _product.getStatus(), _product.getQuantity(), _product.getBuyingPrice(), _product.getSellingPrice(), _product.getNation(), _product.getImageUrl(), _product.getDiscount());
+    }
+
+    public MovieDisc(String _productID, String _name, Enum<Category> _category, Enum<Status> _status, int _quantity, double _buyingPrice, double _sellingPrice, Enum<Nation> _nation, String _imageUrl, int _discount, List<String> _listActors, String _director, Enum<Language> _language,  Enum<Language> _subtitle, Enum<MovieGenre> _genre, int _length, float _imdbPoint, LocalDate _publicDate)
     {
         super(_productID, _name, _category, _status, _quantity, _buyingPrice, _sellingPrice, _nation, _imageUrl, _discount);
 
@@ -78,11 +84,11 @@ public class MovieDisc extends Product {
         this.imdbPoint = imdbPoint;
     }
 
-    public Date getPublicDate() {
+    public LocalDate getPublicDate() {
         return publicDate;
     }
 
-    public void setPublicDate(Date publicDate) {
+    public void setPublicDate(LocalDate publicDate) {
         this.publicDate = publicDate;
     }
 

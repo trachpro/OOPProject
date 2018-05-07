@@ -149,15 +149,11 @@ public class ProductsController implements Initializable {
 
     private void addButtonOnClick()
     {
-        //System.out.println(addButton.getText());
-        //App.dataManager.getProductsManager().getProducts().add(new Product());
         displayAddBox();
     }
 
     private void displayAddBox()
     {
-        JFXComboBox test;
-
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Add");
@@ -172,18 +168,12 @@ public class ProductsController implements Initializable {
         }
 
         Scene scene = new Scene(addLayout);
-        test = (JFXComboBox) scene.lookup("#testComboBox");
-        test.setEditable(true);
-        test.getItems().addAll(
-                "Hello",
-                "2",
-                "3",
-                "4",
-                "5"
-                );
+
+        AddProductController addProductController = (AddProductController) fxmlLoader.getController();
+        addProductController.setParentStage(window);
+        addProductController.setParentScene(scene);
 
         window.setScene(scene);
-
         window.showAndWait();
     }
 
