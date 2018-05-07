@@ -58,4 +58,14 @@ public class MusicDisc extends Product {
     public void setPublicDate(LocalDate publicDate) {
         this.publicDate = publicDate;
     }
+
+    public void printDetail()
+    {
+        super.printDetail();
+
+        System.out.println("Singers: "+getListSingers());
+        System.out.println("Language: "+getLanguage());
+        System.out.println("Genre: "+getGenre().toString());
+        System.out.println("Date: "+getPublicDate());
+    }
 }

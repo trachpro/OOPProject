@@ -24,8 +24,8 @@
                       <Insets />
                   </VBox.margin>
             <children>
-               <JFXButton fx:id="okButton" text="OK" />
-               <JFXButton fx:id="cancelButton" layoutX="134.0" layoutY="10.0" text="Cancel" />
+               <JFXButton fx:id="yesButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="50.0" text="YES" />
+               <JFXButton fx:id="noButton" layoutX="134.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="50.0" text="NO" />
             </children>
               </HBox>
           </children>

@@ -1,10 +1,7 @@
 package Controller.AddProduct;
 
 import Controller.App;
-import Model.Book;
-import Model.BookGenre;
-import Model.Language;
-import Model.Product;
+import Model.*;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -16,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddBookController {
+public class AddMusicDiscController {
 
     private Boolean isClicked = false;
 
@@ -26,18 +23,12 @@ public class AddBookController {
     @FXML
     private JFXComboBox<Integer> numberComboBox;
 
-    //@FXML private JFXTextField name1[];
-//    @FXML private JFXTextField name2;
-//    @FXML private JFXTextField name3;
-//    @FXML private JFXTextField name4;
-//    @FXML private JFXTextField name5;
-
     @FXML
     private JFXComboBox<String> languageComboBox;
+
     @FXML
     private JFXComboBox<String> genreComboBox;
-    @FXML
-    private JFXTextField lengthTextField;
+
     @FXML
     private JFXDatePicker datePicker;
 
@@ -48,7 +39,7 @@ public class AddBookController {
             setParentAnchorPane(_parent);
             setNameTextFields();
             handleNumberComboBox();
-            handleLanguageComboBox();
+            handleLanguageSubtitleComboBox();
             handleDatePicker();
             handleGenreComboBox();
         }
@@ -77,26 +68,27 @@ public class AddBookController {
                     name[i].setDisable(true);
                 } else
                     name[i].setDisable(false);
+
             }
         });
     }
 
-    private void handleLanguageComboBox() {
+    private void handleLanguageSubtitleComboBox() {
         String listLanguages[] = App.getEnumConstants(Model.Language.class);
         for (String c : listLanguages) {
             languageComboBox.getItems().add(c);
         }
 
-        languageComboBox.setValue(Language.VIETNAMESE.toString());
+        languageComboBox.setValue(Language.ENGLISH.toString());
     }
 
     private void handleGenreComboBox() {
-        String listGenre[] = App.getEnumConstants(Model.BookGenre.class);
+        String listGenre[] = App.getEnumConstants(Model.MusicGenre.class);
         for (String c : listGenre) {
             genreComboBox.getItems().add(c);
         }
 
-        genreComboBox.setValue(BookGenre.THRILLER.toString());
+        genreComboBox.setValue(MusicGenre.COUNTRY.toString());
     }
 
     private void handleDatePicker() {
@@ -113,29 +105,26 @@ public class AddBookController {
         return parentAnchorPane;
     }
 
-    public Book getDetailedBook(Product _product) {
-        List<String> _listAuthors = new ArrayList<String>();
-
+    public MusicDisc getDetailedMovieDisc(Product _product) {
+        List<String> _listSingers = new ArrayList<String>();
         Enum<Language> _language;
-        Enum<BookGenre> _genre;
-        int _length;
+        Enum<MusicGenre> _genre;
         LocalDate _publicDate;
 
-        Book result = new Book(_product);
+        MusicDisc result = new MusicDisc(_product);
 
         for (int i = 0; i < numberComboBox.getValue(); i++) {
-            _listAuthors.add(name[i].getText());
+            _listSingers.add(name[i].getText());
         }
 
         _language = Enum.valueOf(Model.Language.class, languageComboBox.getValue());
-        _genre = Enum.valueOf(Model.BookGenre.class, genreComboBox.getValue());
-        _length = Integer.valueOf(lengthTextField.getText());
+
+        _genre = Enum.valueOf(Model.MusicGenre.class, genreComboBox.getValue());
         _publicDate = datePicker.getValue();
 
-        result.setListAuthors(_listAuthors);
-        result.setGenre(_genre);
+        result.setListSingers(_listSingers);
         result.setLanguage(_language);
-        result.setLength(_length);
+        result.setGenre(_genre);
         result.setPublicDate(_publicDate);
 
         return result;

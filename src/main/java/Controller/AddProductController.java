@@ -1,10 +1,13 @@
 package Controller;
 
 import Controller.AddProduct.AddBookController;
+import Controller.AddProduct.AddMovieDiscController;
+import Controller.AddProduct.AddMusicDiscController;
 import Model.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,10 +15,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.management.modelmbean.ModelMBean;
@@ -25,6 +31,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AddProductController implements Initializable {
     private Stage parentStage;
@@ -71,6 +78,7 @@ public class AddProductController implements Initializable {
         handleFileButton();
 
         handleOkButton();
+        handleCancelButton();
 
         initializeLoaders();
 
@@ -98,19 +106,22 @@ public class AddProductController implements Initializable {
             detailAnchorPane.getChildren().add(addBookNode);
 
             AddBookController addBookController = addBookLoader.getController();
-            addBookController.setParentAnchorPane(detailAnchorPane);
-            addBookController.init();
-        }
-
-        else if(_category == Category.MUSIC_DISC)
-        {
-            detailAnchorPane.getChildren().add(addMusicDiscNode);
-
+            addBookController.init(detailAnchorPane);
         }
 
         else if(_category == Category.MOVIE_DISC)
         {
             detailAnchorPane.getChildren().add(addMovieDiscNode);
+
+            AddMovieDiscController addMovieDiscController = addMovieDiscLoader.getController();
+            addMovieDiscController.init(detailAnchorPane);
+        }
+
+        else if(_category == Category.MUSIC_DISC)
+        {
+            detailAnchorPane.getChildren().add(addMusicDiscNode);
+            AddMusicDiscController addMusicDiscController = addMusicDiscLoader.getController();
+            addMusicDiscController.init(detailAnchorPane);
         }
 
     }
@@ -196,14 +207,47 @@ public class AddProductController implements Initializable {
     private void handleOkButton()
     {
         okButton.setOnAction(e -> {
-            Book a = (Book) getProduct();
-            a.printDetail();
+
+            Boolean selection = App.displayConfirmBox("Are you sure to add this product?");
+
+            if(selection)
+            {
+                Product result = getProduct();
+
+                App.dataManager.getProductsManager().addProduct(result);
+
+                if(result.getCategory() == Category.BOOK)
+                {
+                    Book book = (Book) result;
+                    book.printDetail();
+                }
+                else if(result.getCategory() == Category.MOVIE_DISC)
+                {
+                    MovieDisc movieDisc = (MovieDisc) result;
+                    movieDisc.printDetail();
+                }
+                else
+                {
+                    MusicDisc musicDisc = (MusicDisc) result;
+                    musicDisc.printDetail();
+                }
+
+                getParentStage().close();
+            }
         });
     }
 
     private void handleCancelButton()
     {
+        cancelButton.setOnAction(e -> {
+            Boolean selection = App.displayConfirmBox("Are you sure to cancel adding a new product?");
 
+            if(selection)
+            {
+                System.out.println("Cancel adding product");
+                getParentStage().close();
+            }
+        });
     }
 
     private void handleFileButton()
@@ -285,23 +329,29 @@ public class AddProductController implements Initializable {
             result.setImageUrl("default.png");
         }
 
-//        if(currentCategory.equals(Category.BOOK.toString()))
-//        {
+        if(currentCategory.equals(Category.BOOK.toString()))
+        {
             AddBookController addBookController = addBookLoader.getController();
             Book detailedBook = addBookController.getDetailedBook(result);
 
             return (Product) detailedBook;
-//        }
-//
-//        else if(currentCategory.equals(Category.MUSIC_DISC.toString()))
-//        {
-//
-//        }
-//
-//        else
-//        {
-//
-//        }
+        }
+
+        else if(currentCategory.equals(Category.MOVIE_DISC.toString()))
+        {
+            AddMovieDiscController addMovieDiscController = addMovieDiscLoader.getController();
+            MovieDisc detailedMovieDisc = addMovieDiscController.getDetailedMovieDisc(result);
+
+            return (Product) detailedMovieDisc;
+        }
+
+        else
+        {
+            AddMusicDiscController addMusicDiscController = addMusicDiscLoader.getController();
+            MusicDisc detailedMusicDisc = addMusicDiscController.getDetailedMovieDisc(result);
+
+            return (Product) detailedMusicDisc;
+        }
     }
 
     private String saveImage(String sourcePath, String destPath) throws IOException {
@@ -344,4 +394,7 @@ public class AddProductController implements Initializable {
     public void setParentScene(Scene parentScene) {
         this.parentScene = parentScene;
     }
+
+
+
 }

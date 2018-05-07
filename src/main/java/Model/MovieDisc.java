@@ -99,4 +99,17 @@ public class MovieDisc extends Product {
     public void setLength(int length) {
         this.length = length;
     }
+
+    public void printDetail()
+    {
+        super.printDetail();
+        System.out.println("Actors: "+getListActors());
+        System.out.println("Director: "+getDirector());
+        System.out.println("Language: "+ getLanguage().toString());
+        System.out.println("Subtitle: "+getSubtitle().toString());
+        System.out.println("Genre: "+getGenre().toString());
+        System.out.println("Length: "+getLength());
+        System.out.println("Point: "+getImdbPoint());
+        System.out.println("Date: "+getPublicDate().toString());
+    }
 }
