@@ -2,6 +2,7 @@ package Controller;
 
 import Controller.Products.ProductsManager;
 import Controller.Sales.SalesManager;
+import Controller.cashflow.CashflowManager;
 import Model.Product.Product;
 import javafx.collections.ObservableList;
 
@@ -12,8 +13,12 @@ public class DataManager {
 
     private ProductsManager productsManager;
     private SalesManager salesManager;
+    private CashflowManager cashflowManager;
 
-//        ClassLoader classLoader = getClass().getClassLoader();
+    public CashflowManager getCashflowManager() {
+        return cashflowManager;
+    }
+    //        ClassLoader classLoader = getClass().getClassLoader();
 //        File file = new File(classLoader.getResource("Data/Products").getFile());
 
     public DataManager()
@@ -22,7 +27,7 @@ public class DataManager {
 
         setProductsManager(new ProductsManager());
         setSalesManager(new SalesManager());
-
+        setCashflowManager(new CashflowManager());
         //productsManager.getProductByID("PR0002");
 //        readProductsFile();
 //        writeProductsFile();
@@ -39,6 +44,10 @@ public class DataManager {
 
     public SalesManager getSalesManager() {
         return salesManager;
+    }
+
+    public void setCashflowManager(CashflowManager cashflowManager) {
+        this.cashflowManager = cashflowManager;
     }
 
     public void setSalesManager(SalesManager salesManager) {

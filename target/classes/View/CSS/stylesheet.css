@@ -30,3 +30,7 @@
     -fx-border-color: #2f3640;
     -fx-effect: glow;
 }
+.text {
+    -fx-effect: null;
+    -fx-background-color: transparent;
+}
