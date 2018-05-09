@@ -1,8 +1,9 @@
-package Controller;
+package Controller.Products;
 
 import Model.Product.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 import java.util.Comparator;
 
@@ -16,26 +17,26 @@ public class ProductsManager {
         products = FXCollections.observableArrayList();
         currentProductID = "PR0000";
 
-        addProduct(new Book());
-        addProduct(new MovieDisc());
-        addProduct(new MusicDisc());
-        addProduct(new Book());
-
-        addProduct(new Book());
-        addProduct(new Book());
-        addProduct(new Book());
-        addProduct(new Book());
-        addProduct(new Book());
-        addProduct(new Book());
-        addProduct(new MovieDisc());
-        addProduct(new MovieDisc());
-        addProduct(new MovieDisc());
-        addProduct(new MovieDisc());
-        addProduct(new MovieDisc());
-        addProduct(new MovieDisc());
-        addProduct(new MovieDisc());
-        addProduct(new MusicDisc());
-        addProduct(new Product("PR0100", "Hihi", Category.BOOK, Status.ACTIVE, 100, 1000000, 1200000, Nation.UNITED_KINGDOM, null, 0));
+//        addProduct(new Book());
+//        addProduct(new MovieDisc());
+//        addProduct(new MusicDisc());
+//        addProduct(new Book());
+//
+//        addProduct(new Book());
+//        addProduct(new Book());
+//        addProduct(new Book());
+//        addProduct(new Book());
+//        addProduct(new Book());
+//        addProduct(new Book());
+//        addProduct(new MovieDisc());
+//        addProduct(new MovieDisc());
+//        addProduct(new MovieDisc());
+//        addProduct(new MovieDisc());
+//        addProduct(new MovieDisc());
+//        addProduct(new MovieDisc());
+//        addProduct(new MovieDisc());
+//        addProduct(new MusicDisc());
+//        addProduct(new Product("PR0100", "Hihi", Category.BOOK, Status.ACTIVE, 100, 1000000, 1200000, Nation.UNITED_KINGDOM, null, 0));
 
         //getNextProductID();
     }
@@ -112,5 +113,17 @@ public class ProductsManager {
         });
     }
 
+    public Product getProductByID(String _id)
+    {
+        FilteredList<Product> filteredList = getProducts().filtered(p -> p.getProductID().equals(_id));
+        Product result = filteredList.get(0);
 
+//        if(result != null)
+//        {
+//            System.out.println("result : "+result.getProductID()+" "+result.getCategory());
+//        }
+
+        return result;
+
+    }
 }

@@ -55,14 +55,14 @@ public class SceneManager {
             e.printStackTrace();
         }
 
-        salesLoader = new FXMLLoader(getClass().getResource("/View/Sales.fxml"));
+        salesLoader = new FXMLLoader(getClass().getResource("/View/Sales/Sales.fxml"));
         try {
             sales = salesLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        productsLoader = new FXMLLoader(getClass().getResource("/View/Products.fxml"));
+        productsLoader = new FXMLLoader(getClass().getResource("/View/Products/Products.fxml"));
         try {
             products = productsLoader.load();
         } catch (IOException e) {
@@ -146,10 +146,10 @@ public class SceneManager {
             mainBodyPane.getChildren().removeAll(mainBodyPane.getChildren());
 
 
-            if(trimmedMenuTitle.equals("Products"))
-            {
-                setProductsTable();
-            }
+//            if(trimmedMenuTitle.equals("Products"))
+//            {
+//                setProductsTable();
+//            }
 
             mainBodyPane.getChildren().add(getNode(trimmedMenuTitle));
 
@@ -307,14 +307,6 @@ public class SceneManager {
         return result;
     }
 
-
-
-    private void setProductsTable()
-    {
-        ProductsController pc = productsLoader.getController();
-        pc.bindTableData();
-    }
-
     public Stage getMainStage() {
         return mainStage;
     }
@@ -322,4 +314,6 @@ public class SceneManager {
     public void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
     }
+
+
 }

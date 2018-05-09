@@ -1,11 +1,9 @@
-package Model;
+package Model.Product;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
 public class Book extends Product {
     private ArrayList<String> listAuthors;
@@ -89,5 +87,32 @@ public class Book extends Product {
         System.out.println("Genre: "+getGenre().toString());
         System.out.println("Length: "+getLength());
         System.out.println("Date: "+getPublicDate().toString());
+    }
+
+    public String toString()
+    {
+        String product = super.toString();
+
+        product = product.concat(Integer.toString(listAuthors.size()));
+        product = product.concat("|");
+
+        for(int i = 0; i < listAuthors.size(); i++)
+        {
+            product = product.concat(listAuthors.get(i));
+            product = product.concat("|");
+        }
+
+        product = product.concat(getLanguage().toString());
+        product = product.concat("|");
+
+        product = product.concat(getGenre().toString());
+        product = product.concat("|");
+
+        product = product.concat(Integer.toString(getLength()));
+        product = product.concat("|");
+
+        product = product.concat(getPublicDate().toString());
+
+        return product;
     }
 }

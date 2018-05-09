@@ -1,4 +1,4 @@
-package Model;
+package Model.Product;
 
 public enum Nation {
     AFGHANISTAN,

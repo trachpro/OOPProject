@@ -1,11 +1,9 @@
-package Model;
+package Model.Product;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
 public class MovieDisc extends Product {
     private ArrayList<String> listActors;
@@ -131,5 +129,41 @@ public class MovieDisc extends Product {
         System.out.println("Length: "+getLength());
         System.out.println("Point: "+getImdbPoint());
         System.out.println("Date: "+getPublicDate().toString());
+    }
+
+    public String toString()
+    {
+        String product = super.toString();
+
+        product = product.concat(Integer.toString(getListActors().size()));
+        product = product.concat("|");
+
+        for(int i = 0; i < getListActors().size(); i++)
+        {
+            product = product.concat(getListActors().get(i));
+            product = product.concat("|");
+        }
+
+        product = product.concat(getDirector());
+        product = product.concat("|");
+
+        product = product.concat(getLanguage().toString());
+        product = product.concat("|");
+
+        product = product.concat(getSubtitle().toString());
+        product = product.concat("|");
+
+        product = product.concat(getGenre().toString());
+        product = product.concat("|");
+
+        product = product.concat(Integer.toString(getLength()));
+        product = product.concat("|");
+
+        product = product.concat(Float.toString(getImdbPoint()));
+        product = product.concat("|");
+
+        product = product.concat(getPublicDate().toString());
+
+        return product;
     }
 }

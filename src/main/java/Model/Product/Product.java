@@ -1,6 +1,4 @@
-package Model;
-
-import java.sql.SQLOutput;
+package Model.Product;
 
 public class Product {
     private String productID;
@@ -145,6 +143,42 @@ public class Product {
         System.out.println("Nation: "+getNation().toString());
         System.out.println("Img: "+getImageUrl());
         System.out.println("Discount: "+getDiscount());
+    }
+
+    public String toString()
+    {
+        String result = "";
+        result = result.concat(getCategory().toString());
+        result = result.concat("|");
+
+        result = result.concat(getProductID());
+        result = result.concat("|");
+
+        result = result.concat(getName().toString());
+        result = result.concat("|");
+
+        result = result.concat(getStatus().toString());
+        result = result.concat("|");
+
+        result = result.concat(Integer.toString(getQuantity()));
+        result = result.concat("|");
+
+        result = result.concat(Double.toString(getBuyingPrice()));
+        result = result.concat("|");
+
+        result = result.concat(Double.toString(getSellingPrice()));
+        result = result.concat("|");
+
+        result = result.concat(getNation().toString());
+        result = result.concat("|");
+
+        result = result.concat(getImageUrl());
+        result = result.concat("|");
+
+        result = result.concat(Integer.toString(getDiscount()));
+        result = result.concat("|");
+
+        return result;
     }
 }
 

@@ -1,9 +1,7 @@
-package Controller;
+package Controller.Products;
 
-import Controller.UpdateProduct.UpdateBookController;
-import Controller.UpdateProduct.UpdateMovieDiscController;
-import Controller.UpdateProduct.UpdateMusicDiscController;
-import Model.*;
+import Controller.App;
+import Model.Product.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -11,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -21,10 +18,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ResourceBundle;
 
 public class UpdateProductController {
     private Stage parentStage;
@@ -166,7 +161,7 @@ public class UpdateProductController {
 
     private void handleCategoryComboBox()
     {
-        String listCategories[] = App.getEnumConstants(Model.Category.class);
+        String listCategories[] = App.getEnumConstants(Category.class);
         for(String c: listCategories)
         {
             categoryComboBox.getItems().add(c);
@@ -190,7 +185,7 @@ public class UpdateProductController {
 
     private void handleStatusComboBox()
     {
-        String listStatus[] = App.getEnumConstants(Model.Status.class);
+        String listStatus[] = App.getEnumConstants(Status.class);
         for(String c: listStatus)
         {
             statusComboBox.getItems().add(c);
@@ -201,7 +196,7 @@ public class UpdateProductController {
 
     private void handleNationComboBox()
     {
-        String listNations[] = App.getEnumConstants(Model.Nation.class);
+        String listNations[] = App.getEnumConstants(Nation.class);
         for(String c: listNations)
         {
             nationComboBox.getItems().add(c);
@@ -224,7 +219,9 @@ public class UpdateProductController {
             {
                 Product result = getProduct();
 
-                App.dataManager.getProductsManager().addUpdateProduct(result);
+                if(mode == Mode.ADD) App.dataManager.getProductsManager().addProduct(result);
+                else App.dataManager.getProductsManager().addUpdateProduct(result);
+
 
                 if(result.getCategory() == Category.BOOK)
                 {
@@ -283,7 +280,7 @@ public class UpdateProductController {
                     if (file != null) {
 
                         currentImgUrl = file.getAbsolutePath();
-                        System.out.println(currentImgUrl);
+                        System.out.println("current img url :" +currentImgUrl);
                         setImage(file);
 
 //                        try {
@@ -299,7 +296,7 @@ public class UpdateProductController {
 
     private void handleImageView()
     {
-        Image g = new Image("/Image/"+product.getImageUrl());
+        Image g = new Image(getClass().getResourceAsStream("/Image/"+product.getImageUrl()));
         image.setImage(g);
     }
 
@@ -338,13 +335,13 @@ public class UpdateProductController {
 
         result.setProductID(idTextField.getText());
         result.setName(nameTextField.getText());
-        result.setCategory(Enum.valueOf(Model.Category.class, categoryComboBox.getValue()));
-        result.setStatus(Enum.valueOf(Model.Status.class, statusComboBox.getValue()));
+        result.setCategory(Enum.valueOf(Category.class, categoryComboBox.getValue()));
+        result.setStatus(Enum.valueOf(Status.class, statusComboBox.getValue()));
         result.setBuyingPrice(Double.valueOf(buyingPriceTextField.getText()));
         result.setSellingPrice(Double.valueOf(sellingPriceTextField.getText()));
         result.setQuantity(Integer.valueOf(quantityTextField.getText()));
         result.setDiscount(Integer.valueOf(discountTextField.getText()));
-        result.setNation(Enum.valueOf(Model.Nation.class, nationComboBox.getValue()));
+        result.setNation(Enum.valueOf(Nation.class, nationComboBox.getValue()));
 
         try {
             String imgUrl = saveImage(currentImgUrl, result.getProductID());
@@ -399,13 +396,26 @@ public class UpdateProductController {
 
         relativeImgUrl = destPath;
 
-        destPath = "src/main/resources/Image/".concat(destPath);
+//        InputStream in = getClass().getResourceAsStream("/Image/"+relativeImgUrl);
+//        BufferedWriter bw = new BufferedWriter(new InputStreamW);
 
         System.out.println(destPath);
 
-        OutputStream destFile = new FileOutputStream(destPath);
+//    src/main/resources
+        destPath = "/Image/".concat(destPath);
 
+        OutputStream destFile = new FileOutputStream(destPath);
         Files.copy(Paths.get(sourcePath), destFile);
+
+//        OutputStream destFile1 = new FileOutputStream("out/artifacts/MediaOne_jar/MediaOne/Image/"+relativeImgUrl);
+//        Files.copy(Paths.get(sourcePath), destFile1);
+//        getClass().getResourceAsStream("/Image/"+product.getImageUrl()
+
+//        File temp = new File(String.valueOf(getClass().getResourceAsStream("/Image/"+relativeImgUrl)));
+//        temp.createNewFile();
+//
+//        OutputStream destFile1 = new FileOutputStream(temp);
+//        Files.copy(Paths.get(sourcePath), destFile1);
 
         destFile.close();
 

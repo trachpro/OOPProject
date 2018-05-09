@@ -1,10 +1,10 @@
-package Controller.UpdateProduct;
+package Controller.Products;
 
 import Controller.App;
-import Model.Book;
-import Model.BookGenre;
-import Model.Language;
-import Model.Product;
+import Model.Product.Book;
+import Model.Product.BookGenre;
+import Model.Product.Language;
+import Model.Product.Product;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -12,9 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class UpdateBookController {
 
@@ -89,7 +87,7 @@ public class UpdateBookController {
     }
 
     private void handleLanguageComboBox() {
-        String listLanguages[] = App.getEnumConstants(Model.Language.class);
+        String listLanguages[] = App.getEnumConstants(Language.class);
         for (String c : listLanguages) {
             languageComboBox.getItems().add(c);
         }
@@ -98,7 +96,7 @@ public class UpdateBookController {
     }
 
     private void handleGenreComboBox() {
-        String listGenre[] = App.getEnumConstants(Model.BookGenre.class);
+        String listGenre[] = App.getEnumConstants(BookGenre.class);
         for (String c : listGenre) {
             genreComboBox.getItems().add(c);
         }
@@ -132,8 +130,8 @@ public class UpdateBookController {
             _listAuthors.add(name[i].getText());
         }
 
-        _language = Enum.valueOf(Model.Language.class, languageComboBox.getValue());
-        _genre = Enum.valueOf(Model.BookGenre.class, genreComboBox.getValue());
+        _language = Enum.valueOf(Language.class, languageComboBox.getValue());
+        _genre = Enum.valueOf(BookGenre.class, genreComboBox.getValue());
         _length = Integer.valueOf(lengthTextField.getText());
         _publicDate = datePicker.getValue();
 

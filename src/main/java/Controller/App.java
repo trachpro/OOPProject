@@ -12,7 +12,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -21,17 +24,32 @@ public class App extends Application {
     public static SceneManager sceneManager;
     public static DataManager dataManager;
 
-    public static final String defaultPath = "D:\\JavaOOP\\MediaOne\\target\\classes\\Image\\default.png";
+    public static String defaultPath;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        sceneManager = new SceneManager();
+
+
         dataManager = new DataManager();
+        sceneManager = new SceneManager();
+
+        setDefaultPath();
+
+
+//        File f = new File(getClass().getResource("/Data/Products.txt").toURI());
+//        FileReader fr = new FileReader(f);
+//        char [] a = new char[50];
+//        fr.read(a); // doc noi dung toi mang
+//        for(char c : a)
+//            System.out.print(c); //in tung ky tu mot
+//        fr.close();
+
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/MainStage.fxml"));
         Parent root = fxmlLoader.load();
 
-        primaryStage.setTitle("MediaOneeeeeeeeee");
+        primaryStage.setTitle("MediaOne");
         Scene mainScene = new Scene(root, 1368, 700);
 
         sceneManager.setMainBodyPane((Pane) mainScene.lookup("#mainBody"));
@@ -44,6 +62,18 @@ public class App extends Application {
         primaryStage.show();
     }
 
+    private void setDefaultPath()
+    {
+//        File f = new File(String.valueOf(getClass().getResourceAsStream("/Image/default.png")));
+        File f = new File(String.valueOf((getClass().getResource("/Image/default.png"))));
+
+        defaultPath = f.getAbsolutePath();
+
+        System.out.println("default path:" + defaultPath);
+
+        File f1 = new File(String.valueOf(getClass().getResourceAsStream("/Image/aaa.png")));
+        System.out.println("default path:" + f1.getAbsolutePath());
+    }
 
     public static String[] getEnumConstants(Class<? extends Enum<?>> e) {
         return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);

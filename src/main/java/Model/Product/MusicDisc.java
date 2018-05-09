@@ -1,11 +1,9 @@
-package Model;
+package Model.Product;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
 public class MusicDisc extends Product {
 
@@ -82,5 +80,29 @@ public class MusicDisc extends Product {
         System.out.println("Language: "+getLanguage());
         System.out.println("Genre: "+getGenre().toString());
         System.out.println("Date: "+getPublicDate());
+    }
+
+    public String toString()
+    {
+        String product = super.toString();
+
+        product = product.concat(Integer.toString(getListSingers().size()));
+        product = product.concat("|");
+
+        for(int i = 0; i < getListSingers().size(); i++)
+        {
+            product = product.concat(getListSingers().get(i));
+            product = product.concat("|");
+        }
+
+        product = product.concat(getLanguage().toString());
+        product = product.concat("|");
+
+        product = product.concat(getGenre().toString());
+        product = product.concat("|");
+
+        product = product.concat(getPublicDate().toString());
+
+        return product;
     }
 }

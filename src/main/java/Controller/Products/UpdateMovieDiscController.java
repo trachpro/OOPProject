@@ -1,7 +1,10 @@
-package Controller.UpdateProduct;
+package Controller.Products;
 
 import Controller.App;
-import Model.*;
+import Model.Product.Language;
+import Model.Product.MovieDisc;
+import Model.Product.MovieGenre;
+import Model.Product.Product;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -9,9 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class UpdateMovieDiscController {
 
@@ -98,7 +99,7 @@ public class UpdateMovieDiscController {
     }
 
     private void handleLanguageSubtitleComboBox() {
-        String listLanguages[] = App.getEnumConstants(Model.Language.class);
+        String listLanguages[] = App.getEnumConstants(Language.class);
         for (String c : listLanguages) {
             languageComboBox.getItems().add(c);
             subtitleComboBox.getItems().add(c);
@@ -109,7 +110,7 @@ public class UpdateMovieDiscController {
     }
 
     private void handleGenreComboBox() {
-        String listGenre[] = App.getEnumConstants(Model.MovieGenre.class);
+        String listGenre[] = App.getEnumConstants(MovieGenre.class);
         for (String c : listGenre) {
             genreComboBox.getItems().add(c);
         }
@@ -146,9 +147,9 @@ public class UpdateMovieDiscController {
         }
 
         _director = directorTextField.getText();
-        _language = Enum.valueOf(Model.Language.class, languageComboBox.getValue());
-        _subtitle = Enum.valueOf(Model.Language.class, subtitleComboBox.getValue());
-        _genre = Enum.valueOf(Model.MovieGenre.class, genreComboBox.getValue());
+        _language = Enum.valueOf(Language.class, languageComboBox.getValue());
+        _subtitle = Enum.valueOf(Language.class, subtitleComboBox.getValue());
+        _genre = Enum.valueOf(MovieGenre.class, genreComboBox.getValue());
         _length = Integer.valueOf(lengthTextField.getText());
         _point = Float.valueOf(pointTextField.getText());
         _publicDate = datePicker.getValue();

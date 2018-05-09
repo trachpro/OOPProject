@@ -1,5 +1,6 @@
-package Controller;
+package Controller.Products;
 
+import Controller.App;
 import Controller.Products.UpdateProductController;
 import Model.Product.Book;
 import Model.Product.Mode;
@@ -176,11 +177,13 @@ public class ProductsController implements Initializable {
 
     private void searchButtonOnClick()
     {
-        String _idOrName = nameTextField.getText();
-        String _category = categoryComboBox.getSelectionModel().getSelectedItem();
-        String _nation = nationComboBox.getSelectionModel().getSelectedItem();
-        boolean _isDeleted = isDeletedCheckBox.selectedProperty().get();
-        System.out.println(_idOrName + " " + _category + " " + _nation + " " + _isDeleted);
+//        String _idOrName = nameTextField.getText();
+//        String _category = categoryComboBox.getSelectionModel().getSelectedItem();
+//        String _nation = nationComboBox.getSelectionModel().getSelectedItem();
+//        boolean _isDeleted = isDeletedCheckBox.selectedProperty().get();
+//        System.out.println(_idOrName + " " + _category + " " + _nation + " " + _isDeleted);
+
+        App.dataManager.writeProductsFile();
     }
 
     private void displayAddBox()

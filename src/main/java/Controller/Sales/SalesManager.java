@@ -4,21 +4,24 @@ import Model.Sales.Receipt;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class ReceiptManager {
+public class SalesManager {
     private String currentReceiptID;
     private ObservableList<Receipt> listReceipts;
 
-    public ReceiptManager()
+    public SalesManager()
     {
         currentReceiptID = "RE0000";
-        listReceipts = FXCollections.observableArrayList();
+        setListReceipts(FXCollections.observableArrayList());
+
+        addReceipt(new Receipt());
+        addReceipt(new Receipt());
     }
 
     public void addReceipt(Receipt _receipt)
     {
         currentReceiptID = getNextReceiptID();
         _receipt.setReceiptID(currentReceiptID);
-        listReceipts.add(_receipt);
+        getListReceipts().add(_receipt);
     }
 
 
@@ -39,5 +42,13 @@ public class ReceiptManager {
 
         String nextReceiptID = "RE".concat(nextNumber);
         return nextReceiptID;
+    }
+
+    public ObservableList<Receipt> getListReceipts() {
+        return listReceipts;
+    }
+
+    public void setListReceipts(ObservableList<Receipt> listReceipts) {
+        this.listReceipts = listReceipts;
     }
 }
