@@ -30,7 +30,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>
-                                Controller.Main
+                                controller.Main
                             </mainClass>
                         </manifest>
                     </archive>
@@ -50,7 +50,7 @@
                             <!--<archive>-->
                                 <!--<manifest>-->
                                     <!--<mainClass>-->
-                                        <!--Controller.Main-->
+                                        <!--controller.Main-->
                                     <!--</mainClass>-->
                                 <!--</manifest>-->
                             <!--</archive>-->
@@ -62,6 +62,12 @@
                 <!--</executions>-->
             <!--</plugin>-->
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 
 
