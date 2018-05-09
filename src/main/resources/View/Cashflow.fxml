@@ -21,14 +21,14 @@
             
                <DatePicker />
          <HBox prefHeight="26.0" prefWidth="37.0" />
-         <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="73.0" text="Search" />
+         <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="73.0" styleClass="search-button" stylesheets="@CSS/stylesheet.css" text="Search" />
       </children>
    </HBox>
-   <HBox layoutX="37.0" layoutY="79.0" prefHeight="504.0" prefWidth="723.0">
+   <HBox layoutX="37.0" layoutY="79.0" prefHeight="517.0" prefWidth="723.0">
       <children>
-         <HBox prefHeight="504.0" prefWidth="806.0">
+         <HBox prefHeight="517.0" prefWidth="717.0">
             <children>
-               <TableView id="cashflow" fx:id="cashflowTable" prefHeight="504.0" prefWidth="817.0">
+               <TableView id="cashflow" fx:id="cashflowTable" prefHeight="532.0" prefWidth="723.0">
                  <columns>
                    <TableColumn id="date" fx:id="dateColumn" prefWidth="108.0" text="Date" />
                    <TableColumn id="description" fx:id="descriptionColumn" prefWidth="340.0" text="Description" />

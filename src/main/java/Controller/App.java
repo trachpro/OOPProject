@@ -52,7 +52,7 @@ public class App extends Application {
         primaryStage.setTitle("MediaOne");
         Scene mainScene = new Scene(root, 1368, 700);
 
-        sceneManager.setMainBodyPane((Pane) mainScene.lookup("#mainBody"));
+        sceneManager.setMainBodyPane( (Pane) mainScene.lookup("#mainBody") );
         sceneManager.setPaneContent("Dashboard");
 
         sceneManager.setMainStage(primaryStage);

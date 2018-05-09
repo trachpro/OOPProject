@@ -2,6 +2,7 @@ package Controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -10,7 +11,6 @@ import java.io.IOException;
 public class SceneManager {
 
     private Stage mainStage;
-
     private Pane mainBodyPane;
 
     private FXMLLoader dashboardLoader;
@@ -133,7 +133,7 @@ public class SceneManager {
         return mainBodyPane;
     }
 
-    public void setMainBodyPane(Pane mainBodyPane) {
+    public void setMainBodyPane( Pane mainBodyPane) {
         this.mainBodyPane = mainBodyPane;
     }
 
