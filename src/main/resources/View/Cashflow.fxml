@@ -31,9 +31,9 @@
                <TableView id="cashflow" fx:id="cashflowTable" prefHeight="532.0" prefWidth="723.0">
                  <columns>
                    <TableColumn id="date" fx:id="dateColumn" prefWidth="108.0" text="Date" />
-                   <TableColumn id="description" fx:id="descriptionColumn" prefWidth="340.0" text="Description" />
-                     <TableColumn id="revenue" fx:id="revenueColumn" minWidth="0.0" prefWidth="137.0" text="Revenue" />
-                     <TableColumn id="expense" fx:id="expenseColumn" prefWidth="137.0" text="Expense" />
+                   <TableColumn id="description" fx:id="descriptionColumn" prefWidth="327.0" text="Description" />
+                     <TableColumn id="revenue" fx:id="revenueColumn" minWidth="0.0" prefWidth="139.0" text="Revenue" />
+                     <TableColumn id="expense" fx:id="expenseColumn" prefWidth="141.0" text="Expense" />
                  </columns>
                </TableView>
             </children>
@@ -63,9 +63,18 @@
                <Font size="20.0" />
             </font>
          </Label>
-         <Label id="totalRevenue" fx:id="totalRevenue" prefHeight="34.0" prefWidth="127.0" styleClass="text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <Label id="totalExpense" fx:id="totalExpense" prefHeight="50.0" prefWidth="139.0" styleClass="text" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-         <Label id="totalProfit" fx:id="totalProfit" prefHeight="64.0" prefWidth="127.0" styleClass="text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Label id="totalRevenue" fx:id="totalRevenue" prefHeight="34.0" prefWidth="127.0" styleClass="text" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <font>
+               <Font size="15.0" />
+            </font></Label>
+         <Label id="totalExpense" fx:id="totalExpense" prefHeight="50.0" prefWidth="139.0" styleClass="text" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <font>
+               <Font size="15.0" />
+            </font></Label>
+         <Label id="totalProfit" fx:id="totalProfit" prefHeight="64.0" prefWidth="127.0" styleClass="text" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font></Label>
          <Label prefHeight="29.0" prefWidth="116.0" styleClass="text" text="Revenue" textAlignment="CENTER" GridPane.columnIndex="1">
             <font>
                <Font size="15.0" />
@@ -78,4 +87,5 @@
          </Label>
       </children>
    </GridPane>
+   
 </AnchorPane>

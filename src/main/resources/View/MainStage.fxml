@@ -4,20 +4,21 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1368.0" spacing="5.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainStage">
 
    <VBox fx:id="menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="150.0" style="-fx-background-color: #121920;" stylesheets="@CSS/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
       <children>
-         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2BBFBD#3498db;" />
+         <HBox styleClass="sidebar-top" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0"  style="-fx-background-color: #2BBFBD#3498db;" />
          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
             <children>
+
                <JFXButton fx:id="dashboardButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" text="Dashboard " textFill="WHITE">
                   <graphic>
                      <FontAwesomeIcon glyphName="DASHBOARD" size="1.2em" styleClass="sidebar-icon" text="" />
@@ -25,15 +26,10 @@
                   <font>
                      <Font name="Calibri" size="17.0" />
                   </font>
-                  <VBox.margin>
-                     <Insets />
-                  </VBox.margin>
-                  <styleClass>
-                     <String fx:value="sidebar-button" />
-                     <String fx:value="selected" />
-                  </styleClass>
+
                </JFXButton>
-               <JFXButton fx:id="salesButton" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Sales           " textFill="#2c3e50">
+
+               <JFXButton fx:id="salesButton" layoutX="10.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Sales" textFill="#2c3e50">
                   <graphic>
                      <FontAwesomeIcon glyphName="SHOPPING_CART" size="1.2em" styleClass="sidebar-icon" />
                   </graphic>
@@ -41,7 +37,8 @@
                      <Font name="Calibri" size="17.0" />
                   </font>
                </JFXButton>
-               <JFXButton fx:id="productsButton" layoutX="10.0" layoutY="113.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Products     " textFill="#2c3e50">
+
+               <JFXButton fx:id="productsButton" layoutX="10.0" layoutY="113.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Products" textFill="#2c3e50">
                   <graphic>
                      <FontAwesomeIcon glyphName="BARCODE" size="1.2em" styleClass="sidebar-icon" />
                   </graphic>
@@ -65,7 +62,7 @@
                      <Font name="Calibri" size="17.0" />
                   </font>
                </JFXButton>
-               <JFXButton fx:id="inventoryButton" layoutX="10.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Inventory   " textFill="#2c3e50">
+               <JFXButton fx:id="inventoryButton" layoutX="10.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Inventory" textFill="#2c3e50">
                   <graphic>
                      <FontAwesomeIcon glyphName="LIST" size="1.2em" styleClass="sidebar-icon" />
                   </graphic>
@@ -73,7 +70,7 @@
                      <Font name="Calibri" size="17.0" />
                   </font>
                </JFXButton>
-               <JFXButton fx:id="revenueButton" layoutX="10.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Revenue     " textFill="#2c3e50">
+               <JFXButton fx:id="revenueButton" layoutX="10.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Revenue" textFill="#2c3e50">
                   <graphic>
                      <FontAwesomeIcon glyphName="SIGNAL" size="1.2em" styleClass="sidebar-icon" />
                   </graphic>
@@ -81,7 +78,7 @@
                      <Font name="Calibri" size="17.0" />
                   </font>
                </JFXButton>
-               <JFXButton fx:id="cashflowButton" layoutX="10.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Cashflow    " textFill="#2c3e50">
+               <JFXButton fx:id="cashflowButton" layoutX="10.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Cashflow" textFill="#2c3e50">
                   <graphic>
                      <FontAwesomeIcon glyphName="FILE_TEXT" size="1.2em" styleClass="sidebar-icon" />
                   </graphic>
@@ -89,7 +86,7 @@
                      <Font name="Calibri" size="17.0" />
                   </font>
                </JFXButton>
-               <JFXButton fx:id="profitButton" layoutX="10.0" layoutY="240.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Profit         " textFill="#2c3e50">
+               <JFXButton fx:id="profitButton" layoutX="10.0" layoutY="240.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Profit" textFill="#2c3e50">
                   <graphic>
                      <FontAwesomeIcon glyphName="DOLLAR" size="1.2em" styleClass="sidebar-icon" />
                   </graphic>
@@ -97,7 +94,7 @@
                      <Font name="Calibri" size="17.0" />
                   </font>
                </JFXButton>
-               <JFXButton fx:id="settingsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Settings       " textFill="#2c3e50">
+               <JFXButton fx:id="settingsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Settings" textFill="#2c3e50">
                   <graphic>
                      <FontAwesomeIcon glyphName="COGS" size="1.2em" styleClass="sidebar-icon" />
                   </graphic>
@@ -122,8 +119,11 @@
    </VBox>
    <VBox fx:id="body" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1213.0">
       <children>
-         <HBox fx:id="statusBar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1213.0" style="-fx-background-color: #27ae60;" VBox.vgrow="ALWAYS" />
-         <Pane fx:id="mainBody" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1213.0">
+         <HBox fx:id="statusBar" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1213.0" style="-fx-background-color: #0a7099;" VBox.vgrow="ALWAYS" >
+            <Label fx:id="menuLabel" text="Dashboard" style="-fx-font-weight: bold; -fx-font-size: 25px;" textFill="aliceblue"  styleClass="topMenuLabelText"/>
+         </HBox>
+         <!--</children>-->
+         <Pane fx:id="mainBody" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1213.0" >
 
          </Pane>
       </children>

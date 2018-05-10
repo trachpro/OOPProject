@@ -1,15 +1,22 @@
 . {
     -fx-effect: null;
 }
+.sidebar-top {
+    -fx-background-image: url("../../Image/back.jpg");
+}
 .sidebar-button{
 
     -fx-background-color: transparent;
     -fx-border-image-width: 0;
     -fx-border-color: transparent;
     -fx-background-radius: 0px;
-
-    -fx-text-fill: #7f8c8d;
+    -fx-alignment: center-left;
+    -fx-text-fill: #c7dcdd;
     /*-fx-fill:#111;*/
+}
+.sidebar-button:focused {
+    -fx-background-color: #505c6d;
+    -fx-text-fill: #eaf3ff;
 }
 
 .selected {
@@ -32,4 +39,13 @@
     -fx-border-width: 1px;
     -fx-border-color: #2f3640;
     -fx-effect: glow;
+}
+#statusBar {
+    -fx-alignment: center;
+    -fx-background-color: #0a7099;
+
+}
+.topMenuLabelText {
+    -fx-text-fill: #edf8fc;
+    -fx-font-size: 30px;
 }
