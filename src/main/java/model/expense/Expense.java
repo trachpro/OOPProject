@@ -1,6 +1,9 @@
 package model.expense;
 
+import controller.App;
+
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 public class Expense {
     private String expenseID;
@@ -65,5 +68,31 @@ public class Expense {
 
     public void setPurchaser(String purchaser) {
         this.purchaser = purchaser;
+    }
+
+    public String toString()
+    {
+        String text = "";
+        text = text.concat(getExpenseID()).concat("|");
+        text = text.concat(String.valueOf(getCost())).concat("|");
+        text = text.concat(getPurchaseDate().toString()).concat("|");
+        text = text.concat(getPurchaser()).concat("|");
+        text = text.concat(App.stringToAscii(getRemark()));
+
+        return text;
+    }
+
+    public static Expense valueOf(String text)
+    {
+        String[] parts = text.split(Pattern.quote("|"));
+
+        Expense e = new Expense();
+        e.setExpenseID(parts[0]);
+        e.setCost(Double.valueOf(parts[1]));
+        e.setPurchaseDate(LocalDate.parse(parts[2]));
+        e.setPurchaser(parts[3]);
+        e.setRemark(App.asciiToString(parts[4]));
+
+        return e;
     }
 }

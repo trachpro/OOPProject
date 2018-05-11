@@ -4,6 +4,7 @@ import controller.expenses.ExpensesManager;
 import controller.inventory.InventoryManager;
 import controller.products.ProductsManager;
 import controller.sales.SalesManager;
+import model.expense.Expense;
 import model.product.*;
 import javafx.collections.ObservableList;
 import model.receipts.BuyReceipt;
@@ -244,7 +245,7 @@ public class DataManager {
                 r.setCashierName(parts[3]);
                 r.setTotalCost(Double.valueOf(parts[4]));
                 r.setDate(LocalDate.parse(parts[5]));
-                r.setRemark(parts[6]);
+                r.setRemark(App.asciiToString(parts[6]));
 
                 int nItems = Integer.valueOf(parts[7]);
                 for(int i = 0; i < nItems; i++)
@@ -277,6 +278,7 @@ public class DataManager {
         readProductsFile();
         readSellReceiptsFile();
         readBuyReceiptsFile();
+        readExpensesFile();
     }
 
     public void writeData()
@@ -284,6 +286,7 @@ public class DataManager {
         writeProductsFile();
         writeSellReceiptsFile();
         writeBuyReceiptsFile();
+        writeExpensesFile();
     }
 
     public InventoryManager getInventoryManager() {
@@ -342,7 +345,7 @@ public class DataManager {
                 buyReceipt.setPurchaserName(parts[3]);
                 buyReceipt.setTotalCost(Double.valueOf(parts[4]));
                 buyReceipt.setDate(LocalDate.parse(parts[5]));
-                buyReceipt.setRemark(parts[6]);
+                buyReceipt.setRemark(App.asciiToString(parts[6]));
 
                 int nItems = Integer.valueOf(parts[7]);
                 for(int j = 0; j < nItems; j++)
@@ -368,6 +371,53 @@ public class DataManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void readExpensesFile()
+    {
+        try {
+            File file = new File("src/main/resources/data/Expenses.txt");
+            System.out.println(file.getAbsolutePath());
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line = bufferedReader.readLine();
+
+            while(line != null)
+            {
+                Expense e = Expense.valueOf(line);
+                expensesManager.addExpense(e);
+                line = bufferedReader.readLine();
+                if(line == null) break;
+            }
+            bufferedReader.close();
+            fileReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void writeExpensesFile()
+    {
+        try {
+            File file = new File("src/main/resources/data/Expenses.txt");
+            FileWriter fileWriter = new FileWriter(file, false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            ObservableList<Expense> listExpenses = expensesManager.getListExpenses();
+
+            for(Expense expense: listExpenses)
+            {
+                bufferedWriter.write(expense.toString());
+                bufferedWriter.write("\n");
+            }
+
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public ExpensesManager getExpensesManager() {

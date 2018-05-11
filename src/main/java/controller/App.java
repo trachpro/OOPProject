@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -19,6 +20,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Pattern;
 
 public class App extends Application {
 
@@ -195,4 +197,33 @@ public class App extends Application {
         window.showAndWait();
     }
 
+    public static String stringToAscii(String text)
+    {
+        String returnString ="";
+
+        int length = text.length();
+        for(int i = 0; i < length; i++)
+        {
+            char c = text.charAt(i);
+            int j = (int) c;
+            returnString = returnString.concat(String.valueOf(j)).concat(" ");
+        }
+
+        return returnString;
+    }
+
+    public static String asciiToString(String text)
+    {
+        String returnString = "";
+        String[] parts = text.split(" ");
+        int length = parts.length;
+        for(int i = 0; i < length; i++)
+        {
+            int so = Integer.valueOf(parts[i]);
+            String c = Character.toString((char) so);
+            returnString = returnString.concat(c);
+        }
+
+        return returnString;
+    }
 }

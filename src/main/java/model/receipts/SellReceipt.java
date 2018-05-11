@@ -1,5 +1,7 @@
 package model.receipts;
 
+import controller.App;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -91,7 +93,7 @@ public class SellReceipt extends Receipt {
         text = text.concat(getDate().toString());
         text = text.concat("|");
 
-        text = text.concat(getRemark());
+        text = text.concat(App.stringToAscii(getRemark()));
         text = text.concat("|");
 
         text = text.concat(String.valueOf(getListItems().size()));

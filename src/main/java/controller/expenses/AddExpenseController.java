@@ -84,6 +84,8 @@ public class AddExpenseController implements Initializable {
                 expense.setPurchaser(purchaserLabel.getText());
                 expense.setRemark(remarkTextArea.getText());
                 App.dataManager.getExpensesManager().addExpense(expense);
+                System.out.println("\""+remarkTextArea.getText()+"\"");
+                System.out.println(App.stringToAscii(remarkTextArea.getText()));
 
                 getStage().close();
             }
