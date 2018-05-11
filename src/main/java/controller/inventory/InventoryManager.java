@@ -12,8 +12,6 @@ public class InventoryManager {
     {
         currentBuyReceiptID = "RB0000";
         setListBuyReceipts(FXCollections.observableArrayList());
-        getListBuyReceipts().add(new BuyReceipt());
-        getListBuyReceipts().add(new BuyReceipt());
     }
 
     public void addBuyReceipt(BuyReceipt _buyReceipt)

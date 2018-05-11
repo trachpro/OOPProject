@@ -1,10 +1,12 @@
 package controller;
 
+import controller.expenses.ExpensesManager;
 import controller.inventory.InventoryManager;
 import controller.products.ProductsManager;
 import controller.sales.SalesManager;
 import model.product.*;
 import javafx.collections.ObservableList;
+import model.receipts.BuyReceipt;
 import model.receipts.ItemOrder;
 import model.receipts.SellReceipt;
 
@@ -17,6 +19,7 @@ public class DataManager {
     private ProductsManager productsManager;
     private SalesManager salesManager;
     private InventoryManager inventoryManager;
+    private ExpensesManager expensesManager;
 
 //        ClassLoader classLoader = getClass().getClassLoader();
 //        File file = new File(classLoader.getResource("data/products").getFile());
@@ -26,13 +29,9 @@ public class DataManager {
         setProductsManager(new ProductsManager());
         setSalesManager(new SalesManager());
         setInventoryManager(new InventoryManager());
+        setExpensesManager(new ExpensesManager());
 
         readData();
-
-        //productsManager.getProductByID("PR0002");
-//        readProductsFile();
-//        writeProductsFile();
-
     }
 
     public ProductsManager getProductsManager() {
@@ -277,12 +276,14 @@ public class DataManager {
     {
         readProductsFile();
         readSellReceiptsFile();
+        readBuyReceiptsFile();
     }
 
     public void writeData()
     {
         writeProductsFile();
         writeSellReceiptsFile();
+        writeBuyReceiptsFile();
     }
 
     public InventoryManager getInventoryManager() {
@@ -291,5 +292,89 @@ public class DataManager {
 
     public void setInventoryManager(InventoryManager inventoryManager) {
         this.inventoryManager = inventoryManager;
+    }
+
+    public void writeBuyReceiptsFile()
+    {
+        //String comment = "# Category|productID|name|status|quantity|sellingPrice|buyingPrice|nation|imageURL|discount\n";
+
+        try {
+            File file = new File("src/main/resources/data/BuyReceipts.txt");
+            FileWriter fileWriter = new FileWriter(file, false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            ObservableList<BuyReceipt> listBuyReceipts = inventoryManager.getListBuyReceipts();
+
+            for(BuyReceipt buyReceipt: listBuyReceipts)
+            {
+                bufferedWriter.write(buyReceipt.toString());
+                bufferedWriter.write("\n");
+            }
+
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void readBuyReceiptsFile()
+    {
+        try {
+            File file = new File("src/main/resources/data/BuyReceipts.txt");
+            System.out.println(file.getAbsolutePath());
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line = bufferedReader.readLine();
+
+            while(line != null)
+            {
+                System.out.println("\""+line+"\"");
+
+                String[] parts = line.split(Pattern.quote("|"));
+
+                BuyReceipt buyReceipt = new BuyReceipt();
+                buyReceipt.setReceiptID(parts[0]);
+                buyReceipt.setCategory(Enum.valueOf(model.receipts.Category.class, parts[1]));
+                buyReceipt.setSupplierName(parts[2]);
+                buyReceipt.setPurchaserName(parts[3]);
+                buyReceipt.setTotalCost(Double.valueOf(parts[4]));
+                buyReceipt.setDate(LocalDate.parse(parts[5]));
+                buyReceipt.setRemark(parts[6]);
+
+                int nItems = Integer.valueOf(parts[7]);
+                for(int j = 0; j < nItems; j++)
+                {
+                    String rawItem = bufferedReader.readLine();
+                    int first = rawItem.indexOf("|");
+                    int amount = Integer.parseInt(rawItem.substring(0, first));
+
+                    String rawProduct = rawItem.substring(first + 1);
+                    Product product = Product.valueOf(rawProduct);
+
+                    buyReceipt.getListItems().add(new ItemOrder(product, amount));
+                }
+
+                inventoryManager.addBuyReceipt(buyReceipt);
+
+                bufferedReader.readLine();
+                line = bufferedReader.readLine();
+                if(line == null) break;
+            }
+            bufferedReader.close();
+            fileReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ExpensesManager getExpensesManager() {
+        return expensesManager;
+    }
+
+    public void setExpensesManager(ExpensesManager expensesManager) {
+        this.expensesManager = expensesManager;
     }
 }

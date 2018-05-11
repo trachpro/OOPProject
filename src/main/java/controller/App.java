@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class App extends Application {
 
@@ -60,13 +61,19 @@ public class App extends Application {
         primaryStage.setOnCloseRequest(e -> {
             e.consume();
 
-            boolean selectionQuit = displayConfirmBox("Do you want to quit ?");
-            if(selectionQuit)
+            int selectionQuit = displayConfirmBox("Do you want to quit ?");
+            if(selectionQuit == 1)
             {
-                boolean selectionSave = displayConfirmBox("Do you want to save data ?");
-                if(selectionSave) dataManager.writeData();
-
-                primaryStage.close();
+                int selectionSave = displayConfirmBox("Do you want to save data ?");
+                if(selectionSave == 1)
+                {
+                    dataManager.writeData();
+                    primaryStage.close();
+                }
+                else if(selectionSave == 2)
+                {
+                    primaryStage.close();
+                }
             }
         });
 
@@ -94,9 +101,9 @@ public class App extends Application {
         return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
     }
 
-    public static Boolean displayConfirmBox(String _text)
+    public static int displayConfirmBox(String _text)
     {
-        AtomicBoolean selection = new AtomicBoolean(false);
+        AtomicInteger selection = new AtomicInteger(0);
 
         JFXButton yesButton;
         JFXButton noButton;
@@ -121,17 +128,13 @@ public class App extends Application {
         textLabel = (Label) scene.lookup("#textLabel");
 
         yesButton.setOnAction(e -> {
-            selection.set(true);
+            selection.set(1);
             window.close();
         });
 
         noButton.setOnAction(e -> {
-            selection.set(false);
+            selection.set(2);
             window.close();
-        });
-
-        window.setOnCloseRequest(e -> {
-            selection.set(false);
         });
 
         textLabel.setText(_text);

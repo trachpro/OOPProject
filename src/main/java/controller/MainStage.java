@@ -15,7 +15,7 @@ public class MainStage implements Initializable {
     @FXML private JFXButton salesButton;
     @FXML private JFXButton inventoryButton;
     @FXML private JFXButton revenueButton;
-    @FXML private JFXButton profitButton;
+    @FXML private JFXButton expensesButton;
     @FXML private JFXButton cashflowButton;
 
     @FXML private JFXButton customersButton;
@@ -71,11 +71,11 @@ public class MainStage implements Initializable {
             handleStylesheet(revenueButton);
         });
 
-        profitButton.setOnAction(e -> {
-            System.out.println(profitButton.getText());
-            App.sceneManager.setPaneContent(profitButton.getText());
+        expensesButton.setOnAction(e -> {
+            System.out.println(expensesButton.getText());
+            App.sceneManager.setPaneContent(expensesButton.getText());
 
-            handleStylesheet(profitButton);
+            handleStylesheet(expensesButton);
         });
 
         cashflowButton.setOnAction(e -> {

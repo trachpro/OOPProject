@@ -55,15 +55,7 @@
                      <Font name="Calibri" size="17.0" />
                   </font>
                </JFXButton>
-               <JFXButton fx:id="revenueButton" layoutX="10.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Revenue     " textFill="#2c3e50">
-                  <graphic>
-                     <FontAwesomeIcon glyphName="SIGNAL" size="1.2em" styleClass="sidebar-icon" />
-                  </graphic>
-                  <font>
-                     <Font name="Calibri" size="17.0" />
-                  </font>
-               </JFXButton>
-               <JFXButton fx:id="profitButton" layoutX="10.0" layoutY="240.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Profit         " textFill="#2c3e50">
+               <JFXButton fx:id="expensesButton" layoutX="10.0" layoutY="240.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" styleClass="sidebar-button" text="Expenses  " textFill="#2c3e50">
                   <graphic>
                      <FontAwesomeIcon glyphName="DOLLAR" size="1.2em" styleClass="sidebar-icon" />
                   </graphic>
@@ -89,6 +81,14 @@
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
+               </JFXButton>
+               <JFXButton fx:id="revenueButton" layoutX="10.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" text="Revenue     " textFill="#2c3e50">
+                  <graphic>
+                     <FontAwesomeIcon glyphName="SIGNAL" size="1.2em" styleClass="sidebar-icon" />
+                  </graphic>
+                  <font>
+                     <Font name="Calibri" size="17.0" />
+                  </font>
                </JFXButton>
                <JFXButton fx:id="customersButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" text="Customers " textFill="#2c3e50">
                   <graphic>

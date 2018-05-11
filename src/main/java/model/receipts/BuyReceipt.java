@@ -21,7 +21,7 @@ public class BuyReceipt extends Receipt {
     public BuyReceipt()
     {
         setCategory(Category.SELL);
-        setReceiptID("RE0000");
+        setReceiptID("RB0000");
         setSupplierName("1");
         setListItems(new ArrayList<>());
         setTotalCost(0);

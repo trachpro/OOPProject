@@ -238,9 +238,9 @@ public class UpdateProductController {
             if(mode == Mode.ADD) text = text.replace("***", "add");
             else text = text.replace("***", "update");
 
-            Boolean selection = App.displayConfirmBox(text);
+            int selection = App.displayConfirmBox(text);
 
-            if(selection)
+            if(selection == 1)
             {
                 Product result = getProduct();
 
@@ -282,9 +282,9 @@ public class UpdateProductController {
             }
             else text = text.concat(" updating this product ?");
 
-            Boolean selection = App.displayConfirmBox(text);
+            int selection = App.displayConfirmBox(text);
 
-            if(selection)
+            if(selection == 1)
             {
                 System.out.println("Cancel the process");
                 getParentStage().close();

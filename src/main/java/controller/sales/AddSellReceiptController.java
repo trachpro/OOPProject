@@ -39,7 +39,6 @@ public class AddSellReceiptController implements Initializable {
     private Stage parentStage;
 
     @FXML private JFXTextField searchText;
-    @FXML private JFXComboBox<String> categorySearchComboBox;
 
     @FXML private JFXButton addButton;
     @FXML private JFXButton deleteButton;
@@ -287,18 +286,22 @@ public class AddSellReceiptController implements Initializable {
 
         JFXButton okButton =(JFXButton) scene.lookup("#okButton");
         JFXButton cancelButton =(JFXButton) scene.lookup("#cancelButton");
-        JFXComboBox<Integer> amountComboBox = (JFXComboBox<Integer>) scene.lookup("#amountComboBox");
+        TextField amountTextField = (TextField) scene.lookup("#amountTextField");
 
         okButton.setOnAction(e -> {
-            selectedNumber.set(amountComboBox.getValue());
-            window.close();
+            try {
+                int amount = Integer.valueOf(amountTextField.getText());
+                if(amount > maxNumber)
+                    App.displayAlertingBox("Exceed maximum number !");
+                else{
+                    selectedNumber.set(amount);
+                    window.close();
+                }
+            }catch (Exception ex)
+            {
+                App.displayAlertingBox("Wrong number !");
+            }
         });
-
-        for(int i = 1; i <= maxNumber; i++)
-        {
-            amountComboBox.getItems().add(i);
-        }
-        amountComboBox.setValue(1);
 
         cancelButton.setOnAction(e -> {
             selectedNumber.set(0);
@@ -364,8 +367,8 @@ public class AddSellReceiptController implements Initializable {
         int nSelected = listItems.size();
         if(nSelected == 0) parentStage.close();
         else {
-            boolean select = App.displayConfirmBox("Are you sure to cancel ?");
-            if (select) {
+            int select = App.displayConfirmBox("Are you sure to cancel ?");
+            if (select == 1) {
                 listItems.forEach(i -> {
                     i.getProduct().setQuantity(i.getProduct().getQuantity() + i.getAmount());
                 });
@@ -397,8 +400,8 @@ public class AddSellReceiptController implements Initializable {
             int nSelected = listItems.size();
             if(nSelected == 0) App.displayAlertingBox("Nothing to save !");
             else {
-                Boolean saving = App.displayConfirmBox("Are you sure to save ?");
-                if (saving) {
+                int saving = App.displayConfirmBox("Are you sure to save ?");
+                if (saving == 1) {
                     handleSaving();
                     parentStage.close();
                 }

@@ -286,6 +286,7 @@ public class AddBuyReceiptController implements Initializable {
 
         okButton.setOnAction(e -> {
             try {
+
                 selectedNumber.set(Integer.valueOf(amountTextField.getText()));
                 window.close();
             } catch (Exception ex)
@@ -319,26 +320,29 @@ public class AddBuyReceiptController implements Initializable {
 
         amountSelected = displayAmountBox();
 
-        boolean isExisted = false;
-
-        for(ItemOrder i: listItems)
+        if(amountSelected > 0)
         {
-            if(i.getProduct() == p)
+            boolean isExisted = false;
+
+            for(ItemOrder i: listItems)
             {
-                i.setAmount(i.getAmount() + amountSelected);
-                p.setQuantity(p.getQuantity() + amountSelected);
-                isExisted = true;
-                break;
+                if(i.getProduct() == p)
+                {
+                    i.setAmount(i.getAmount() + amountSelected);
+                    p.setQuantity(p.getQuantity() + amountSelected);
+                    isExisted = true;
+                    break;
+                }
             }
-        }
 
-        if(!isExisted)
-        {
-            listItems.add(new ItemOrder(p, amountSelected));
-            p.setQuantity(p.getQuantity() + amountSelected);
-        }
+            if(!isExisted)
+            {
+                listItems.add(new ItemOrder(p, amountSelected));
+                p.setQuantity(p.getQuantity() + amountSelected);
+            }
 
-        refresh();
+            refresh();
+        }
     }
 
     private void handleClosing()
@@ -346,8 +350,8 @@ public class AddBuyReceiptController implements Initializable {
         int nSelected = listItems.size();
         if(nSelected == 0) parentStage.close();
         else {
-            boolean select = App.displayConfirmBox("Are you sure to cancel ?");
-            if (select) {
+            int select = App.displayConfirmBox("Are you sure to cancel ?");
+            if (select == 1) {
                 listItems.forEach(i -> {
                     i.getProduct().setQuantity(i.getProduct().getQuantity() - i.getAmount());
                 });
@@ -379,8 +383,8 @@ public class AddBuyReceiptController implements Initializable {
             int nItems = listItems.size();
             if(nItems == 0) App.displayAlertingBox("Nothing to save !");
             else {
-                Boolean saving = App.displayConfirmBox("Are you sure to save ?");
-                if (saving) {
+                int saving = App.displayConfirmBox("Are you sure to save ?");
+                if (saving == 1) {
                     handleSaving();
                     parentStage.close();
                 }

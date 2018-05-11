@@ -21,7 +21,7 @@ public class SceneManager {
     private FXMLLoader inventoryLoader;
     private FXMLLoader revenueLoader;
     private FXMLLoader cashflowLoader;
-    private FXMLLoader profitLoader;
+    private FXMLLoader expensesLoader;
     private FXMLLoader settingsLoader;
 
 
@@ -104,9 +104,9 @@ public class SceneManager {
             e.printStackTrace();
         }
 
-        profitLoader = new FXMLLoader(getClass().getResource("/view/Profit.fxml"));
+        expensesLoader = new FXMLLoader(getClass().getResource("/view/expenses/Expenses.fxml"));
         try {
-            profit = profitLoader.load();
+            profit = expensesLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -205,7 +205,7 @@ public class SceneManager {
                 break;
             }
 
-            case "Profit":
+            case "Expenses":
             {
                 result = profit;
                 break;
@@ -280,9 +280,9 @@ public class SceneManager {
                 break;
             }
 
-            case "Profit":
+            case "Expenses":
             {
-                result = profitLoader;
+                result = expensesLoader;
                 break;
             }
 
