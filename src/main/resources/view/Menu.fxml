@@ -18,7 +18,7 @@
           <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Image/img%20(9).png" />
+                <Image url="@../image/img%20(9).png" />
               </image>
             </ImageView>
             <Label text="Dashboard">
@@ -34,14 +34,14 @@
             <Insets bottom="8.0" left="10.0" top="8.0" />
           </padding>
           <stylesheets>
-            <URL value="@CSS/MenuItem.css" />
+            <URL value="@css/MenuItem.css" />
           </stylesheets>
         </HBox>
         <HBox id="" fx:id="orders" prefHeight="36.0" prefWidth="200.0" spacing="10.0" styleClass="menuItem">
           <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Image/img%20(4).png" />
+                <Image url="@../image/img%20(4).png" />
               </image>
             </ImageView>
             <Label font="$x1" text="Orders">
@@ -54,14 +54,14 @@
             <Insets bottom="8.0" left="10.0" top="8.0" />
           </padding>
           <stylesheets>
-            <URL value="@CSS/MenuItem.css" />
+            <URL value="@css/MenuItem.css" />
           </stylesheets>
         </HBox>
         <HBox id="" fx:id="goods" prefHeight="36.0" prefWidth="200.0" spacing="10.0" styleClass="menuItem">
           <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Image/img%20(4).png" />
+                <Image url="@../image/img%20(4).png" />
               </image>
             </ImageView>
             <Label font="$x1" text="Goods">
@@ -74,14 +74,14 @@
             <Insets bottom="8.0" left="10.0" top="8.0" />
           </padding>
           <stylesheets>
-            <URL value="@CSS/MenuItem.css" />
+            <URL value="@css/MenuItem.css" />
           </stylesheets>
         </HBox>
         <HBox id="" fx:id="customers" prefHeight="36.0" prefWidth="200.0" spacing="10.0" styleClass="menuItem">
           <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Image/img%20(4).png" />
+                <Image url="@../image/img%20(4).png" />
               </image>
             </ImageView>
             <Label font="$x1" text="Customers">
@@ -94,17 +94,17 @@
             <Insets bottom="8.0" left="10.0" top="8.0" />
           </padding>
           <stylesheets>
-            <URL value="@CSS/MenuItem.css" />
+            <URL value="@css/MenuItem.css" />
           </stylesheets>
         </HBox>
         <HBox id="" fx:id="goodsReceipt" prefHeight="36.0" prefWidth="200.0" spacing="10.0" styleClass="menuItem">
           <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Image/img%20(4).png" />
+                <Image url="@../image/img%20(4).png" />
               </image>
             </ImageView>
-            <Label font="$x1" text="Goods receipt">
+            <Label font="$x1" text="Goods sellReceipt">
               <HBox.margin>
                 <Insets left="10.0" />
               </HBox.margin>
@@ -114,14 +114,14 @@
             <Insets bottom="8.0" left="10.0" top="8.0" />
           </padding>
           <stylesheets>
-            <URL value="@CSS/MenuItem.css" />
+            <URL value="@css/MenuItem.css" />
           </stylesheets>
         </HBox>
         <HBox id="" fx:id="stock" prefHeight="36.0" prefWidth="200.0" spacing="10.0" styleClass="menuItem">
           <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Image/img%20(4).png" />
+                <Image url="@../image/img%20(4).png" />
               </image>
             </ImageView>
             <Label font="$x1" text="Stock">
@@ -134,14 +134,14 @@
             <Insets bottom="8.0" left="10.0" top="8.0" />
           </padding>
           <stylesheets>
-            <URL value="@CSS/MenuItem.css" />
+            <URL value="@css/MenuItem.css" />
           </stylesheets>
         </HBox>
         <HBox id="" fx:id="sales" prefHeight="36.0" prefWidth="200.0" spacing="10.0" styleClass="menuItem">
           <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Image/img%20(4).png" />
+                <Image url="@../image/img%20(4).png" />
               </image>
             </ImageView>
             <Label font="$x1" text="Sales">
@@ -154,14 +154,14 @@
             <Insets bottom="8.0" left="10.0" top="8.0" />
           </padding>
           <stylesheets>
-            <URL value="@CSS/MenuItem.css" />
+            <URL value="@css/MenuItem.css" />
           </stylesheets>
         </HBox>
         <HBox id="" fx:id="expenses" prefHeight="36.0" prefWidth="200.0" spacing="10.0" styleClass="menuItem">
           <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Image/img%20(4).png" />
+                <Image url="@../image/img%20(4).png" />
               </image>
             </ImageView>
             <Label font="$x1" text="Expenes">
@@ -174,14 +174,14 @@
             <Insets bottom="8.0" left="10.0" top="8.0" />
           </padding>
           <stylesheets>
-            <URL value="@CSS/MenuItem.css" />
+            <URL value="@css/MenuItem.css" />
           </stylesheets>
         </HBox>
         <HBox id="" fx:id="profits" prefHeight="36.0" prefWidth="200.0" spacing="10.0" styleClass="menuItem">
           <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@../Image/img%20(4).png" />
+                <Image url="@../image/img%20(4).png" />
               </image>
             </ImageView>
             <Label font="$x1" text="Profits">
@@ -194,7 +194,7 @@
             <Insets bottom="8.0" left="10.0" top="8.0" />
           </padding>
           <stylesheets>
-            <URL value="@CSS/MenuItem.css" />
+            <URL value="@css/MenuItem.css" />
           </stylesheets>
         </HBox>
         <HBox id="" fx:id="settings" prefHeight="36.0" prefWidth="200.0" spacing="10.0" styleClass="menuItem">
@@ -214,7 +214,7 @@
             <Insets bottom="8.0" left="10.0" top="8.0" />
           </padding>
           <stylesheets>
-            <URL value="@CSS/MenuItem.css" />
+            <URL value="@css/MenuItem.css" />
           </stylesheets>
         </HBox>
       </children>

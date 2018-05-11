@@ -13,8 +13,13 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class App extends Application {
 
@@ -31,9 +36,10 @@ public class App extends Application {
         sceneManager = new SceneManager();
 
         setDefaultPath();
-
+        System.out.println("get resource path: " + getResourcePath());
 
 //        File f = new File(getClass().getResource("/Data/products.txt").toURI());
+
 //        FileReader fr = new FileReader(f);
 //        char [] a = new char[50];
 //        fr.read(a); // doc noi dung toi mang
@@ -43,7 +49,7 @@ public class App extends Application {
 
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/MainStage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MainStage.fxml"));
         Parent root = fxmlLoader.load();
 
         primaryStage.setTitle("MediaOne");
@@ -54,6 +60,25 @@ public class App extends Application {
 
         sceneManager.setMainStage(primaryStage);
 
+        primaryStage.setOnCloseRequest(e -> {
+            e.consume();
+
+            int selectionQuit = displayConfirmBox("Do you want to quit ?");
+            if(selectionQuit == 1)
+            {
+                int selectionSave = displayConfirmBox("Do you want to save data ?");
+                if(selectionSave == 1)
+                {
+                    dataManager.writeData();
+                    primaryStage.close();
+                }
+                else if(selectionSave == 2)
+                {
+                    primaryStage.close();
+                }
+            }
+        });
+
         primaryStage.setScene(mainScene);
         primaryStage.setMaximized(true);
         primaryStage.show();
@@ -61,24 +86,26 @@ public class App extends Application {
 
     private void setDefaultPath()
     {
-//        File f = new File(String.valueOf(getClass().getResourceAsStream("/Image/default.png")));
-        File f = new File(String.valueOf((getClass().getResource("/Image/default.png"))));
+//        File f = new File(String.valueOf(getClass().getResourceAsStream("/image/default.png")));
 
-        defaultPath = f.getAbsolutePath();
+//        File f = new File(String.valueOf((getClass().getResource("/image/default.png"))));
+//        defaultPath = f.getAbsolutePath();
 
-        System.out.println("default path:" + defaultPath);
+        //System.out.println("default path:" + defaultPath);
 
-        File f1 = new File(String.valueOf(getClass().getResourceAsStream("/Image/aaa.png")));
-        System.out.println("default path:" + f1.getAbsolutePath());
+        File f1 = new File("src/main/resources/image/default.png");
+        defaultPath = f1.getAbsolutePath();
+
+//        System.out.println("default path:" + f1.getAbsolutePath());
     }
 
     public static String[] getEnumConstants(Class<? extends Enum<?>> e) {
         return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
     }
 
-    public static Boolean displayConfirmBox(String _text)
+    public static int displayConfirmBox(String _text)
     {
-        AtomicBoolean selection = new AtomicBoolean(false);
+        AtomicInteger selection = new AtomicInteger(0);
 
         JFXButton yesButton;
         JFXButton noButton;
@@ -86,10 +113,10 @@ public class App extends Application {
 
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Cancel");
+        window.setTitle("Confirm");
         window.setMinWidth(350);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/View/ConfirmBox.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/ConfirmBox.fxml"));
         AnchorPane confirmBoxLayout = null;
         try {
             confirmBoxLayout = fxmlLoader.load();
@@ -103,12 +130,12 @@ public class App extends Application {
         textLabel = (Label) scene.lookup("#textLabel");
 
         yesButton.setOnAction(e -> {
-            selection.set(true);
+            selection.set(1);
             window.close();
         });
 
         noButton.setOnAction(e -> {
-            selection.set(false);
+            selection.set(2);
             window.close();
         });
 
@@ -127,5 +154,47 @@ public class App extends Application {
 //        mainBodyPane.getChildren().add(newPane);
 //    }
 
+    private static String getResourcePath() {
+        try {
+            URI resourcePathFile = System.class.getResource("").toURI();
+            String resourcePath = Files.readAllLines(Paths.get(resourcePathFile)).get(0);
+            URI rootURI = new File("").toURI();
+            URI resourceURI = new File(resourcePath).toURI();
+            URI relativeResourceURI = rootURI.relativize(resourceURI);
+            return relativeResourceURI.getPath();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static void displayAlertingBox(String text)
+    {
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Alert");
+        window.setMinWidth(300);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/AlertBox.fxml"));
+        AnchorPane alertBoxLayout = null;
+        try {
+            alertBoxLayout = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(alertBoxLayout);
+
+        Label alertText = (Label) scene.lookup("#alertText");
+        JFXButton okButton =(JFXButton) scene.lookup("#okButton");
+
+        alertText.setText(text);
+
+        okButton.setOnAction(e -> {
+            window.close();
+        });
+
+        window.setScene(scene);
+        window.showAndWait();
+    }
 
 }

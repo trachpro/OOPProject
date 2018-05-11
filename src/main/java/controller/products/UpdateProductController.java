@@ -65,10 +65,13 @@ public class UpdateProductController {
         currentImgUrl = App.defaultPath;
 
         handleIdTextField();
+        handleNameTextField();
         handleCategoryComboBox();
         handleStatusComboBox();
         handleNationComboBox();
         handleFileButton();
+
+        handleTextFields();
 
         handleOkButton();
         handleCancelButton();
@@ -79,7 +82,7 @@ public class UpdateProductController {
         loadDetailPane(product.getCategory());
 
 //        try {
-//            File f = new File(getClass().getResource("/Image/default.png").toURI());
+//            File f = new File(getClass().getResource("/image/default.png").toURI());
 //            currentImgUrl = f.getAbsolutePath();
 //            System.out.println("1: "+currentImgUrl);
 //        } catch (URISyntaxException e) {
@@ -87,7 +90,7 @@ public class UpdateProductController {
 //        }
 
         //File f = new File();
-//        Image g = new Image("/Image/default.png");
+//        image g = new image("/image/default.png");
 //        image.setImage(g);
     }
 
@@ -100,6 +103,9 @@ public class UpdateProductController {
             detailAnchorPane.getChildren().add(updateBookNode);
 
             UpdateBookController updateBookController = updateBookLoader.getController();
+
+            if(mode == Mode.ADD) product = new Book();
+
             updateBookController.init(detailAnchorPane, ((Book) product));
         }
 
@@ -108,6 +114,9 @@ public class UpdateProductController {
             detailAnchorPane.getChildren().add(updateMovieDiscNode);
 
             UpdateMovieDiscController updateMovieDiscController = updateMovieDiscLoader.getController();
+
+            if(mode == Mode.ADD) product = new MovieDisc();
+
             updateMovieDiscController.init(detailAnchorPane, ((MovieDisc) product));
         }
 
@@ -115,6 +124,9 @@ public class UpdateProductController {
         {
             detailAnchorPane.getChildren().add(updateMusicDiscNode);
             UpdateMusicDiscController updateMusicDiscController = updateMusicDiscLoader.getController();
+
+            if(mode == Mode.ADD) product = new MusicDisc();
+
             updateMusicDiscController.init(detailAnchorPane, ((MusicDisc) product));
         }
 
@@ -122,11 +134,11 @@ public class UpdateProductController {
 
     private void initializeLoaders()
     {
-        updateBookLoader = new FXMLLoader(getClass().getResource("/View/Products/UpdateBook.fxml"));
+        updateBookLoader = new FXMLLoader(getClass().getResource("/view/products/UpdateBook.fxml"));
 
-        updateMovieDiscLoader = new FXMLLoader(getClass().getResource("/View/Products/UpdateMovieDisc.fxml"));
+        updateMovieDiscLoader = new FXMLLoader(getClass().getResource("/view/products/UpdateMovieDisc.fxml"));
 
-        updateMusicDiscLoader = new FXMLLoader(getClass().getResource("/View/Products/UpdateMusicDisc.fxml"));
+        updateMusicDiscLoader = new FXMLLoader(getClass().getResource("/view/products/UpdateMusicDisc.fxml"));
 
         try {
             updateBookNode = updateBookLoader.load();
@@ -157,6 +169,11 @@ public class UpdateProductController {
         {
             idTextField.setText(product.getProductID());
         }
+    }
+
+    private void handleNameTextField()
+    {
+        nameTextField.setText(product.getName());
     }
 
     private void handleCategoryComboBox()
@@ -194,6 +211,14 @@ public class UpdateProductController {
         statusComboBox.setValue(product.getStatus().toString());
     }
 
+    private void handleTextFields()
+    {
+        buyingPriceTextField.setText(String.valueOf(product.getBuyingPrice()));
+        sellingPriceTextField.setText(String.valueOf(product.getSellingPrice()));
+        quantityTextField.setText(String.valueOf(product.getQuantity()));
+        discountTextField.setText(String.valueOf(product.getDiscount()));
+    }
+
     private void handleNationComboBox()
     {
         String listNations[] = App.getEnumConstants(Nation.class);
@@ -213,9 +238,9 @@ public class UpdateProductController {
             if(mode == Mode.ADD) text = text.replace("***", "add");
             else text = text.replace("***", "update");
 
-            Boolean selection = App.displayConfirmBox(text);
+            int selection = App.displayConfirmBox(text);
 
-            if(selection)
+            if(selection == 1)
             {
                 Product result = getProduct();
 
@@ -257,9 +282,9 @@ public class UpdateProductController {
             }
             else text = text.concat(" updating this product ?");
 
-            Boolean selection = App.displayConfirmBox(text);
+            int selection = App.displayConfirmBox(text);
 
-            if(selection)
+            if(selection == 1)
             {
                 System.out.println("Cancel the process");
                 getParentStage().close();
@@ -280,7 +305,7 @@ public class UpdateProductController {
                     if (file != null) {
 
                         currentImgUrl = file.getAbsolutePath();
-                        System.out.println("current img url :" +currentImgUrl);
+                        //System.out.println("current img url :" +currentImgUrl);
                         setImage(file);
 
 //                        try {
@@ -296,7 +321,9 @@ public class UpdateProductController {
 
     private void handleImageView()
     {
-        Image g = new Image(getClass().getResourceAsStream("/Image/"+product.getImageUrl()));
+        File f = new File("src/main/resources/image/" + product.getImageUrl());
+//        image g = new image(System.class.getResourceAsStream("/image/"+product.getImageUrl()));
+        Image g = new Image(f.toURI().toString());
         image.setImage(g);
     }
 
@@ -315,7 +342,7 @@ public class UpdateProductController {
 
     private void setImage(File file) {
         Image i = new Image(file.toURI().toString());
-//        Image i = new Image(file.getAbsolutePath());
+//        image i = new image(file.getAbsolutePath());
         image.setImage(i);
     }
 
@@ -326,6 +353,13 @@ public class UpdateProductController {
     public void setParentStage(Stage parentStage) {
         this.parentStage = parentStage;
     }
+
+//    private void setProduct()
+//    {
+//        idTextField.setText(product.getProductID());
+//        nameTextField.setText(product.getName());
+//
+//    }
 
     public Product getProduct()
     {
@@ -383,36 +417,49 @@ public class UpdateProductController {
             return "default.png";
         }
 
+//        File f = File.createTempFile("/image/destPath", "png");
+//        OutputStream f1 = new FileOutputStream(f);
+//        Files.copy(Paths.get(sourcePath), f1);
+//        f1.close();
+
+
         String relativeImgUrl;
 
-        if(sourcePath.indexOf(".jpg") == (sourcePath.length() - 4))
+        if((sourcePath.indexOf(".jpg") == (sourcePath.length() - 4)) || (sourcePath.indexOf(".JPG") == (sourcePath.length() - 4)))
         {
             destPath = destPath.concat(".jpg");
         }
-        else if(sourcePath.indexOf(".png") == (sourcePath.length() - 4))
+        else if( (sourcePath.indexOf(".png") == (sourcePath.length() - 4)) || (sourcePath.indexOf(".PNG") == (sourcePath.length() - 4)))
         {
             destPath = destPath.concat(".png");
         }
 
         relativeImgUrl = destPath;
 
-//        InputStream in = getClass().getResourceAsStream("/Image/"+relativeImgUrl);
+//        InputStream in = getClass().getResourceAsStream("/image/"+relativeImgUrl);
 //        BufferedWriter bw = new BufferedWriter(new InputStreamW);
 
         System.out.println(destPath);
 
 //    src/main/resources
-        destPath = "/Image/".concat(destPath);
+        destPath = "src/main/resources/image/".concat(destPath);
+        //File f = File.createTempFile("/image/")
 
         OutputStream destFile = new FileOutputStream(destPath);
         Files.copy(Paths.get(sourcePath), destFile);
 
-//        OutputStream destFile1 = new FileOutputStream("out/artifacts/MediaOne_jar/MediaOne/Image/"+relativeImgUrl);
+//        OutputStream destFile1 = new FileOutputStream("out/artifacts/MediaOne_jar/MediaOne/image/"+relativeImgUrl);
 //        Files.copy(Paths.get(sourcePath), destFile1);
-//        getClass().getResourceAsStream("/Image/"+product.getImageUrl()
-
-//        File temp = new File(String.valueOf(getClass().getResourceAsStream("/Image/"+relativeImgUrl)));
-//        temp.createNewFile();
+//        getClass().getResourceAsStream("/image/"+product.getImageUrl()
+//
+//        File temp = new File(String.valueOf(System.class.getResource("/image/"+relativeImgUrl)));
+//        //image g =  new image(getClass().getResourceAsStream("/image/"+relativeImgUrl));
+//
+//        if(temp.createNewFile())
+//        {
+//            System.out.println("Ok created");
+//        }
+//        else System.out.println("failed created");
 //
 //        OutputStream destFile1 = new FileOutputStream(temp);
 //        Files.copy(Paths.get(sourcePath), destFile1);

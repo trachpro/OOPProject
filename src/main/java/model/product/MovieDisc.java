@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class MovieDisc extends Product {
     private ArrayList<String> listActors;
@@ -35,6 +36,16 @@ public class MovieDisc extends Product {
     {
         super(_product.getProductID(), _product.getName(), _product.getCategory(), _product.getStatus(), _product.getQuantity(), _product.getBuyingPrice(), _product.getSellingPrice(), _product.getNation(), _product.getImageUrl(), _product.getDiscount());
         this.setCategory(Category.MOVIE_DISC);
+
+        this.setListActors(new ArrayList<String>());
+        this.setDirector("");
+
+        this.setLanguage(Language.ENGLISH);
+        this.setSubtitle(Language.VIETNAMESE);
+        this.setGenre(MovieGenre.Action);
+        this.setLength(0);
+        this.setImdbPoint(0.0f);
+        this.setPublicDate(LocalDateTime.now().toLocalDate());
     }
 
     public MovieDisc(String _productID, String _name, Enum<Category> _category, Enum<Status> _status, int _quantity, double _buyingPrice, double _sellingPrice, Enum<Nation> _nation, String _imageUrl, int _discount, ArrayList<String> _listActors, String _director, Enum<Language> _language,  Enum<Language> _subtitle, Enum<MovieGenre> _genre, int _length, float _imdbPoint, LocalDate _publicDate)
@@ -134,7 +145,7 @@ public class MovieDisc extends Product {
     public String toString()
     {
         String product = super.toString();
-
+        product = product.concat("|");
         product = product.concat(Integer.toString(getListActors().size()));
         product = product.concat("|");
 
@@ -165,5 +176,44 @@ public class MovieDisc extends Product {
         product = product.concat(getPublicDate().toString());
 
         return product;
+    }
+
+    public static MovieDisc valueOf(String line)
+    {
+        String[] parts = line.split(Pattern.quote("|"));
+
+        Product p = new Product();
+        p.setProductID(parts[1]);
+        p.setName(parts[2]);
+        p.setCategory(Category.valueOf(parts[0]));
+        p.setStatus(Status.valueOf(parts[3]));
+        p.setQuantity(Integer.valueOf(parts[4]));
+        p.setBuyingPrice(Double.valueOf(parts[5]));
+        p.setSellingPrice(Double.valueOf(parts[6]));
+        p.setNation(Nation.valueOf(parts[7]));
+        p.setImageUrl(parts[8]);
+        p.setDiscount(Integer.valueOf(parts[9]));
+
+        int curPos = 10;
+
+        MovieDisc m = new MovieDisc(p);
+
+        int nActors = Integer.valueOf(parts[curPos]);
+        curPos += 1;
+        for(int i = 0; i < nActors; i++)
+        {
+            m.getListActors().add(parts[curPos]);
+            curPos += 1;
+        }
+
+        m.setDirector(parts[curPos]); curPos += 1;
+        m.setLanguage(Language.valueOf(parts[curPos])); curPos += 1;
+        m.setSubtitle(Language.valueOf(parts[curPos])); curPos += 1;
+        m.setGenre(MovieGenre.valueOf(parts[curPos])); curPos += 1;
+        m.setLength(Integer.valueOf(parts[curPos])); curPos += 1;
+        m.setImdbPoint(Float.valueOf(parts[curPos])); curPos += 1;
+        m.setPublicDate(LocalDate.parse(parts[curPos]));
+
+        return m;
     }
 }

@@ -20,7 +20,7 @@ public class SceneManager {
     private FXMLLoader inventoryLoader;
     private FXMLLoader revenueLoader;
     private FXMLLoader cashflowLoader;
-    private FXMLLoader profitLoader;
+    private FXMLLoader expensesLoader;
     private FXMLLoader settingsLoader;
 
 
@@ -47,70 +47,70 @@ public class SceneManager {
 
     private void setLoaders()
     {
-        dashboardLoader = new FXMLLoader(getClass().getResource("/View/Dashboard.fxml"));
+        dashboardLoader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
         try {
             dashboard = dashboardLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        salesLoader = new FXMLLoader(getClass().getResource("/View/Sales/Sales.fxml"));
+        salesLoader = new FXMLLoader(getClass().getResource("/view/sales/Sales.fxml"));
         try {
             sales = salesLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        productsLoader = new FXMLLoader(getClass().getResource("/View/Products/Products.fxml"));
+        productsLoader = new FXMLLoader(System.class.getResource("/view/products/Products.fxml"));
         try {
             products = productsLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        customersLoader = new FXMLLoader(getClass().getResource("/View/Customers.fxml"));
+        customersLoader = new FXMLLoader(getClass().getResource("/view/Customers.fxml"));
         try {
             customers = customersLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        stockorderLoader = new FXMLLoader(getClass().getResource("/View/Stockorder.fxml"));
+        stockorderLoader = new FXMLLoader(getClass().getResource("/view/Stockorder.fxml"));
         try {
             stockorder = stockorderLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        inventoryLoader = new FXMLLoader(getClass().getResource("/View/Inventory.fxml"));
+        inventoryLoader = new FXMLLoader(getClass().getResource("/view/inventory/Inventory.fxml"));
         try {
             inventory = inventoryLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        revenueLoader = new FXMLLoader(getClass().getResource("/View/Revenue.fxml"));
+        revenueLoader = new FXMLLoader(getClass().getResource("/view/Revenue.fxml"));
         try {
             revenue = revenueLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        cashflowLoader = new FXMLLoader(getClass().getResource("/View/Cashflow.fxml"));
+        cashflowLoader = new FXMLLoader(getClass().getResource("/view/Cashflow.fxml"));
         try {
             cashflow = cashflowLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        profitLoader = new FXMLLoader(getClass().getResource("/View/Profit.fxml"));
+        expensesLoader = new FXMLLoader(getClass().getResource("/view/expenses/Expenses.fxml"));
         try {
-            profit = profitLoader.load();
+            profit = expensesLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        settingsLoader = new FXMLLoader(getClass().getResource("/View/Settings.fxml"));
+        settingsLoader = new FXMLLoader(getClass().getResource("/view/Settings.fxml"));
         try {
             settings = settingsLoader.load();
         } catch (IOException e) {
@@ -143,12 +143,6 @@ public class SceneManager {
         if(!trimmedMenuTitle.equals(currentMenu))
         {
             mainBodyPane.getChildren().removeAll(mainBodyPane.getChildren());
-
-
-//            if(trimmedMenuTitle.equals("products"))
-//            {
-//                setProductsTable();
-//            }
 
             mainBodyPane.getChildren().add(getNode(trimmedMenuTitle));
 
@@ -210,7 +204,7 @@ public class SceneManager {
                 break;
             }
 
-            case "Profit":
+            case "Expenses":
             {
                 result = profit;
                 break;
@@ -285,9 +279,9 @@ public class SceneManager {
                 break;
             }
 
-            case "Profit":
+            case "Expenses":
             {
-                result = profitLoader;
+                result = expensesLoader;
                 break;
             }
 

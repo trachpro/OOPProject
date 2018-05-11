@@ -84,18 +84,24 @@ public class UpdateMovieDiscController {
         int nActhors = movie.getListActors().size();
 
         numberComboBox.setValue(nActhors);
+        modifyNumberComboBox();
 
         numberComboBox.setOnAction(e -> {
-            int currentValue = numberComboBox.getValue();
-
-            for (int i = 0; i < 5; i++) {
-                if (i >= currentValue) {
-                    name[i].setDisable(true);
-                } else
-                    name[i].setDisable(false);
-
-            }
+            modifyNumberComboBox();
         });
+    }
+
+    private void modifyNumberComboBox()
+    {
+        int currentValue = numberComboBox.getValue();
+
+        for (int i = 0; i < 5; i++) {
+            if (i >= currentValue) {
+                name[i].setDisable(true);
+            } else
+                name[i].setDisable(false);
+
+        }
     }
 
     private void handleLanguageSubtitleComboBox() {

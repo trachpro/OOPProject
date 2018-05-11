@@ -10,7 +10,7 @@ public class Main {
 //
 //    @Override
 //    public void start(Stage primaryStage) throws Exception{
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/MainStage.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MainStage.fxml"));
 //        sceneManager = new SceneManager();
 //
 //        Parent root = fxmlLoader.load();

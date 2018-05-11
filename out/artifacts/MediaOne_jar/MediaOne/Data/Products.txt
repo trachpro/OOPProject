@@ -1,4 +1,0 @@
-# Category|productID|name|status|quantity|buyingPrice|sellingPrice|nation|imageURL|discount
-BOOK|PR0001|Cracked Kingdom|ACTIVE|23|320000.0|350000.0|AUSTRIA|default.png|0|2|The Royals|Erin Watt|ENGLISH|DETECTIVE|0|2007-05-10
-BOOK|PR0002|An American Marriage|ACTIVE|89|410000.0|450000.0|CYPRUS|default.png|0|2|The Royals|Erin Watt|ENGLISH|DETECTIVE|423|2011-06-10
-BOOK|PR0003|Little Fires Everywhere|ACTIVE|12|210000.0|270000.0|UNITED_KINGDOM|default.png|10|1|Celeste Ng|ENGLISH|FANTASY|213|2018-04-02

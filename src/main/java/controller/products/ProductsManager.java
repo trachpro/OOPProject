@@ -80,9 +80,19 @@ public class ProductsManager {
 
     public void addProduct(Product _product)
     {
-        currentProductID = getNextProductID();
-        _product.setProductID(currentProductID);
         getProducts().add(_product);
+        updateCurrentProductID(_product.getProductID());
+    }
+
+    private void updateCurrentProductID(String newProductID)
+    {
+        int currentNumber = Integer.valueOf(currentProductID.substring(2));
+        int next = Integer.valueOf(newProductID.substring(2));
+
+        if(currentNumber < next)
+        {
+            currentProductID = newProductID;
+        }
     }
 
     public void addUpdateProduct(Product _product)
@@ -125,6 +135,10 @@ public class ProductsManager {
 //        }
 
         return result;
+    }
 
+    public void removeProduct(Product p)
+    {
+        getProducts().remove(p);
     }
 }

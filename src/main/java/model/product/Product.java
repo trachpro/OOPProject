@@ -1,5 +1,7 @@
 package model.product;
 
+import java.util.regex.Pattern;
+
 public class Product {
     private String productID;
     private String name;
@@ -48,6 +50,23 @@ public class Product {
         this.setImageUrl("default.png");
         this.setDiscount(0);
     }
+
+    public Product(Product _p)
+    {
+        this.setProductID(_p.getProductID());
+        this.setName(_p.getName());
+        this.setCategory(_p.getCategory());
+        this.setStatus(_p.getStatus());
+        this.setQuantity(_p.getQuantity());
+
+        this.setSellingPrice(_p.getSellingPrice());
+        this.setBuyingPrice(_p.getBuyingPrice());
+        this.setNation(_p.getNation());
+
+        this.setImageUrl(_p.getImageUrl());
+        this.setDiscount(_p.getDiscount());
+    }
+
 
 
     public String getProductID() {
@@ -176,9 +195,28 @@ public class Product {
         result = result.concat("|");
 
         result = result.concat(Integer.toString(getDiscount()));
-        result = result.concat("|");
+
 
         return result;
+    }
+
+    public static Product valueOf(String text)
+    {
+        String[] parts = text.split(Pattern.quote("|"));
+
+        Product p = new Product();
+        p.setProductID(parts[1]);
+        p.setName(parts[2]);
+        p.setCategory(Category.valueOf(parts[0]));
+        p.setStatus(Status.valueOf(parts[3]));
+        p.setQuantity(Integer.valueOf(parts[4]));
+        p.setBuyingPrice(Double.valueOf(parts[5]));
+        p.setSellingPrice(Double.valueOf(parts[6]));
+        p.setNation(Nation.valueOf(parts[7]));
+        p.setImageUrl(parts[8]);
+        p.setDiscount(Integer.valueOf(parts[9]));
+
+        return p;
     }
 }
 

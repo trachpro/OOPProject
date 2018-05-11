@@ -73,18 +73,26 @@ public class UpdateBookController {
         int nAuthors = book.getListAuthors().size();
 
         numberComboBox.setValue(nAuthors);
+        modifyNumberComboBox();
+
 
         numberComboBox.setOnAction(e -> {
-            int currentValue = numberComboBox.getValue();
-
-            for (int i = 0; i < 5; i++) {
-                if (i >= currentValue) {
-                    name[i].setDisable(true);
-                } else
-                    name[i].setDisable(false);
-            }
+            modifyNumberComboBox();
         });
     }
+
+    private void modifyNumberComboBox()
+    {
+        int currentValue = numberComboBox.getValue();
+
+        for (int i = 0; i < 5; i++) {
+            if (i >= currentValue) {
+                name[i].setDisable(true);
+            } else
+                name[i].setDisable(false);
+        }
+    }
+
 
     private void handleLanguageComboBox() {
         String listLanguages[] = App.getEnumConstants(Language.class);
