@@ -57,6 +57,19 @@ public class App extends Application {
 
         sceneManager.setMainStage(primaryStage);
 
+        primaryStage.setOnCloseRequest(e -> {
+            e.consume();
+
+            boolean selectionQuit = displayConfirmBox("Do you want to quit ?");
+            if(selectionQuit)
+            {
+                boolean selectionSave = displayConfirmBox("Do you want to save data ?");
+                if(selectionSave) dataManager.writeData();
+
+                primaryStage.close();
+            }
+        });
+
         primaryStage.setScene(mainScene);
         primaryStage.setMaximized(true);
         primaryStage.show();
@@ -91,7 +104,7 @@ public class App extends Application {
 
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Cancel");
+        window.setTitle("Confirm");
         window.setMinWidth(350);
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/ConfirmBox.fxml"));
@@ -115,6 +128,10 @@ public class App extends Application {
         noButton.setOnAction(e -> {
             selection.set(false);
             window.close();
+        });
+
+        window.setOnCloseRequest(e -> {
+            selection.set(false);
         });
 
         textLabel.setText(_text);
@@ -145,5 +162,34 @@ public class App extends Application {
         }
     }
 
+    public static void displayAlertingBox(String text)
+    {
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Alert");
+        window.setMinWidth(300);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/AlertBox.fxml"));
+        AnchorPane alertBoxLayout = null;
+        try {
+            alertBoxLayout = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(alertBoxLayout);
+
+        Label alertText = (Label) scene.lookup("#alertText");
+        JFXButton okButton =(JFXButton) scene.lookup("#okButton");
+
+        alertText.setText(text);
+
+        okButton.setOnAction(e -> {
+            window.close();
+        });
+
+        window.setScene(scene);
+        window.showAndWait();
+    }
 
 }

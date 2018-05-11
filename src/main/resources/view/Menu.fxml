@@ -104,7 +104,7 @@
                 <Image url="@../image/img%20(4).png" />
               </image>
             </ImageView>
-            <Label font="$x1" text="Goods receipt">
+            <Label font="$x1" text="Goods sellReceipt">
               <HBox.margin>
                 <Insets left="10.0" />
               </HBox.margin>

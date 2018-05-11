@@ -1,4 +1,4 @@
-package controller.sales;
+package controller.inventory;
 
 import controller.App;
 import javafx.beans.binding.Bindings;
@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.receipts.ItemOrder;
-import model.receipts.SellReceipt;
+import model.receipts.BuyReceipt;
 import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,41 +25,38 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
-public class SalesController implements Initializable {
+public class InventoryController implements Initializable {
 
-    @FXML private TableView<SellReceipt> sellReceiptsTable;
-    @FXML private TableColumn<SellReceipt, String> receiptIDColumn;
-    @FXML private TableColumn<SellReceipt, String> saleDateColumn;
-    @FXML private TableColumn<SellReceipt, String> customerColumn;
-    @FXML private TableColumn<SellReceipt, String> cashierColumn;
-    @FXML private TableColumn<SellReceipt, Double> totalColumn;
+    @FXML private TableView<BuyReceipt> buyReceiptsTable;
+    @FXML private TableColumn<BuyReceipt, String> receiptIDColumn;
+    @FXML private TableColumn<BuyReceipt, String> dateColumn;
+    @FXML private TableColumn<BuyReceipt, String> supplierColumn;
+    @FXML private TableColumn<BuyReceipt, String> purchaserColumn;
+    @FXML private TableColumn<BuyReceipt, Double> totalColumn;
 
     @FXML private TableView<ItemOrder> detailReceiptTable;
     @FXML private TableColumn<ItemOrder, String> itemIDColumn;
     @FXML private TableColumn<ItemOrder, String> itemNameColumn;
     @FXML private TableColumn<ItemOrder, Integer> amountColumn;
-    @FXML private TableColumn<ItemOrder, Double> sellingPriceColumn;
+    @FXML private TableColumn<ItemOrder, Double> buyingPriceColumn;
     @FXML private TableColumn<ItemOrder, Double> totalPriceColumn;
 
     @FXML private JFXButton resetButton;
     @FXML private JFXButton addButton;
     @FXML private JFXButton saveButton;
-    @FXML private JFXButton writeButton;
 
     @FXML private JFXTextField searchText;
-    @FXML private JFXComboBox<String> searchType;
     @FXML private JFXDatePicker fromDate;
     @FXML private JFXDatePicker toDate;
 
     @FXML private Label totalCostLabel;
     @FXML private TextArea remarkTextArea;
 
-    FilteredList<SellReceipt> filteredData;
+    FilteredList<BuyReceipt> filteredData;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         configureReceiptsTable();
         bindReceiptsTable();
 
@@ -72,71 +69,68 @@ public class SalesController implements Initializable {
         handleTextArea();
         handleSaveButton();
         handleResetButton();
-
-
-        //writeButton.setOnAction(e -> App.dataManager.writeSellReceiptsFile());
     }
 
     public void bindReceiptsTable()
     {
-        receiptIDColumn.setCellValueFactory((TableColumn.CellDataFeatures<SellReceipt, String> cdf) -> {
-            SellReceipt r = cdf.getValue();
+        receiptIDColumn.setCellValueFactory((TableColumn.CellDataFeatures<BuyReceipt, String> cdf) -> {
+            BuyReceipt r = cdf.getValue();
             return new SimpleStringProperty(r.getReceiptID());
         });
 
-        saleDateColumn.setCellValueFactory((TableColumn.CellDataFeatures<SellReceipt, String> cdf) -> {
-            SellReceipt r = cdf.getValue();
+        dateColumn.setCellValueFactory((TableColumn.CellDataFeatures<BuyReceipt, String> cdf) -> {
+            BuyReceipt r = cdf.getValue();
             return new SimpleStringProperty(r.getDate().toString());
         });
 
-        customerColumn.setCellValueFactory((TableColumn.CellDataFeatures<SellReceipt, String> cdf) -> {
-            SellReceipt r = cdf.getValue();
-            return new SimpleStringProperty(r.getCustomerName());
+        supplierColumn.setCellValueFactory((TableColumn.CellDataFeatures<BuyReceipt, String> cdf) -> {
+            BuyReceipt r = cdf.getValue();
+            return new SimpleStringProperty(r.getSupplierName());
         });
 
-        cashierColumn.setCellValueFactory((TableColumn.CellDataFeatures<SellReceipt, String> cdf) -> {
-            SellReceipt r = cdf.getValue();
-            return new SimpleStringProperty(r.getCashierName());
+        purchaserColumn.setCellValueFactory((TableColumn.CellDataFeatures<BuyReceipt, String> cdf) -> {
+            BuyReceipt r = cdf.getValue();
+            return new SimpleStringProperty(r.getPurchaserName());
         });
 
-        totalColumn.setCellValueFactory((TableColumn.CellDataFeatures<SellReceipt, Double> cdf) -> {
-            SellReceipt r = cdf.getValue();
+        totalColumn.setCellValueFactory((TableColumn.CellDataFeatures<BuyReceipt, Double> cdf) -> {
+            BuyReceipt r = cdf.getValue();
             double totalCost = r.getTotalCost();
 
             return new SimpleDoubleProperty(totalCost).asObject();
         });
 
-        ObservableList<SellReceipt> listSellReceipts = App.dataManager.getSalesManager().getListSellReceipts();
-        filteredData = new FilteredList<>(listSellReceipts, p -> true);
+        ObservableList<BuyReceipt> listBuyReceipts = App.dataManager.getInventoryManager().getListBuyReceipts();
+        filteredData = new FilteredList<>(listBuyReceipts, p -> true);
 
-        ObjectProperty<Predicate<SellReceipt>> nameFilter = new SimpleObjectProperty<>();
-        ObjectProperty<Predicate<SellReceipt>> fromDateFilter = new SimpleObjectProperty<>();
-        ObjectProperty<Predicate<SellReceipt>> toDateFilter = new SimpleObjectProperty<>();
+        ObjectProperty<Predicate<BuyReceipt>> nameFilter = new SimpleObjectProperty<>();
+        ObjectProperty<Predicate<BuyReceipt>> fromDateFilter = new SimpleObjectProperty<>();
+        ObjectProperty<Predicate<BuyReceipt>> toDateFilter = new SimpleObjectProperty<>();
 
         nameFilter.bind(Bindings.createObjectBinding(() ->
-                sellReceipt -> {
+                buyReceipt -> {
                     String text = searchText.getText().toLowerCase();
                     if(text.equals("")) return true;
-                    return (sellReceipt.getReceiptID().toLowerCase().contains(text) || sellReceipt.getCashierName().toLowerCase().contains(text) || sellReceipt.getCustomerName().toLowerCase().contains(text));
+                    return (buyReceipt.getReceiptID().toLowerCase().contains(text) || buyReceipt.getPurchaserName().toLowerCase().contains(text) || buyReceipt.getSupplierName().toLowerCase().contains(text));
                 }, searchText.textProperty()));
 
 
         fromDateFilter.bind(Bindings.createObjectBinding(() ->
-                sellReceipt -> {
+                buyReceipt -> {
                     LocalDate date = fromDate.getValue();
                     if(date == null) return true;
 
-                    return (sellReceipt.getDate().isAfter(date) || sellReceipt.getDate().isEqual(date));
+                    return (buyReceipt.getDate().isAfter(date) || buyReceipt.getDate().isEqual(date));
 
                 }, fromDate.valueProperty()));
 
         toDateFilter.bind(Bindings.createObjectBinding(() ->
-                sellReceipt -> {
+                buyReceipt -> {
                     LocalDate date = toDate.getValue();
 
                     if(date == null) return true;
 
-                    return (sellReceipt.getDate().isBefore(date) || sellReceipt.getDate().isEqual(date));
+                    return (buyReceipt.getDate().isBefore(date) || buyReceipt.getDate().isEqual(date));
 
                 }, toDate.valueProperty()));
 
@@ -145,23 +139,23 @@ public class SalesController implements Initializable {
                 nameFilter, fromDateFilter, toDateFilter));
 
 
-        SortedList<SellReceipt> sortedData = new SortedList<>(filteredData);
+        SortedList<BuyReceipt> sortedData = new SortedList<>(filteredData);
 
         // 4. Bind the SortedList comparator to the TableView comparator.
-        sortedData.comparatorProperty().bind(sellReceiptsTable.comparatorProperty());
+        sortedData.comparatorProperty().bind(buyReceiptsTable.comparatorProperty());
 
         // 5. Add sorted (and filtered) data to the table.
-        sellReceiptsTable.setItems(sortedData);
+        buyReceiptsTable.setItems(sortedData);
 
     }
 
     private void configureReceiptsTable()
     {
-        sellReceiptsTable.getSelectionModel().setSelectionMode(
+        buyReceiptsTable.getSelectionModel().setSelectionMode(
                 SelectionMode.SINGLE
         );
 
-        sellReceiptsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        buyReceiptsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 bindDetailReceiptTable(newSelection);
                 setTotalCostLabel(newSelection.getTotalCost());
@@ -202,7 +196,7 @@ public class SalesController implements Initializable {
             return new SimpleIntegerProperty(i.getAmount()).asObject();
         });
 
-        sellingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Double> cdf) -> {
+        buyingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Double> cdf) -> {
             ItemOrder i = cdf.getValue();
             return new SimpleDoubleProperty(i.getProduct().getSellingPrice()).asObject();
         });
@@ -215,7 +209,7 @@ public class SalesController implements Initializable {
 
     }
 
-    private void bindDetailReceiptTable(SellReceipt _sellReceipt)
+    private void bindDetailReceiptTable(BuyReceipt _sellReceipt)
     {
         ObservableList<ItemOrder> obsListItems = FXCollections.observableArrayList(_sellReceipt.getListItems());
         detailReceiptTable.setItems(obsListItems);
@@ -226,10 +220,10 @@ public class SalesController implements Initializable {
     {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Add New SellReceipt");
+        window.setTitle("Add New BuyReceipt");
         window.setMinWidth(1210);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/sales/AddSellReceipt.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/inventory/AddBuyReceipt.fxml"));
         AnchorPane addLayout = null;
         try {
             addLayout = fxmlLoader.load();
@@ -239,8 +233,8 @@ public class SalesController implements Initializable {
 
         Scene scene = new Scene(addLayout);
 
-        AddSellReceiptController addSellReceiptController = (AddSellReceiptController) fxmlLoader.getController();
-        addSellReceiptController.setParentStage(window);
+        AddBuyReceiptController addBuyReceiptController = (AddBuyReceiptController) fxmlLoader.getController();
+        addBuyReceiptController.setParentStage(window);
 
         window.setScene(scene);
         window.showAndWait();
@@ -260,7 +254,7 @@ public class SalesController implements Initializable {
     {
         remarkTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
 
-            SellReceipt currentSelected = sellReceiptsTable.getSelectionModel().getSelectedItem();
+            BuyReceipt currentSelected = buyReceiptsTable.getSelectionModel().getSelectedItem();
 
             if(!newValue.equals(oldValue) && !newValue.equals(currentSelected.getRemark()))
             {
@@ -273,7 +267,7 @@ public class SalesController implements Initializable {
     private void handleSaveButton()
     {
         saveButton.setOnAction(e -> {
-            SellReceipt currentSelected = sellReceiptsTable.getSelectionModel().getSelectedItem();
+            BuyReceipt currentSelected = buyReceiptsTable.getSelectionModel().getSelectedItem();
             currentSelected.setRemark(remarkTextArea.getText());
             saveButton.setDisable(true);
         });

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class Book extends Product {
     private ArrayList<String> listAuthors;
@@ -99,6 +100,7 @@ public class Book extends Product {
     {
         String product = super.toString();
 
+        product = product.concat("|");
         product = product.concat(Integer.toString(listAuthors.size()));
         product = product.concat("|");
 
@@ -120,5 +122,40 @@ public class Book extends Product {
         product = product.concat(getPublicDate().toString());
 
         return product;
+    }
+
+    public static Book valueOf(String line)
+    {
+        String[] parts = line.split(Pattern.quote("|"));
+
+        Product p = new Product();
+        p.setProductID(parts[1]);
+        p.setName(parts[2]);
+        p.setCategory(Category.valueOf(parts[0]));
+        p.setStatus(Status.valueOf(parts[3]));
+        p.setQuantity(Integer.valueOf(parts[4]));
+        p.setBuyingPrice(Double.valueOf(parts[5]));
+        p.setSellingPrice(Double.valueOf(parts[6]));
+        p.setNation(Nation.valueOf(parts[7]));
+        p.setImageUrl(parts[8]);
+        p.setDiscount(Integer.valueOf(parts[9]));
+
+        Book b = new Book(p);
+
+        int curPos = 10;
+        int nAuthors = Integer.valueOf(parts[curPos]);
+        curPos += 1;
+        for(int i = 0; i < nAuthors; i++)
+        {
+            b.getListAuthors().add(parts[curPos]);
+            curPos += 1;
+        }
+
+        b.setLanguage(Language.valueOf(parts[curPos])); curPos += 1;
+        b.setGenre(BookGenre.valueOf(parts[curPos])); curPos += 1;
+        b.setLength(Integer.valueOf(parts[curPos])); curPos += 1;
+        b.setPublicDate(LocalDate.parse(parts[curPos]));
+
+        return b;
     }
 }

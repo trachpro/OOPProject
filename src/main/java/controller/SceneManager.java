@@ -83,7 +83,7 @@ public class SceneManager {
             e.printStackTrace();
         }
 
-        inventoryLoader = new FXMLLoader(getClass().getResource("/view/Inventory.fxml"));
+        inventoryLoader = new FXMLLoader(getClass().getResource("/view/inventory/Inventory.fxml"));
         try {
             inventory = inventoryLoader.load();
         } catch (IOException e) {
@@ -144,12 +144,6 @@ public class SceneManager {
         if(!trimmedMenuTitle.equals(currentMenu))
         {
             mainBodyPane.getChildren().removeAll(mainBodyPane.getChildren());
-
-
-//            if(trimmedMenuTitle.equals("products"))
-//            {
-//                setProductsTable();
-//            }
 
             mainBodyPane.getChildren().add(getNode(trimmedMenuTitle));
 

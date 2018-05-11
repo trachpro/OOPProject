@@ -22,6 +22,6 @@
         <JFXComboBox fx:id="genreComboBox" layoutX="99.0" layoutY="325.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="genre" />
         <Label fx:id="dateLabel" contentDisplay="CENTER" layoutX="21.0" layoutY="372.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="70.0" text="Publication" />
         <Label fx:id="dateLabel1" contentDisplay="CENTER" layoutX="54.0" layoutY="386.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" text="Date" />
-        <JFXDatePicker fx:id="datePicker" layoutX="99.0" layoutY="372.0" />
+        <JFXDatePicker fx:id="datePicker" editable="false" layoutX="99.0" layoutY="372.0" />
     </children>
 </AnchorPane>

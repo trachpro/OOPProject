@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class MusicDisc extends Product {
 
@@ -90,7 +91,7 @@ public class MusicDisc extends Product {
     public String toString()
     {
         String product = super.toString();
-
+        product = product.concat("|");
         product = product.concat(Integer.toString(getListSingers().size()));
         product = product.concat("|");
 
@@ -109,5 +110,39 @@ public class MusicDisc extends Product {
         product = product.concat(getPublicDate().toString());
 
         return product;
+    }
+
+    public static MusicDisc valueOf(String line)
+    {
+        String[] parts = line.split(Pattern.quote("|"));
+
+        Product p = new Product();
+        p.setProductID(parts[1]);
+        p.setName(parts[2]);
+        p.setCategory(Category.valueOf(parts[0]));
+        p.setStatus(Status.valueOf(parts[3]));
+        p.setQuantity(Integer.valueOf(parts[4]));
+        p.setBuyingPrice(Double.valueOf(parts[5]));
+        p.setSellingPrice(Double.valueOf(parts[6]));
+        p.setNation(Nation.valueOf(parts[7]));
+        p.setImageUrl(parts[8]);
+        p.setDiscount(Integer.valueOf(parts[9]));
+
+        int curPos = 10;
+
+        MusicDisc m = new MusicDisc(p);
+
+        int nSingers = Integer.valueOf(parts[curPos]);
+        curPos += 1;
+        for(int i = 0; i < nSingers; i++)
+        {
+            m.getListSingers().add(parts[curPos]);
+            curPos += 1;
+        }
+        m.setLanguage(Language.valueOf(parts[curPos])); curPos += 1;
+        m.setGenre(MusicGenre.valueOf(parts[curPos])); curPos += 1;
+        m.setPublicDate(LocalDate.parse(parts[curPos]));
+
+        return m;
     }
 }

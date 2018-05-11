@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="180.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="300.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" text="Input how many products">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <JFXComboBox fx:id="amountComboBox" prefWidth="80.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXComboBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="300.0" spacing="40.0">
+               <children>
+                  <JFXButton fx:id="okButton" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="OK" />
+                  <JFXButton fx:id="cancelButton" layoutX="10.0" layoutY="10.0" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="CANCEL" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
