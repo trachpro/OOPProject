@@ -18,7 +18,6 @@ public class MainStage implements Initializable {
     @FXML private JFXButton revenueButton;
     @FXML private JFXButton expensesButton;
     @FXML private JFXButton cashflowButton;
-    @FXML private JFXButton profitButton;
     @FXML private JFXButton customersButton;
     @FXML private JFXButton stockorderButton;
     @FXML private JFXButton settingsButton;
@@ -67,6 +66,7 @@ public class MainStage implements Initializable {
             System.out.println(revenueButton.getText());
             menuLabel.setText("Revenue");
             App.sceneManager.setPaneContent(revenueButton.getText());
+            handleStylesheet(revenueButton);
         });
 
         customersButton.setOnAction(e -> {
@@ -85,6 +85,7 @@ public class MainStage implements Initializable {
         });
 
         expensesButton.setOnAction(e -> {
+            menuLabel.setText("Expenses");
             System.out.println(expensesButton.getText());
             App.sceneManager.setPaneContent(expensesButton.getText());
             handleStylesheet(expensesButton);
@@ -98,12 +99,6 @@ public class MainStage implements Initializable {
             handleStylesheet(cashflowButton);
         });
 
-        profitButton.setOnAction(e -> {
-            menuLabel.setText("Profit");
-            System.out.println(profitButton.getText());
-            App.sceneManager.setPaneContent(profitButton.getText());
-            handleStylesheet(profitButton);
-        });
 
         stockorderButton.setOnAction(e -> {
             System.out.println(stockorderButton.getText());

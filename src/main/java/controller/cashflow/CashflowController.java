@@ -64,14 +64,11 @@ public class CashflowController implements Initializable {
         });
 
         CashflowManager cashflowManager = App.dataManager.getCashflowManager();
+
         cashflowTable.setItems(cashflowManager.getEntries());
 
-
         totalExpense.setText(String.format("%.2f",cashflowManager.getTotalExpense()));
-
         totalRevenue.setText(String.format("%.2f",cashflowManager.getTotalRevenue()));
         totalProfit.setText(String.format("%.2f",cashflowManager.getTotalProfit()));
-
-
     }
 }

@@ -1,33 +1,38 @@
 package controller.sales;
 
-import model.sales.Receipt;
+import model.receipts.SellReceipt;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class SalesManager {
-    private String currentReceiptID;
-    private ObservableList<Receipt> listReceipts;
+    private String currentSellReceiptID;
+    private ObservableList<SellReceipt> listSellReceipts;
 
     public SalesManager()
     {
-        currentReceiptID = "RE0000";
-        setListReceipts(FXCollections.observableArrayList());
-
-        addReceipt(new Receipt());
-        addReceipt(new Receipt());
+        currentSellReceiptID = "RE0000";
+        setListSellReceipts(FXCollections.observableArrayList());
     }
 
-    public void addReceipt(Receipt _receipt)
+    public void addSellReceipt(SellReceipt _sellReceipt)
     {
-        currentReceiptID = getNextReceiptID();
-        _receipt.setReceiptID(currentReceiptID);
-        getListReceipts().add(_receipt);
+        getListSellReceipts().add(_sellReceipt);
+        updateCurrentReceiptID(_sellReceipt.getReceiptID());
+    }
+    private void updateCurrentReceiptID(String _receiptID)
+    {
+        int currentNumber = Integer.valueOf(currentSellReceiptID.substring(2));
+        int next = Integer.valueOf(_receiptID.substring(2));
+
+        if(currentNumber < next)
+        {
+            currentSellReceiptID = _receiptID;
+        }
     }
 
-
-    public String getNextReceiptID()
+    public String getNextSellReceiptID()
     {
-        int currentNumber = Integer.valueOf(currentReceiptID.substring(2));
+        int currentNumber = Integer.valueOf(currentSellReceiptID.substring(2));
 
         String nextNumber = String.valueOf(currentNumber + 1);
 
@@ -44,11 +49,11 @@ public class SalesManager {
         return nextReceiptID;
     }
 
-    public ObservableList<Receipt> getListReceipts() {
-        return listReceipts;
+    public ObservableList<SellReceipt> getListSellReceipts() {
+        return listSellReceipts;
     }
 
-    public void setListReceipts(ObservableList<Receipt> listReceipts) {
-        this.listReceipts = listReceipts;
+    public void setListSellReceipts(ObservableList<SellReceipt> listSellReceipts) {
+        this.listSellReceipts = listSellReceipts;
     }
 }

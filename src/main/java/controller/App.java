@@ -36,7 +36,6 @@ public class App extends Application {
         sceneManager = new SceneManager();
 
         setDefaultPath();
-        System.out.println("get resource path: " + getResourcePath());
 
 //        File f = new File(getClass().getResource("/Data/products.txt").toURI());
 
