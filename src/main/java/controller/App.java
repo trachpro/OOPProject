@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -37,9 +38,9 @@ public class App extends Application {
         sceneManager = new SceneManager();
 
         setDefaultPath();
-        System.out.println("get resource path: " + getResourcePath());
 
-//        File f = new File(getClass().getResource("/data/products.txt").toURI());
+//        File f = new File(getClass().getResource("/Data/products.txt").toURI());
+
 //        FileReader fr = new FileReader(f);
 //        char [] a = new char[50];
 //        fr.read(a); // doc noi dung toi mang
@@ -55,7 +56,7 @@ public class App extends Application {
         primaryStage.setTitle("MediaOne");
         Scene mainScene = new Scene(root, 1368, 700);
 
-        sceneManager.setMainBodyPane((Pane) mainScene.lookup("#mainBody"));
+        sceneManager.setMainBodyPane( (Pane) mainScene.lookup("#mainBody") );
         sceneManager.setPaneContent("Dashboard");
 
         sceneManager.setMainStage(primaryStage);

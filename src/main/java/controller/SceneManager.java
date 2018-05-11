@@ -10,7 +10,6 @@ import java.io.IOException;
 public class SceneManager {
 
     private Stage mainStage;
-
     private Pane mainBodyPane;
 
     private FXMLLoader dashboardLoader;
@@ -33,7 +32,7 @@ public class SceneManager {
     private Node inventory;
     private Node revenue;
     private Node cashflow;
-    private Node profit;
+    private Node expenses;
     private Node settings;
 
 
@@ -106,7 +105,7 @@ public class SceneManager {
 
         expensesLoader = new FXMLLoader(getClass().getResource("/view/expenses/Expenses.fxml"));
         try {
-            profit = expensesLoader.load();
+            expenses = expensesLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -133,7 +132,7 @@ public class SceneManager {
         return mainBodyPane;
     }
 
-    public void setMainBodyPane(Pane mainBodyPane) {
+    public void setMainBodyPane( Pane mainBodyPane) {
         this.mainBodyPane = mainBodyPane;
     }
 
@@ -207,7 +206,7 @@ public class SceneManager {
 
             case "Expenses":
             {
-                result = profit;
+                result = expenses;
                 break;
             }
 

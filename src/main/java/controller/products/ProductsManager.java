@@ -17,6 +17,7 @@ public class ProductsManager {
         products = FXCollections.observableArrayList();
         currentProductID = "PR0000";
 
+
 //        addProduct(new Book());
 //        addProduct(new MovieDisc());
 //        addProduct(new MusicDisc());

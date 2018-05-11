@@ -266,7 +266,7 @@ public class UpdateProductController {
 
                 getParentStage().close();
 
-                ProductsController pc = App.sceneManager.getLoader("Products").getController();
+                ProductsController pc = App.sceneManager.getLoader("products").getController();
                 pc.refreshTable();
             }
         });

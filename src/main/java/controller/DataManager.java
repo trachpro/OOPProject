@@ -1,5 +1,6 @@
 package controller;
 
+import controller.cashflow.CashflowManager;
 import controller.expenses.ExpensesManager;
 import controller.inventory.InventoryManager;
 import controller.products.ProductsManager;
@@ -21,6 +22,7 @@ public class DataManager {
     private SalesManager salesManager;
     private InventoryManager inventoryManager;
     private ExpensesManager expensesManager;
+    private CashflowManager cashflowManager;
 
 //        ClassLoader classLoader = getClass().getClassLoader();
 //        File file = new File(classLoader.getResource("data/products").getFile());
@@ -31,6 +33,7 @@ public class DataManager {
         setSalesManager(new SalesManager());
         setInventoryManager(new InventoryManager());
         setExpensesManager(new ExpensesManager());
+        setCashflowManager(new CashflowManager());
 
         readData();
     }
@@ -41,6 +44,10 @@ public class DataManager {
 
     public void setProductsManager(ProductsManager productsManager) {
         this.productsManager = productsManager;
+    }
+
+    public CashflowManager getCashflowManager() {
+        return cashflowManager;
     }
 
     public SalesManager getSalesManager() {
@@ -426,5 +433,9 @@ public class DataManager {
 
     public void setExpensesManager(ExpensesManager expensesManager) {
         this.expensesManager = expensesManager;
+    }
+
+    public void setCashflowManager(CashflowManager cashflowManager) {
+        this.cashflowManager = cashflowManager;
     }
 }
