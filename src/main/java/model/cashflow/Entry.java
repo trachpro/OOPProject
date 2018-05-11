@@ -3,6 +3,7 @@ package model.cashflow;
 import java.time.LocalDate;
 
 public class Entry {
+   
         private LocalDate date;
         private String description;
         private double amount;
