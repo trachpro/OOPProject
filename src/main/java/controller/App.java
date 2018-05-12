@@ -1,16 +1,19 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import controller.login.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.employee.Employee;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,16 +33,33 @@ public class App extends Application {
 
     public static String defaultPath;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
+    private static Stage primaryStage;
 
+    private static Employee user;
+
+    public static Employee getUser() {
+        return user;
+    }
+
+    public static void setUser(Employee user) {
+        App.user = user;
+    }
+
+    @Override
+    public void start(Stage _primaryStage) throws Exception{
+
+        primaryStage = _primaryStage;
 
         dataManager = new DataManager();
+        dataManager.readData();
+
         sceneManager = new SceneManager();
 
         setDefaultPath();
 
-//        File f = new File(getClass().getResource("/Data/products.txt").toURI());
+        loadLoginWindow();
+
+//              File f = new File(getClass().getResource("/Data/products.txt").toURI());
 
 //        FileReader fr = new FileReader(f);
 //        char [] a = new char[50];
@@ -50,39 +70,7 @@ public class App extends Application {
 
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MainStage.fxml"));
-        Parent root = fxmlLoader.load();
 
-        primaryStage.setTitle("MediaOne");
-        Scene mainScene = new Scene(root, 1368, 700);
-
-        sceneManager.setMainBodyPane( (Pane) mainScene.lookup("#mainBody") );
-        sceneManager.setPaneContent("Dashboard");
-
-        sceneManager.setMainStage(primaryStage);
-
-        primaryStage.setOnCloseRequest(e -> {
-            e.consume();
-
-            int selectionQuit = displayConfirmBox("Do you want to quit ?");
-            if(selectionQuit == 1)
-            {
-                int selectionSave = displayConfirmBox("Do you want to save data ?");
-                if(selectionSave == 1)
-                {
-                    dataManager.writeData();
-                    primaryStage.close();
-                }
-                else if(selectionSave == 2)
-                {
-                    primaryStage.close();
-                }
-            }
-        });
-
-        primaryStage.setScene(mainScene);
-        primaryStage.setMaximized(true);
-        primaryStage.show();
     }
 
     private void setDefaultPath()
@@ -148,12 +136,81 @@ public class App extends Application {
         return selection.get();
     }
 
+    public static void loadMainWindow()
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/MainStage.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        primaryStage.setTitle("MediaOne");
 
-//    public static void switchPane(Node newPane)
-//    {
-//        mainBodyPane.getChildren().removeAll(mainBodyPane.getChildren());
-//        mainBodyPane.getChildren().add(newPane);
-//    }
+        MainStageController mainStageController = fxmlLoader.getController();
+        sceneManager.setMainStageController(mainStageController);
+
+        Scene mainScene = new Scene(root, 1368, 700);
+        sceneManager.setPaneContent("Dashboard");
+
+
+        primaryStage.setOnCloseRequest(e -> {
+            e.consume();
+
+            int selectionQuit = displayConfirmBox("Are you sure to quit ?");
+            if(selectionQuit == 1)
+            {
+                int selectionSave = displayConfirmBox("Do you want to save data ?");
+                if(selectionSave == 1)
+                {
+                    dataManager.writeData();
+                    primaryStage.close();
+                }
+                else if(selectionSave == 2)
+                {
+                    primaryStage.close();
+                }
+            }
+        });
+        primaryStage.getIcons().add(new Image(App.class.getResourceAsStream("/image/logoapp.png")));
+
+        primaryStage.setScene(mainScene);
+        primaryStage.setMaximized(true);
+        primaryStage.setResizable(true);
+        primaryStage.show();
+    }
+
+    public static void loadLoginWindow()
+    {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/Login.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        primaryStage.setTitle("MediaOne");
+
+        Scene loginScene = new Scene(root, 300, 200);
+
+        LoginController loginController = fxmlLoader.getController();
+        loginController.setStage(primaryStage);
+
+        primaryStage.setOnCloseRequest(e -> {
+            e.consume();
+
+            int selectionQuit = displayConfirmBox("Are you sure to quit ?");
+            if(selectionQuit == 1)
+                primaryStage.close();
+
+        });
+        primaryStage.getIcons().add(new Image(App.class.getResourceAsStream("/image/logoapp.png")));
+        primaryStage.setScene(loginScene);
+        primaryStage.setMaximized(false);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
 
     private static String getResourcePath() {
         try {
@@ -226,5 +283,12 @@ public class App extends Application {
         }
 
         return returnString;
+    }
+
+    public static void logout()
+    {
+        primaryStage.close();
+        loadLoginWindow();
+        user = null;
     }
 }

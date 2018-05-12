@@ -1,4 +1,5 @@
 package controller.inventory;
+import controller.App;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.receipts.BuyReceipt;
@@ -18,6 +19,7 @@ public class InventoryManager {
     {
         getListBuyReceipts().add(_buyReceipt);
         updateCurrentReceiptID(_buyReceipt.getReceiptID());
+        App.dataManager.getCashflowManager().addInventory(_buyReceipt.getDate(), _buyReceipt.getTotalCost(), _buyReceipt.getListItems().size());
     }
     private void updateCurrentReceiptID(String _receiptID)
     {
@@ -56,4 +58,6 @@ public class InventoryManager {
     public void setListBuyReceipts(ObservableList<BuyReceipt> listBuyReceipts) {
         this.listBuyReceipts = listBuyReceipts;
     }
+
+
 }

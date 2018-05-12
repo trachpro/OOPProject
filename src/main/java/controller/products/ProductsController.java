@@ -38,10 +38,10 @@ public class ProductsController implements Initializable {
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, String> categoryColumn;
     @FXML private TableColumn<Product, String> statusColumn;
-    @FXML private TableColumn<Product, Integer> quantityColumn;
-    @FXML private TableColumn<Product, Double> sellingPriceColumn;
-    @FXML private TableColumn<Product, Double> buyingPriceColumn;
-    @FXML private TableColumn<Product, Integer> discountColumn;
+    @FXML private TableColumn<Product, String> quantityColumn;
+    @FXML private TableColumn<Product, String> sellingPriceColumn;
+    @FXML private TableColumn<Product, String> buyingPriceColumn;
+    @FXML private TableColumn<Product, String> discountColumn;
     @FXML private TableColumn<Product, String> nationColumn;
 
     @FXML private JFXButton resetButton;
@@ -132,32 +132,32 @@ public class ProductsController implements Initializable {
             return new SimpleStringProperty(status);
         });
 
-        quantityColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, Integer> cdf) -> {
+        quantityColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, String> cdf) -> {
             Product p = cdf.getValue();
             int quantity = p.getQuantity();
 
-            return new SimpleIntegerProperty(quantity).asObject();
+            return new SimpleStringProperty(String.valueOf(quantity));
         });
 
-        sellingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, Double> cdf) -> {
+        sellingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, String> cdf) -> {
             Product p = cdf.getValue();
             double sellingPrice = p.getSellingPrice();
 
-            return new SimpleDoubleProperty(sellingPrice).asObject();
+            return new SimpleStringProperty(String.format("%.2f",sellingPrice));
         });
 
-        buyingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, Double> cdf) -> {
+        buyingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, String> cdf) -> {
             Product p = cdf.getValue();
             double buyingPrice = p.getBuyingPrice();
 
-            return new SimpleDoubleProperty(buyingPrice).asObject();
+            return new SimpleStringProperty(String.format("%.2f",buyingPrice));
         });
 
-        discountColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, Integer> cdf) -> {
+        discountColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, String> cdf) -> {
             Product p = cdf.getValue();
             int discount = p.getDiscount();
 
-            return new SimpleIntegerProperty(discount).asObject();
+            return new SimpleStringProperty(String.valueOf(discount + " %"));
         });
 
         nationColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, String> cdf) -> {

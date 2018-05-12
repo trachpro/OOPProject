@@ -1,99 +1,233 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.DatePicker?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.geometry.Insets?>
-<?import com.jfoenix.controls.JFXButton?>
-
-<AnchorPane prefHeight="819.0" prefWidth="1044.0" stylesheets="@css/stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.cashflow.CashflowController">
-   <HBox layoutX="37.0" layoutY="28.0" prefHeight="20.0" prefWidth="632.0">
-      <children>
-         <Label prefHeight="28.0" prefWidth="56.0" text="From" textAlignment="CENTER" />
-         <DatePicker />
-         <HBox prefHeight="29.0" prefWidth="51.0" stylesheets="@css/stylesheet.css" />
-            
-               <DatePicker />
-         <HBox prefHeight="26.0" prefWidth="37.0" />
-
-          <JFXButton fx:id="searchButton" styleClass="topButton" prefHeight="26.0" prefWidth="73.0" stylesheets="@css/stylesheet.css" text="Search">
-              <HBox.margin>
-                  <Insets left="50.0" />
-              </HBox.margin>
-          </JFXButton>
-      </children>
-   </HBox>
-   <HBox layoutX="37.0" layoutY="79.0" prefHeight="517.0" prefWidth="723.0">
-      <children>
-         <HBox prefHeight="517.0" prefWidth="717.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.cashflow.CashflowController">
+    <children>
+        <HBox prefHeight="50.0" prefWidth="1210.0">
             <children>
-               <TableView id="cashflow" fx:id="cashflowTable" prefHeight="532.0" prefWidth="723.0">
-                 <columns>
-                   <TableColumn id="date" fx:id="dateColumn" prefWidth="108.0" text="Date" />
-                   <TableColumn id="description" fx:id="descriptionColumn" prefWidth="327.0" text="Description" />
-                     <TableColumn id="revenue" fx:id="revenueColumn" minWidth="0.0" prefWidth="139.0" text="Revenue" />
-                     <TableColumn id="expense" fx:id="expenseColumn" prefWidth="141.0" text="Expense" />
-                 </columns>
-               </TableView>
+                <FontAwesomeIcon glyphName="SEARCH" size="1.6em">
+                    <HBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                    </HBox.margin>
+                </FontAwesomeIcon>
+                <JFXDatePicker fx:id="fromDate" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="From">
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </JFXDatePicker>
+                <JFXDatePicker fx:id="toDate" editable="false" layoutX="388.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="To">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin></JFXDatePicker>
+                <JFXButton fx:id="resetButton" prefHeight="25.0" prefWidth="60.0" styleClass="topButton" stylesheets="@css/stylesheet.css" text="Reset">
+                    <HBox.margin>
+                        <Insets left="15.0" />
+                    </HBox.margin>
+                </JFXButton>
             </children>
-         </HBox>
-      </children>
-   </HBox>
+            <padding>
+                <Insets left="40.0" top="15.0" />
+            </padding>
+        </HBox>
+        <HBox layoutY="50.0" prefHeight="650.0" prefWidth="1210.0" spacing="10.0">
+            <children>
+                <TableView fx:id="entriesTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0">
+                    <columns>
+                        <TableColumn fx:id="dateColumn" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" resizable="false" text="Date" />
+                        <TableColumn fx:id="revenueColumn" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" resizable="false" text="Revenue" />
+                        <TableColumn fx:id="expenseColumn" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" resizable="false" text="Expense" />
+                    </columns>
+                    <HBox.margin>
+                        <Insets left="30.0" />
+                    </HBox.margin>
+                </TableView>
+                <VBox fx:id="detailBox1" prefHeight="650.0" prefWidth="580.0" spacing="15.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Revenue">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalRevenueLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="70.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Line endX="-100.0" endY="30.0" startX="-100.0">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Line>
+                        <Label fx:id="totalProductsSoldLabel" contentDisplay="CENTER" layoutX="56.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="17.0" text="products sold">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Line endX="300.0" startX="-100.0">
+                     <VBox.margin>
+                        <Insets left="125.0" />
+                     </VBox.margin>
+                  </Line>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="40.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Inventory">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalInventoryLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="70.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Line endX="-100.0" endY="30.0" startX="-100.0">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Line>
+                        <Label fx:id="totalProductsBoughtLabel" contentDisplay="CENTER" layoutX="56.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="17.0" text="products bought">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Line endX="300.0" layoutX="236.0" layoutY="96.0" startX="-100.0">
+                     <VBox.margin>
+                        <Insets left="125.0" />
+                     </VBox.margin>
+                  </Line>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Expenses">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalExpensesLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="70.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Line endX="300.0" layoutX="236.0" layoutY="167.0" startX="-100.0">
+                     <VBox.margin>
+                        <Insets left="125.0" />
+                     </VBox.margin>
+                  </Line>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Profit">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalProfitLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="70.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+                </VBox>
+            <VBox fx:id="detailBox2" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="revenueDetailButton" prefHeight="25.0" prefWidth="70.0" styleClass="topButton" stylesheets="@css/stylesheet.css" text="Detail" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="40.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="inventoryDetailButton" prefHeight="25.0" prefWidth="70.0" styleClass="topButton" stylesheets="@css/stylesheet.css" text="Detail">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="expensesDetailButton" prefHeight="25.0" prefWidth="70.0" styleClass="topButton" stylesheets="@css/stylesheet.css" text="Detail" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+        </HBox>
 
-   <HBox layoutX="475.0" layoutY="597.0" prefHeight="102.0" prefWidth="368.0" />
-   <GridPane layoutX="797.0" layoutY="79.0" prefHeight="102.0" prefWidth="353.0" styleClass="text">
-     <columnConstraints>
-         <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="90.0" />
-       <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="140.0" />
-       <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="136.0" />
-     </columnConstraints>
-     <rowConstraints>
-         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-     </rowConstraints>
-      <children>
-         <Label prefHeight="59.0" prefWidth="82.0" styleClass="text" text="Total" GridPane.rowIndex="1">
-            <font>
-               <Font size="20.0" />
-            </font>
-         </Label>
-         <Label prefHeight="80.0" prefWidth="82.0" styleClass="text" text="Profit" GridPane.rowIndex="2">
-            <font>
-               <Font size="20.0" />
-            </font>
-         </Label>
-         <Label id="totalRevenue" fx:id="totalRevenue" prefHeight="34.0" prefWidth="127.0" styleClass="text" GridPane.columnIndex="1" GridPane.rowIndex="1">
-            <font>
-               <Font size="15.0" />
-            </font></Label>
-         <Label id="totalExpense" fx:id="totalExpense" prefHeight="50.0" prefWidth="139.0" styleClass="text" GridPane.columnIndex="2" GridPane.rowIndex="1">
-            <font>
-               <Font size="15.0" />
-            </font></Label>
-         <Label id="totalProfit" fx:id="totalProfit" prefHeight="64.0" prefWidth="127.0" styleClass="text" GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <font>
-               <Font name="System Bold" size="15.0" />
-            </font></Label>
-         <Label prefHeight="29.0" prefWidth="116.0" styleClass="text" text="Revenue" textAlignment="CENTER" GridPane.columnIndex="1">
-            <font>
-               <Font size="15.0" />
-            </font>
-         </Label>
-         <Label prefHeight="32.0" prefWidth="127.0" styleClass="text" text="Expense" textAlignment="CENTER" GridPane.columnIndex="2">
-            <font>
-               <Font size="15.0" />
-            </font>
-         </Label>
-      </children>
-   </GridPane>
-   
+    </children>
+    <padding>
+        <Insets left="4.0" />
+    </padding>
 </AnchorPane>

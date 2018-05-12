@@ -52,7 +52,7 @@ public class AddExpenseController implements Initializable {
 
     private void setPurchaserLabel()
     {
-        purchaserLabel.setText("Doan Sy Hung");
+        purchaserLabel.setText(App.getUser().getName());
     }
 
     private void handleSaveButton()

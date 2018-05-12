@@ -1,5 +1,6 @@
 package controller.sales;
 
+import controller.App;
 import model.receipts.SellReceipt;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ public class SalesManager {
     {
         getListSellReceipts().add(_sellReceipt);
         updateCurrentReceiptID(_sellReceipt.getReceiptID());
+        App.dataManager.getCashflowManager().addRevenue(_sellReceipt.getDate(), _sellReceipt.getTotalCost(), _sellReceipt.getListItems().size());
     }
     private void updateCurrentReceiptID(String _receiptID)
     {

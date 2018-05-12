@@ -6,7 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import controller.App;
 import controller.products.UpdateProductController;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -52,19 +52,19 @@ public class AddBuyReceiptController implements Initializable {
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, String> categoryColumn;
     @FXML private TableColumn<Product, String> statusColumn;
-    @FXML private TableColumn<Product, Integer> quantityColumn;
-    @FXML private TableColumn<Product, Double> buyingPriceColumn;
-    @FXML private TableColumn<Product, Double> sellingPriceColumn;
-    @FXML private TableColumn<Product, Integer> discountColumn;
+    @FXML private TableColumn<Product, String> quantityColumn;
+    @FXML private TableColumn<Product, String> buyingPriceColumn;
+    @FXML private TableColumn<Product, String> sellingPriceColumn;
+    @FXML private TableColumn<Product, String> discountColumn;
 
     @FXML private TableView<ItemOrder> itemsTable;
     @FXML private TableColumn<ItemOrder, String> idItemColumn;
     @FXML private TableColumn<ItemOrder, String> nameItemColumn;
     @FXML private TableColumn<ItemOrder, String> categoryItemColumn;
     @FXML private TableColumn<ItemOrder, String> statusItemColumn;
-    @FXML private TableColumn<ItemOrder, Integer> amountItemColumn;
-    @FXML private TableColumn<ItemOrder, Double> buyingPriceItemColumn;
-    @FXML private TableColumn<ItemOrder, Double> costColumn;
+    @FXML private TableColumn<ItemOrder, String> amountItemColumn;
+    @FXML private TableColumn<ItemOrder, String> buyingPriceItemColumn;
+    @FXML private TableColumn<ItemOrder, String> costColumn;
 
     @FXML private Label receiptIDLabel;
     @FXML private TextField supplierTextField;
@@ -95,6 +95,7 @@ public class AddBuyReceiptController implements Initializable {
 
         newProductButton.setOnAction(e -> {
             displayAddProductBox();
+
         });
     }
 
@@ -120,20 +121,20 @@ public class AddBuyReceiptController implements Initializable {
             return new SimpleStringProperty(i.getProduct().getStatus().toString());
         });
 
-        amountItemColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Integer> cdf) -> {
+        amountItemColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
-            return new SimpleIntegerProperty(i.getAmount()).asObject();
+            return new SimpleStringProperty(String.valueOf(i.getAmount()));
         });
 
-        buyingPriceItemColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Double> cdf) -> {
+        buyingPriceItemColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
-            return new SimpleDoubleProperty(i.getProduct().getBuyingPrice()).asObject();
+            return new SimpleStringProperty(String.format("%.0f", i.getProduct().getBuyingPrice()));
         });
 
-        costColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Double> cdf) -> {
+        costColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
             double cost = i.getAmount() * i.getProduct().getBuyingPrice();
-            return new SimpleDoubleProperty(cost).asObject();
+            return new SimpleStringProperty(String.format("%.0f", cost));
         });
 
         itemsTable.setItems(listItems);
@@ -162,32 +163,32 @@ public class AddBuyReceiptController implements Initializable {
             return new SimpleStringProperty(status);
         });
 
-        quantityColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, Integer> cdf) -> {
+        quantityColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, String> cdf) -> {
             Product p = cdf.getValue();
             int quantity = p.getQuantity();
 
-            return new SimpleIntegerProperty(quantity).asObject();
+            return new SimpleStringProperty(String.valueOf(quantity));
         });
 
-        buyingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, Double> cdf) -> {
+        buyingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, String> cdf) -> {
             Product p = cdf.getValue();
             double buyingPrice = p.getBuyingPrice();
 
-            return new SimpleDoubleProperty(buyingPrice).asObject();
+            return new SimpleStringProperty(String.format("%.0f", buyingPrice));
         });
 
-        sellingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, Double> cdf) -> {
+        sellingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, String> cdf) -> {
             Product p = cdf.getValue();
             double sellingPrice = p.getSellingPrice();
 
-            return new SimpleDoubleProperty(sellingPrice).asObject();
+            return new SimpleStringProperty(String.format("%.0f", sellingPrice));
         });
 
-        discountColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, Integer> cdf) -> {
+        discountColumn.setCellValueFactory((TableColumn.CellDataFeatures<Product, String> cdf) -> {
             Product p = cdf.getValue();
             int discount = p.getDiscount();
 
-            return new SimpleIntegerProperty(discount).asObject();
+            return new SimpleStringProperty(String.valueOf(discount+" %"));
         });
 
         ObservableList<Product> listProducts = App.dataManager.getProductsManager().getProducts();
@@ -421,7 +422,7 @@ public class AddBuyReceiptController implements Initializable {
 
     private void setPurchaserLabel()
     {
-        purchaserLabel.setText("Doan Sy Hung");
+        purchaserLabel.setText(App.getUser().getName());
     }
 
     private void setTotalCostLabel(double totalCost)

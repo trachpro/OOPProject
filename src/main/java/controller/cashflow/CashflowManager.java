@@ -1,8 +1,6 @@
 package controller.cashflow;
 
 import model.cashflow.Entry;
-import model.cashflow.Expense;
-import model.cashflow.Revenue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -10,54 +8,66 @@ import java.time.LocalDate;
 
 public class CashflowManager {
 
-    private ObservableList<Entry> entries;
-    private double totalRevenue;
-    private double totalExpense;
-    private double totalProfit;
+    private ObservableList<Entry> listEntries;
 
     public CashflowManager() {
-
-        Entry b = new Expense(LocalDate.now(),"Salary in May",100000);
-        Entry c = new Expense(LocalDate.now(),"Salary in May",100000);
-        Entry d = new Revenue(LocalDate.now(),"sales in the day", 66561233);
-
-        setEntries(FXCollections.observableArrayList());
-        this.entries.add(b);
-        this.entries.add(c);
-        this.entries.add(d);
-        for (int i = 0; i < 20; i++) {
-            this.entries.add(new Revenue(LocalDate.now(),"sales in the day", 12131233));
-        }
-        this.calculateTotalAmounts();
-
+        setListEntries(FXCollections.observableArrayList());
     }
 
-    public void setEntries(ObservableList<Entry> entries) {
-        this.entries = entries;
+    public void setListEntries(ObservableList<Entry> listEntries) {
+        this.listEntries = listEntries;
     }
 
-    public ObservableList<Entry> getEntries() {
-        return entries;
+    public ObservableList<Entry> getListEntries() {
+        return listEntries;
     }
 
-    private void calculateTotalAmounts() {
-        for(Entry iterator: this.entries) {
-            if (iterator instanceof Expense) this.totalExpense += iterator.getAmount();
-            if (iterator instanceof Revenue) this.totalRevenue += iterator.getAmount();
+    private void addEntry(Entry _entry)
+    {
+        getListEntries().add(_entry);
+    }
+
+    public void addRevenue(LocalDate _date, double _revenue, int _no0fProductsSold)
+    {
+        for(Entry e: getListEntries())
+        {
+            if(e.getDate().isEqual(_date))
+            {
+                e.setRevenue(e.getRevenue() + _revenue);
+                e.setNo0fProductsSold(e.getNo0fProductsSold() + _no0fProductsSold);
+                return;
+            }
         }
 
-        this.totalProfit = this.totalRevenue - this.totalExpense;
+        addEntry(new Entry(_date, _revenue, _no0fProductsSold, 0, 0, 0));
     }
 
-    public double getTotalRevenue() {
-        return totalRevenue;
+    public void addInventory(LocalDate _date, double _inventory, int _no0fProductsBought)
+    {
+        for(Entry e: getListEntries())
+        {
+            if(e.getDate().isEqual(_date))
+            {
+                e.setInventory(e.getInventory() + _inventory);
+                e.setNo0fProductsBought(e.getNo0fProductsBought() + _no0fProductsBought);
+                return;
+            }
+        }
+
+        addEntry(new Entry(_date, 0, 0, _inventory, _no0fProductsBought, 0));
     }
 
-    public double getTotalExpense() {
-        return totalExpense;
-    }
+    public void addExpense(LocalDate _date, double _expense)
+    {
+        for(Entry e: getListEntries())
+        {
+            if(e.getDate().isEqual(_date))
+            {
+                e.setExpense(e.getExpense() + _expense);
+                return;
+            }
+        }
 
-    public double getTotalProfit() {
-        return totalProfit;
+        addEntry(new Entry(_date, 0, 0, 0, 0, _expense));
     }
 }

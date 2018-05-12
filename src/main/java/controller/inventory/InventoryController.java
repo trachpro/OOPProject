@@ -27,32 +27,52 @@ import java.util.function.Predicate;
 
 public class InventoryController implements Initializable {
 
-    @FXML private TableView<BuyReceipt> buyReceiptsTable;
-    @FXML private TableColumn<BuyReceipt, String> receiptIDColumn;
-    @FXML private TableColumn<BuyReceipt, String> dateColumn;
-    @FXML private TableColumn<BuyReceipt, String> supplierColumn;
-    @FXML private TableColumn<BuyReceipt, String> purchaserColumn;
-    @FXML private TableColumn<BuyReceipt, Double> totalColumn;
+    @FXML
+    private TableView<BuyReceipt> buyReceiptsTable;
+    @FXML
+    private TableColumn<BuyReceipt, String> receiptIDColumn;
+    @FXML
+    private TableColumn<BuyReceipt, String> dateColumn;
+    @FXML
+    private TableColumn<BuyReceipt, String> supplierColumn;
+    @FXML
+    private TableColumn<BuyReceipt, String> purchaserColumn;
+    @FXML
+    private TableColumn<BuyReceipt, String> totalColumn;
 
-    @FXML private TableView<ItemOrder> detailReceiptTable;
-    @FXML private TableColumn<ItemOrder, String> itemIDColumn;
-    @FXML private TableColumn<ItemOrder, String> itemNameColumn;
-    @FXML private TableColumn<ItemOrder, Integer> amountColumn;
-    @FXML private TableColumn<ItemOrder, Double> buyingPriceColumn;
-    @FXML private TableColumn<ItemOrder, Double> totalPriceColumn;
+    @FXML
+    private TableView<ItemOrder> detailReceiptTable;
+    @FXML
+    private TableColumn<ItemOrder, String> itemIDColumn;
+    @FXML
+    private TableColumn<ItemOrder, String> itemNameColumn;
+    @FXML
+    private TableColumn<ItemOrder, String> amountColumn;
+    @FXML
+    private TableColumn<ItemOrder, String> buyingPriceColumn;
+    @FXML
+    private TableColumn<ItemOrder, String> totalPriceColumn;
 
-    @FXML private JFXButton resetButton;
-    @FXML private JFXButton addButton;
-    @FXML private JFXButton saveButton;
+    @FXML
+    private JFXButton resetButton;
+    @FXML
+    private JFXButton addButton;
+    @FXML
+    private JFXButton saveButton;
 
-    @FXML private JFXTextField searchText;
-    @FXML private JFXDatePicker fromDate;
-    @FXML private JFXDatePicker toDate;
+    @FXML
+    private JFXTextField searchText;
+    @FXML
+    private JFXDatePicker fromDate;
+    @FXML
+    private JFXDatePicker toDate;
 
-    @FXML private Label totalCostLabel;
-    @FXML private TextArea remarkTextArea;
+    @FXML
+    private Label totalCostLabel;
+    @FXML
+    private TextArea remarkTextArea;
 
-    FilteredList<BuyReceipt> filteredData;
+    private FilteredList<BuyReceipt> filteredData;
 
 
     @Override
@@ -69,10 +89,11 @@ public class InventoryController implements Initializable {
         handleTextArea();
         handleSaveButton();
         handleResetButton();
+
+
     }
 
-    public void bindReceiptsTable()
-    {
+    public void bindReceiptsTable() {
         receiptIDColumn.setCellValueFactory((TableColumn.CellDataFeatures<BuyReceipt, String> cdf) -> {
             BuyReceipt r = cdf.getValue();
             return new SimpleStringProperty(r.getReceiptID());
@@ -93,11 +114,11 @@ public class InventoryController implements Initializable {
             return new SimpleStringProperty(r.getPurchaserName());
         });
 
-        totalColumn.setCellValueFactory((TableColumn.CellDataFeatures<BuyReceipt, Double> cdf) -> {
+        totalColumn.setCellValueFactory((TableColumn.CellDataFeatures<BuyReceipt, String> cdf) -> {
             BuyReceipt r = cdf.getValue();
             double totalCost = r.getTotalCost();
 
-            return new SimpleDoubleProperty(totalCost).asObject();
+            return new SimpleStringProperty(String.format("%.0f", totalCost));
         });
 
         ObservableList<BuyReceipt> listBuyReceipts = App.dataManager.getInventoryManager().getListBuyReceipts();
@@ -110,7 +131,7 @@ public class InventoryController implements Initializable {
         nameFilter.bind(Bindings.createObjectBinding(() ->
                 buyReceipt -> {
                     String text = searchText.getText().toLowerCase();
-                    if(text.equals("")) return true;
+                    if (text.equals("")) return true;
                     return (buyReceipt.getReceiptID().toLowerCase().contains(text) || buyReceipt.getPurchaserName().toLowerCase().contains(text) || buyReceipt.getSupplierName().toLowerCase().contains(text));
                 }, searchText.textProperty()));
 
@@ -118,7 +139,7 @@ public class InventoryController implements Initializable {
         fromDateFilter.bind(Bindings.createObjectBinding(() ->
                 buyReceipt -> {
                     LocalDate date = fromDate.getValue();
-                    if(date == null) return true;
+                    if (date == null) return true;
 
                     return (buyReceipt.getDate().isAfter(date) || buyReceipt.getDate().isEqual(date));
 
@@ -128,7 +149,7 @@ public class InventoryController implements Initializable {
                 buyReceipt -> {
                     LocalDate date = toDate.getValue();
 
-                    if(date == null) return true;
+                    if (date == null) return true;
 
                     return (buyReceipt.getDate().isBefore(date) || buyReceipt.getDate().isEqual(date));
 
@@ -149,8 +170,7 @@ public class InventoryController implements Initializable {
 
     }
 
-    private void configureReceiptsTable()
-    {
+    private void configureReceiptsTable() {
         buyReceiptsTable.getSelectionModel().setSelectionMode(
                 SelectionMode.SINGLE
         );
@@ -164,9 +184,7 @@ public class InventoryController implements Initializable {
                 remarkTextArea.setDisable(false);
 
                 System.out.println(newSelection.toString());
-            }
-            else
-            {
+            } else {
                 detailReceiptTable.setItems(null);
                 setTotalCostLabel(0.0);
                 setRemarkTextArea("");
@@ -174,13 +192,9 @@ public class InventoryController implements Initializable {
                 remarkTextArea.setDisable(true);
             }
         });
-
-
-
     }
 
-    public void configureDetailReceiptTable()
-    {
+    public void configureDetailReceiptTable() {
         itemIDColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
             return new SimpleStringProperty(i.getProduct().getProductID());
@@ -191,33 +205,31 @@ public class InventoryController implements Initializable {
             return new SimpleStringProperty(i.getProduct().getName());
         });
 
-        amountColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Integer> cdf) -> {
+        amountColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
-            return new SimpleIntegerProperty(i.getAmount()).asObject();
+            return new SimpleStringProperty(String.valueOf(i.getAmount()));
         });
 
-        buyingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Double> cdf) -> {
+        buyingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
-            return new SimpleDoubleProperty(i.getProduct().getSellingPrice()).asObject();
+            return new SimpleStringProperty(String.format("%.0f", i.getProduct().getBuyingPrice()));
         });
 
-        totalPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Double> cdf) -> {
+        totalPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
             double cost = i.getProduct().getSellingPrice() * i.getAmount() * (1 - (i.getProduct().getDiscount() / 100));
-            return new SimpleDoubleProperty(cost).asObject();
+            return new SimpleStringProperty(String.format("%.0f", cost));
         });
 
     }
 
-    private void bindDetailReceiptTable(BuyReceipt _sellReceipt)
-    {
+    private void bindDetailReceiptTable(BuyReceipt _sellReceipt) {
         ObservableList<ItemOrder> obsListItems = FXCollections.observableArrayList(_sellReceipt.getListItems());
         detailReceiptTable.setItems(obsListItems);
     }
 
 
-    private void displayAddReceiptBox()
-    {
+    private void displayAddReceiptBox() {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Add New BuyReceipt");
@@ -240,32 +252,26 @@ public class InventoryController implements Initializable {
         window.showAndWait();
     }
 
-    private void setTotalCostLabel(Double _cost)
-    {
+    private void setTotalCostLabel(Double _cost) {
         totalCostLabel.setText(String.valueOf(_cost));
     }
 
-    private void setRemarkTextArea(String _text)
-    {
+    private void setRemarkTextArea(String _text) {
         remarkTextArea.setText(_text);
     }
 
-    private void handleTextArea()
-    {
+    private void handleTextArea() {
         remarkTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
 
             BuyReceipt currentSelected = buyReceiptsTable.getSelectionModel().getSelectedItem();
 
-            if(!newValue.equals(oldValue) && !newValue.equals(currentSelected.getRemark()))
-            {
+            if (!newValue.equals(oldValue) && !newValue.equals(currentSelected.getRemark())) {
                 saveButton.setDisable(false);
-            }
-            else saveButton.setDisable(true);
+            } else saveButton.setDisable(true);
         });
     }
 
-    private void handleSaveButton()
-    {
+    private void handleSaveButton() {
         saveButton.setOnAction(e -> {
             BuyReceipt currentSelected = buyReceiptsTable.getSelectionModel().getSelectedItem();
             currentSelected.setRemark(remarkTextArea.getText());
@@ -273,12 +279,16 @@ public class InventoryController implements Initializable {
         });
     }
 
-    private void handleResetButton()
-    {
+    private void handleResetButton() {
         resetButton.setOnAction(e -> {
             searchText.setText("");
             fromDate.setValue(null);
             toDate.setValue(null);
         });
+    }
+
+    public void setDates(LocalDate from, LocalDate to) {
+        fromDate.setValue(from);
+        toDate.setValue(to);
     }
 }

@@ -86,7 +86,7 @@ public class ExpensesController implements Initializable {
 
         costColumn.setCellValueFactory((TableColumn.CellDataFeatures<Expense, String> cdf) -> {
             Expense e = cdf.getValue();
-            return new SimpleStringProperty(String.valueOf(e.getCost()));
+            return new SimpleStringProperty(String.format("%.0f",e.getCost()));
         });
 
 
@@ -153,7 +153,7 @@ public class ExpensesController implements Initializable {
     private void bindDetailExpense(Expense _expense)
     {
         expenseIDLabel.setText(_expense.getExpenseID());
-        costLabel.setText(String.valueOf(_expense.getCost()));
+        costLabel.setText(String.format("%.0f",_expense.getCost()));
         purchaseDate.setValue(_expense.getPurchaseDate());
         purchaserLabel.setText(_expense.getPurchaser());
         remarkTextArea.setText(_expense.getRemark());
@@ -191,5 +191,10 @@ public class ExpensesController implements Initializable {
             fromDate.setValue(null);
             toDate.setValue(null);
         });
+    }
+
+    public void setDates(LocalDate from, LocalDate to) {
+        fromDate.setValue(from);
+        toDate.setValue(to);
     }
 }

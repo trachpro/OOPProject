@@ -1,29 +1,29 @@
 package controller.sales;
 
-import controller.App;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import model.receipts.ItemOrder;
-import model.receipts.SellReceipt;
-import com.jfoenix.controls.*;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+        import controller.App;
+        import javafx.beans.binding.Bindings;
+        import javafx.beans.property.*;
+        import javafx.collections.FXCollections;
+        import javafx.collections.ObservableList;
+        import javafx.collections.transformation.FilteredList;
+        import javafx.collections.transformation.SortedList;
+        import javafx.fxml.FXMLLoader;
+        import javafx.scene.Scene;
+        import javafx.scene.control.*;
+        import javafx.scene.layout.AnchorPane;
+        import javafx.stage.Modality;
+        import javafx.stage.Stage;
+        import model.receipts.ItemOrder;
+        import model.receipts.SellReceipt;
+        import com.jfoenix.controls.*;
+        import javafx.fxml.FXML;
+        import javafx.fxml.Initializable;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
-import java.util.function.Predicate;
+        import java.io.IOException;
+        import java.net.URL;
+        import java.time.LocalDate;
+        import java.util.ResourceBundle;
+        import java.util.function.Predicate;
 
 public class SalesController implements Initializable {
 
@@ -32,14 +32,14 @@ public class SalesController implements Initializable {
     @FXML private TableColumn<SellReceipt, String> saleDateColumn;
     @FXML private TableColumn<SellReceipt, String> customerColumn;
     @FXML private TableColumn<SellReceipt, String> cashierColumn;
-    @FXML private TableColumn<SellReceipt, Double> totalColumn;
+    @FXML private TableColumn<SellReceipt, String> totalColumn;
 
     @FXML private TableView<ItemOrder> detailReceiptTable;
     @FXML private TableColumn<ItemOrder, String> itemIDColumn;
     @FXML private TableColumn<ItemOrder, String> itemNameColumn;
-    @FXML private TableColumn<ItemOrder, Integer> amountColumn;
-    @FXML private TableColumn<ItemOrder, Double> sellingPriceColumn;
-    @FXML private TableColumn<ItemOrder, Double> totalPriceColumn;
+    @FXML private TableColumn<ItemOrder, String> amountColumn;
+    @FXML private TableColumn<ItemOrder, String> sellingPriceColumn;
+    @FXML private TableColumn<ItemOrder, String> totalPriceColumn;
 
     @FXML private JFXButton resetButton;
     @FXML private JFXButton addButton;
@@ -99,11 +99,11 @@ public class SalesController implements Initializable {
             return new SimpleStringProperty(r.getCashierName());
         });
 
-        totalColumn.setCellValueFactory((TableColumn.CellDataFeatures<SellReceipt, Double> cdf) -> {
+        totalColumn.setCellValueFactory((TableColumn.CellDataFeatures<SellReceipt, String> cdf) -> {
             SellReceipt r = cdf.getValue();
             double totalCost = r.getTotalCost();
 
-            return new SimpleDoubleProperty(totalCost).asObject();
+            return new SimpleStringProperty(String.format("%.0f", totalCost));
         });
 
         ObservableList<SellReceipt> listSellReceipts = App.dataManager.getSalesManager().getListSellReceipts();
@@ -197,20 +197,20 @@ public class SalesController implements Initializable {
             return new SimpleStringProperty(i.getProduct().getName());
         });
 
-        amountColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Integer> cdf) -> {
+        amountColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
-            return new SimpleIntegerProperty(i.getAmount()).asObject();
+            return new SimpleStringProperty(String.valueOf(i.getAmount()));
         });
 
-        sellingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Double> cdf) -> {
+        sellingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
-            return new SimpleDoubleProperty(i.getProduct().getSellingPrice()).asObject();
+            return new SimpleStringProperty(String.format(".0f", i.getProduct().getSellingPrice()));
         });
 
-        totalPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, Double> cdf) -> {
+        totalPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
             double cost = i.getProduct().getSellingPrice() * i.getAmount() * (1 - (i.getProduct().getDiscount() / 100));
-            return new SimpleDoubleProperty(cost).asObject();
+            return new SimpleStringProperty(String.format(".0f", cost));
         });
 
     }
@@ -248,7 +248,7 @@ public class SalesController implements Initializable {
 
     private void setTotalCostLabel(Double _cost)
     {
-        totalCostLabel.setText(String.valueOf(_cost));
+        totalCostLabel.setText(String.format("%.0f",_cost));
     }
 
     private void setRemarkTextArea(String _text)
@@ -286,5 +286,10 @@ public class SalesController implements Initializable {
             fromDate.setValue(null);
             toDate.setValue(null);
         });
+    }
+
+    public void setDates(LocalDate from, LocalDate to) {
+        fromDate.setValue(from);
+        toDate.setValue(to);
     }
 }

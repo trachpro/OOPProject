@@ -1,5 +1,6 @@
 package controller.expenses;
 
+import controller.App;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.expense.Expense;
@@ -18,6 +19,7 @@ public class ExpensesManager {
     {
         getListExpenses().add(_expense);
         updateCurrentReceiptID(_expense.getExpenseID());
+        App.dataManager.getCashflowManager().addExpense(_expense.getPurchaseDate(), _expense.getCost());
     }
     private void updateCurrentReceiptID(String _receiptID)
     {

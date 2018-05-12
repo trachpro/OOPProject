@@ -213,8 +213,8 @@ public class UpdateProductController {
 
     private void handleTextFields()
     {
-        buyingPriceTextField.setText(String.valueOf(product.getBuyingPrice()));
-        sellingPriceTextField.setText(String.valueOf(product.getSellingPrice()));
+        buyingPriceTextField.setText(String.format("%.0f",product.getBuyingPrice()));
+        sellingPriceTextField.setText(String.format("%.0f",product.getSellingPrice()));
         quantityTextField.setText(String.valueOf(product.getQuantity()));
         discountTextField.setText(String.valueOf(product.getDiscount()));
     }
