@@ -21,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.product.Book;
 import model.product.Mode;
 import model.product.Product;
@@ -266,7 +267,7 @@ public class AddBuyReceiptController implements Initializable {
         int maxNumber = 1000;
         AtomicInteger selectedNumber = new AtomicInteger(0);
 
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Amount");
         window.setMinWidth(300);
@@ -462,7 +463,7 @@ public class AddBuyReceiptController implements Initializable {
 
     private void displayAddProductBox()
     {
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Add New product");
         window.setMinWidth(400);

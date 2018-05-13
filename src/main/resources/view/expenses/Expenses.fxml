@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.expenses.ExpensesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1210.0" styleClass="allbackground" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.expenses.ExpensesController">
     <children>
         <HBox prefHeight="50.0" prefWidth="1210.0">
             <children>
@@ -23,27 +23,27 @@
                         <Insets right="5.0" top="5.0" />
                     </HBox.margin>
                 </FontAwesomeIcon>
-                <JFXTextField fx:id="searchText" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="ID, Name, ...">
+                <JFXTextField fx:id="searchText" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="ID, Name, ..." styleClass="customComboBox">
                     <HBox.margin>
                         <Insets left="5.0" />
                     </HBox.margin>
                 </JFXTextField>
-                <JFXDatePicker fx:id="fromDate" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="From">
+                <JFXDatePicker fx:id="fromDate" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="From" styleClass="customComboBox">
                     <HBox.margin>
                         <Insets left="40.0" />
                     </HBox.margin>
                 </JFXDatePicker>
-                <JFXDatePicker fx:id="toDate" editable="false" layoutX="388.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="To">
+                <JFXDatePicker fx:id="toDate" editable="false" layoutX="388.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="To" styleClass="customComboBox">
                     <HBox.margin>
                         <Insets left="20.0" />
                     </HBox.margin>
                 </JFXDatePicker>
-                <JFXButton fx:id="resetButton" prefHeight="25.0" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="Reset">
+                <JFXButton fx:id="resetButton" prefHeight="25.0" prefWidth="60.0" styleClass="okbutton" stylesheets="@../css/stylesheet.css" text="Reset">
                     <HBox.margin>
                         <Insets left="60.0" />
                     </HBox.margin>
                 </JFXButton>
-                <JFXButton fx:id="addButton" layoutX="971.0" layoutY="25.0" prefHeight="25.0" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="Add">
+                <JFXButton fx:id="addButton" layoutX="971.0" layoutY="25.0" prefHeight="25.0" prefWidth="60.0" styleClass="okbutton" stylesheets="@../css/stylesheet.css" text="Add">
                     <HBox.margin>
                         <Insets left="40.0" />
                     </HBox.margin>
@@ -55,7 +55,7 @@
         </HBox>
         <HBox layoutY="50.0" prefHeight="650.0" prefWidth="1210.0" spacing="10.0">
             <children>
-                <TableView fx:id="expensesTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="586.0">
+                <TableView fx:id="expensesTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="586.0" stylesheets="@../css/table.css">
                     <columns>
                         <TableColumn fx:id="expenseIDColumn" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" resizable="false" text="Expense ID" />
                         <TableColumn fx:id="purchaseDateColumn" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" resizable="false" text="Purchase Date" />
@@ -103,7 +103,7 @@
                         <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="550.0">
                             <children>
                                 <Label prefHeight="17.0" prefWidth="200.0" text="Purchase Date" />
-                                <JFXDatePicker fx:id="purchaseDate" disable="true" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" showWeekNumbers="true">
+                                <JFXDatePicker fx:id="purchaseDate" disable="true" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" showWeekNumbers="true" styleClass="customComboBox">
                                     <HBox.margin>
                                         <Insets left="160.0" />
                                     </HBox.margin>
@@ -140,7 +140,7 @@
                                         <Insets />
                                     </HBox.margin>
                                 </Label>
-                                <TextArea fx:id="remarkTextArea" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" wrapText="true">
+                                <TextArea fx:id="remarkTextArea" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" styleClass="text-area" wrapText="true">
                                     <HBox.margin>
                                         <Insets left="30.0" top="5.0" />
                                     </HBox.margin>

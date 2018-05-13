@@ -5,6 +5,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.stage.StageStyle;
 import model.product.*;
 
 import com.jfoenix.controls.JFXButton;
@@ -230,7 +231,7 @@ public class ProductsController implements Initializable {
             categoryComboBox.getItems().add(s);
         }
 
-        categoryComboBox.getItems().add("");
+//        categoryComboBox.getItems().add("");
 
 //        categoryComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
 //            filteredData.setPredicate(p -> {
@@ -260,7 +261,7 @@ public class ProductsController implements Initializable {
 
     private void displayAddBox()
     {
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Add New product");
         window.setMinWidth(400);
@@ -286,7 +287,7 @@ public class ProductsController implements Initializable {
 
     private void displayEditBox()
     {
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Edit product");
         window.setMinWidth(400);
@@ -344,7 +345,7 @@ public class ProductsController implements Initializable {
         JFXButton noButton;
         Label warningLabel;
 
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Delete");
         window.setMinWidth(250);

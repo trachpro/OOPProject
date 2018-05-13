@@ -11,8 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.employee.Employee;
 
 import java.io.File;
@@ -48,7 +50,9 @@ public class App extends Application {
     @Override
     public void start(Stage _primaryStage) throws Exception{
 
+
         primaryStage = _primaryStage;
+        //primaryStage.initStyle(StageStyle.UNDECORATED);
 
         dataManager = new DataManager();
         dataManager.readData();
@@ -100,10 +104,10 @@ public class App extends Application {
         JFXButton noButton;
         Label textLabel;
 
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Confirm");
-        window.setMinWidth(350);
+//        window.setMinWidth(350);
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/ConfirmBox.fxml"));
         AnchorPane confirmBoxLayout = null;
@@ -138,6 +142,7 @@ public class App extends Application {
 
     public static void loadMainWindow()
     {
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/MainStage.fxml"));
         Parent root = null;
         try {
@@ -150,7 +155,7 @@ public class App extends Application {
         MainStageController mainStageController = fxmlLoader.getController();
         sceneManager.setMainStageController(mainStageController);
 
-        Scene mainScene = new Scene(root, 1368, 700);
+        Scene mainScene = new Scene(root);
         sceneManager.setPaneContent("Dashboard");
 
 
@@ -192,7 +197,7 @@ public class App extends Application {
         }
         primaryStage.setTitle("MediaOne");
 
-        Scene loginScene = new Scene(root, 300, 200);
+        Scene loginScene = new Scene(root, 500, 300);
 
         LoginController loginController = fxmlLoader.getController();
         loginController.setStage(primaryStage);
@@ -227,7 +232,8 @@ public class App extends Application {
 
     public static void displayAlertingBox(String text)
     {
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
+
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Alert");
         window.setMinWidth(300);
@@ -241,6 +247,7 @@ public class App extends Application {
         }
 
         Scene scene = new Scene(alertBoxLayout);
+        scene.setFill(Color.TRANSPARENT);
 
         Label alertText = (Label) scene.lookup("#alertText");
         JFXButton okButton =(JFXButton) scene.lookup("#okButton");

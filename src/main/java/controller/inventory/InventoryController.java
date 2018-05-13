@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.receipts.ItemOrder;
 import model.receipts.BuyReceipt;
 import com.jfoenix.controls.*;
@@ -230,7 +231,7 @@ public class InventoryController implements Initializable {
 
 
     private void displayAddReceiptBox() {
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Add New BuyReceipt");
         window.setMinWidth(1210);

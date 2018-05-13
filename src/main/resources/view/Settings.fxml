@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1218.0" styleClass="allbackground" stylesheets="@css/stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingsController">
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="400.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="400.0" styleClass="popup" stylesheets="@css/stylesheet.css" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="100.0">
          <children>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
@@ -137,8 +137,8 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="410.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0" spacing="60.0">
                <children>
-                  <JFXButton fx:id="saveButton" disable="true" prefHeight="30.0" prefWidth="60.0" styleClass="topButton" stylesheets="@css/stylesheet.css" text="SAVE" />
-                  <JFXButton fx:id="logoutButton" layoutX="180.0" layoutY="20.0" prefHeight="30.0" prefWidth="60.0" styleClass="topButton" stylesheets="@css/stylesheet.css" text="LOGOUT" />
+                  <JFXButton fx:id="saveButton" disable="true" prefHeight="30.0" prefWidth="60.0" styleClass="okbutton" stylesheets="@css/stylesheet.css" text="SAVE" />
+                  <JFXButton fx:id="logoutButton" layoutX="180.0" layoutY="20.0" prefHeight="30.0" prefWidth="60.0" styleClass="cancelbutton" stylesheets="@css/stylesheet.css" text="LOGOUT" />
                </children>
             </HBox>
          </children>

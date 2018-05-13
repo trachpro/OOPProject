@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.cashflow.CashflowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1210.0" styleClass="allbackground" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.cashflow.CashflowController">
     <children>
         <HBox prefHeight="50.0" prefWidth="1210.0">
             <children>
@@ -31,7 +32,7 @@
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin></JFXDatePicker>
-                <JFXButton fx:id="resetButton" prefHeight="25.0" prefWidth="60.0" styleClass="topButton" stylesheets="@css/stylesheet.css" text="Reset">
+                <JFXButton fx:id="resetButton" prefHeight="25.0" prefWidth="60.0" styleClass="okbutton" stylesheets="@css/stylesheet.css" text="Reset">
                     <HBox.margin>
                         <Insets left="15.0" />
                     </HBox.margin>
@@ -192,7 +193,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="revenueDetailButton" prefHeight="25.0" prefWidth="70.0" styleClass="topButton" stylesheets="@css/stylesheet.css" text="Detail" />
+                        <JFXButton fx:id="revenueDetailButton" prefHeight="25.0" prefWidth="70.0" styleClass="okbutton" stylesheets="@css/stylesheet.css" text="Detail" />
                      </children>
                      <VBox.margin>
                         <Insets top="30.0" />
@@ -200,7 +201,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="40.0" prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="inventoryDetailButton" prefHeight="25.0" prefWidth="70.0" styleClass="topButton" stylesheets="@css/stylesheet.css" text="Detail">
+                        <JFXButton fx:id="inventoryDetailButton" prefHeight="25.0" prefWidth="70.0" styleClass="okbutton" stylesheets="@css/stylesheet.css" text="Detail">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -212,7 +213,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="expensesDetailButton" prefHeight="25.0" prefWidth="70.0" styleClass="topButton" stylesheets="@css/stylesheet.css" text="Detail" />
+                        <JFXButton fx:id="expensesDetailButton" prefHeight="25.0" prefWidth="70.0" styleClass="okbutton" stylesheets="@css/stylesheet.css" text="Detail" />
                      </children>
                      <VBox.margin>
                         <Insets top="15.0" />
@@ -230,4 +231,8 @@
     <padding>
         <Insets left="4.0" />
     </padding>
+   <stylesheets>
+      <URL value="@css/stylesheet.css" />
+      <URL value="@css/table.css" />
+   </stylesheets>
 </AnchorPane>

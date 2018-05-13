@@ -13,6 +13,7 @@ package controller.sales;
         import javafx.scene.layout.AnchorPane;
         import javafx.stage.Modality;
         import javafx.stage.Stage;
+        import javafx.stage.StageStyle;
         import model.receipts.ItemOrder;
         import model.receipts.SellReceipt;
         import com.jfoenix.controls.*;
@@ -175,7 +176,7 @@ public class SalesController implements Initializable {
             {
                 detailReceiptTable.setItems(null);
                 setTotalCostLabel(0.0);
-                setRemarkTextArea("");
+                setRemarkTextArea(".");
                 saveButton.setDisable(true);
                 remarkTextArea.setDisable(true);
             }
@@ -204,13 +205,13 @@ public class SalesController implements Initializable {
 
         sellingPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
-            return new SimpleStringProperty(String.format(".0f", i.getProduct().getSellingPrice()));
+            return new SimpleStringProperty(String.format("%.0f", i.getProduct().getSellingPrice()));
         });
 
         totalPriceColumn.setCellValueFactory((TableColumn.CellDataFeatures<ItemOrder, String> cdf) -> {
             ItemOrder i = cdf.getValue();
             double cost = i.getProduct().getSellingPrice() * i.getAmount() * (1 - (i.getProduct().getDiscount() / 100));
-            return new SimpleStringProperty(String.format(".0f", cost));
+            return new SimpleStringProperty(String.format("%.0f", cost));
         });
 
     }
@@ -224,7 +225,7 @@ public class SalesController implements Initializable {
 
     private void displayAddReceiptBox()
     {
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Add New SellReceipt");
         window.setMinWidth(1210);
@@ -282,7 +283,7 @@ public class SalesController implements Initializable {
     private void handleResetButton()
     {
         resetButton.setOnAction(e -> {
-            searchText.setText("");
+            searchText.setText(null);
             fromDate.setValue(null);
             toDate.setValue(null);
         });

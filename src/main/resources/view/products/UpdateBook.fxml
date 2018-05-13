@@ -6,10 +6,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="540.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.products.UpdateBookController">
+<AnchorPane prefHeight="540.0" prefWidth="400.0" styleClass="allbackground" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.products.UpdateBookController">
    <children>
       <Label fx:id="numberLabel" layoutX="34.0" layoutY="28.0" text="Numbers" />
-      <JFXComboBox fx:id="numberComboBox" layoutX="100.0" layoutY="24.0" prefHeight="25.0" prefWidth="70.0" promptText="number" />
+      <JFXComboBox fx:id="numberComboBox" layoutX="100.0" layoutY="24.0" prefHeight="25.0" prefWidth="150.0" promptText="number" />
       <Label fx:id="authorsLabel" layoutX="41.0" layoutY="69.0" text="Authors" />
       <JFXTextField fx:id="name1" layoutX="99.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="author's name 1" />
       <JFXTextField fx:id="name2" layoutX="99.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="author's name 2" />
@@ -24,6 +24,6 @@
       <JFXTextField fx:id="lengthTextField" layoutX="99.0" layoutY="333.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" text="0" />
       <Label fx:id="dateLabel" contentDisplay="CENTER" layoutX="21.0" layoutY="372.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="70.0" text="Publication" />
       <Label fx:id="dateLabel1" contentDisplay="CENTER" layoutX="54.0" layoutY="386.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" text="Date" />
-      <JFXDatePicker fx:id="datePicker" editable="false" layoutX="99.0" layoutY="372.0" />
+      <JFXDatePicker fx:id="datePicker" editable="false" layoutX="99.0" layoutY="372.0" prefWidth="190.0" />
    </children>
 </AnchorPane>

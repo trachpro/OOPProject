@@ -47,9 +47,9 @@ public class AddUpdateEmployeeController {
         nameTextField.setText(employee.getName());
 
         statusComboBox.getItems().addAll(App.getEnumConstants(Status.class));
-        statusComboBox.setValue("");
+        statusComboBox.setValue(employee.getStatus().toString());
         levelComboBox.getItems().addAll(App.getEnumConstants(Level.class));
-        levelComboBox.setValue("");
+        levelComboBox.setValue(employee.getLevel().toString());
 
         datePicker.setValue(employee.getDob());
 

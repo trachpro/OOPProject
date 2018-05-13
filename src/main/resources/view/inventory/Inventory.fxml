@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.inventory.InventoryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="718.0" prefWidth="1210.0" styleClass="allbackground" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.inventory.InventoryController">
     <children>
         <HBox prefHeight="50.0" prefWidth="1210.0">
             <children>
@@ -28,18 +28,18 @@
                         <Insets left="5.0" />
                     </HBox.margin>
                 </JFXTextField>
-                <JFXDatePicker fx:id="fromDate" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="From">
+                <JFXDatePicker fx:id="fromDate" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="From" styleClass="customComboBox">
                     <HBox.margin>
                         <Insets left="20.0" />
                     </HBox.margin>
                 </JFXDatePicker>
-                <JFXDatePicker fx:id="toDate" editable="false" layoutX="388.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="To" />
-                <JFXButton fx:id="resetButton" prefHeight="25.0" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="Reset">
+                <JFXDatePicker fx:id="toDate" editable="false" layoutX="388.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="To" styleClass="customComboBox" />
+                <JFXButton fx:id="resetButton" prefHeight="25.0" prefWidth="60.0" styleClass="okbutton" stylesheets="@../css/stylesheet.css" text="Reset">
                     <HBox.margin>
                         <Insets left="60.0" />
                     </HBox.margin>
                 </JFXButton>
-                <JFXButton fx:id="addButton" layoutX="971.0" layoutY="25.0" prefHeight="25.0" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="Add">
+                <JFXButton fx:id="addButton" layoutX="971.0" layoutY="25.0" prefHeight="25.0" prefWidth="60.0" styleClass="okbutton" stylesheets="@../css/stylesheet.css" text="Add">
                     <HBox.margin>
                         <Insets left="40.0" />
                     </HBox.margin>
@@ -51,7 +51,7 @@
         </HBox>
         <HBox layoutY="50.0" prefHeight="650.0" prefWidth="1210.0" spacing="10.0">
             <children>
-                <TableView fx:id="buyReceiptsTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0">
+                <TableView fx:id="buyReceiptsTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/table.css">
                     <columns>
                         <TableColumn fx:id="receiptIDColumn" maxWidth="100.0" minWidth="85.0" prefWidth="85.0" resizable="false" text="Receipt ID" />
                         <TableColumn fx:id="dateColumn" maxWidth="300.0" minWidth="120.0" prefWidth="120.0" resizable="false" text="Purchase Date" />
@@ -65,7 +65,7 @@
                 </TableView>
                 <VBox prefHeight="650.0" prefWidth="0.0" spacing="15.0">
                     <children>
-                        <TableView fx:id="detailReceiptTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="580.0">
+                        <TableView fx:id="detailReceiptTable" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="580.0" stylesheets="@../css/table.css">
                             <columns>
                                 <TableColumn fx:id="itemIDColumn" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" resizable="false" text="Item ID" />
                                 <TableColumn fx:id="itemNameColumn" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" resizable="false" text="Item Name" />
@@ -111,7 +111,7 @@
                                                 <Insets top="20.0" />
                                             </VBox.margin>
                                         </HBox>
-                                        <JFXButton fx:id="saveButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="Save" />
+                                        <JFXButton fx:id="saveButton" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="60.0" styleClass="okbutton" stylesheets="@../css/stylesheet.css" text="Save" />
                                     </children>
                                     <padding>
                                         <Insets top="20.0" />

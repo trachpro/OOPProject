@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -34,17 +35,17 @@
                     </HBox.margin>
                 </JFXDatePicker>
                 <JFXDatePicker fx:id="toDate" editable="false" layoutX="388.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="To" />
-                <JFXButton fx:id="resetButton" prefHeight="25.0" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="Reset">
+                <JFXButton fx:id="resetButton" prefHeight="25.0" prefWidth="60.0" styleClass="okbutton" stylesheets="@../css/stylesheet.css" text="Reset">
                     <HBox.margin>
                         <Insets left="60.0" />
                     </HBox.margin>
                 </JFXButton>
-                <JFXButton fx:id="addButton" layoutX="971.0" layoutY="25.0" prefHeight="25.0" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="Add">
+                <JFXButton fx:id="addButton" layoutX="971.0" layoutY="25.0" prefHeight="25.0" prefWidth="60.0" styleClass="okbutton" stylesheets="@../css/stylesheet.css" text="Add">
                     <HBox.margin>
                         <Insets left="40.0" />
                     </HBox.margin>
                 </JFXButton>
-            <JFXButton fx:id="writeButton" layoutX="718.0" layoutY="25.0" prefHeight="25.0" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="Write">
+            <JFXButton fx:id="writeButton" layoutX="718.0" layoutY="25.0" prefHeight="25.0" prefWidth="60.0" styleClass="topButton" stylesheets="@../css/stylesheet.css" text="Write" visible="false">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
@@ -133,4 +134,8 @@
     <padding>
         <Insets left="4.0" />
     </padding>
+   <stylesheets>
+      <URL value="@../css/table.css" />
+      <URL value="@../css/stylesheet.css" />
+   </stylesheets>
 </AnchorPane>

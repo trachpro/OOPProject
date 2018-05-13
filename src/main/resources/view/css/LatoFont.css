@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('/font/Lato-Regular.ttf');
+}
+
+.lato {
+    -fx-font-family: "Lato-Regular";
+}
+

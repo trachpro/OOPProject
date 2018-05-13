@@ -1,0 +1,113 @@
+/*.background {*/
+    /*-fx-background-color: #F00;*/
+/*}*/
+
+/*.label {*/
+    /*-fx-font-size: 11pt;*/
+    /*-fx-font-family: "Segoe UI Semibold";*/
+    /*-fx-text-fill: #EFECDA;*/
+    /*-fx-opacity: 0.6;*/
+/*}*/
+
+/*.label-bright {*/
+    /*-fx-font-size: 11pt;*/
+    /*-fx-font-family: "Segoe UI Semibold";*/
+    /*-fx-text-fill: #EFECDA;*/
+    /*-fx-opacity: 1;*/
+/*}*/
+
+/*.label-header {*/
+    /*-fx-font-size: 15pt;*/
+    /*-fx-font-family: "Segoe UI Light";*/
+    /*-fx-text-fill: #EFECDA;*/
+    /*-fx-opacity: 1;*/
+/*}*/
+
+.table-view {
+    -fx-base:#F2F5F7;
+    -fx-border-width: 1;
+    -fx-border-color: #E0E3E5;
+    -fx-control-inner-background: #F2F5F7;
+    -fx-background-color: #F2F5F7;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-column-border-width: 0;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #F2F5F7;
+
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #F2F5F7;
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color:
+            transparent
+            transparent
+            transparent
+            transparent;
+    /*-fx-border-insets: 0 0 0 0;*/
+}
+
+.table-view .column-header{
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #3D405B;
+    /*-fx-border-insets: 0 0 0 0;*/
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 10pt;
+    -fx-font-family: Ebrima;
+    -fx-text-fill: #3D405B;
+    -fx-alignment: center;
+    -fx-opacity: 1;
+    /*-fx-border-width: 5;*/
+    /*-fx-border-color: #3D405B;*/
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+
+.table-view .table-column{
+    -fx-alignment: center;
+    /*-fx-border-width: 5;*/
+    /*-fx-border-color: #3D405B;*/
+}
+
+.columnLeft{
+    -fx-alignment: left;
+}
+
+.columnRight{
+    -fx-alignment: right;
+}
+/*.split-pane:horizontal > * > .split-pane-divider {*/
+    /*-fx-border-color: transparent #1d1d1d transparent #1d1d1d;*/
+    /*-fx-background-color: transparent, derive(#1d1d1d,20%);*/
+/*}*/
+
+/*.split-pane {*/
+    /*-fx-padding: 1 0 0 0;*/
+/*}*/
+
+/*.menu-bar {*/
+    /*-fx-background-color: derive(#1d1d1d,20%);*/
+    /*-fx-selection-bar: derive(-fx-background,-7%);*/
+/*}*/
+
+/*.menu-bar .label {*/
+    /*-fx-font-size: 14pt;*/
+    /*-fx-font-family: "Segoe UI Light";*/
+    /*-fx-text-fill: white;*/
+    /*-fx-opacity: 0.9;*/
+/*}*/
+
+/*.text-field {*/
+    /*-fx-font-size: 12pt;*/
+    /*-fx-font-family: "Segoe UI Semibold";*/
+/*}*/

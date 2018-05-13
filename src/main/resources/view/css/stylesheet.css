@@ -1,15 +1,29 @@
-
-.sidebar-top {
-    -fx-background-image: url("../../image/back.jpg");
+.topbar {
+    -fx-background-color: #141E26;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #0B0A0C;
 }
+
+.whitelabel{
+    -fx-text-fill: #F2F2EB;
+}
+
+.sidebarLabel{
+    -fx-text-fill: #F2F2EB;
+}
+
+.sidebar{
+    -fx-background-color: #303952;
+}
+
 .sidebar-button{
 
     -fx-background-color: transparent;
     -fx-border-image-width: 0;
-    -fx-border-color: transparent;
     -fx-background-radius: 0px;
-    -fx-alignment: center-left;
-    -fx-text-fill: #c7dcdd;
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: #505c6d;
+    -fx-text-fill: #eaf3ff;
     /*-fx-fill:#111;*/
 }
 .sidebar-button:focused {
@@ -17,12 +31,18 @@
     -fx-text-fill: #eaf3ff;
 }
 
+.sidebar-button:hover {
+    -fx-background-color: #505c6d;
+    -fx-text-fill: #eaf3ff;
+}
+
 .selected {
-    -fx-background-color:#353b48;
+    -fx-background-color: #505c6d;
+    -fx-text-fill: #eaf3ff;
 }
 
 .sidebar-icon{
-    -fx-fill:#7f8c8d;
+    -fx-fill:#eaf3ff;
 }
 
 .topButton {
@@ -34,6 +54,7 @@
     -fx-border-color: #2f3640;
     -fx-effect: glow;
 }
+
 #statusBar {
     -fx-alignment: center;
     -fx-background-color: #0a7099;
@@ -42,4 +63,137 @@
 .topMenuLabelText {
     -fx-text-fill: #edf8fc;
     -fx-font-size: 30px;
+}
+
+.whiteBackground{
+    -fx-background-color: #3B3561;
+}
+
+.text-field {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+
+.vboxLogin{
+    -fx-background-color: #F4F4F4;
+    -fx-background-radius: 10;
+    -fx-border-width: 0px;
+    -fx-border-color: transparent;
+}
+
+.button1{
+    -fx-background-radius: 5;
+}
+
+.okbutton{
+    -fx-background-color: #468CD2;
+    -fx-font-family: Ebrima;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-pref-width: 75;
+    -fx-pref-height: 30;
+}
+
+.cancelbutton{
+    -fx-background-color: #EF3D55;
+    -fx-font-family: Ebrima;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-pref-width: 75;
+    -fx-pref-height: 30;
+}
+
+
+.coverpane {
+    -fx-background-color: #dcdde1;
+    -fx-background-radius: 0;
+    -fx-border-width: 0px;
+    -fx-border-color: transparent;
+}
+
+.confirmBox{
+    -fx-background-color: #F4F4F4;
+    -fx-border-width: 5px;
+    -fx-border-color: #505c6d;
+}
+
+.allbackground{
+    -fx-background-color: #E8ECEF;
+}
+
+.customComboBox{
+    -fx-background-color: #E8ECEF;
+    -fx-font-family: Ebrima;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-pref-height: 30;
+
+    -fx-border-width: 1;
+    -fx-border-color: #D2D5D8;
+}
+
+.customComboBox .input-line{
+    -fx-background-color: #E8ECEF;
+}
+
+.customComboBox .combo-box-button-container {
+    -fx-padding: 0 0 0 10;
+}
+
+.popup{
+    -fx-border-width: 5px;
+    -fx-border-color: #505c6d;
+}
+
+.text-area{
+    -fx-font-family: Ebrima;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-border-width: 1;
+    -fx-border-color: #D2D5D8;
+    -fx-background-color: #E8ECEF;
+}
+
+.customTextLabel{
+    -fx-font-family: Ebrima;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+
+.combo-box{
+    -fx-background-color: #E8ECEF;
+    -fx-font-family: Ebrima;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-pref-height: 30;
+
+    -fx-border-width: 1;
+    -fx-border-color: #D2D5D8;
+}
+
+.combo-box .input-line{
+    -fx-background-color: #E8ECEF;
+}
+
+.combo-box .combo-box-button-container {
+    -fx-padding: 0 0 0 10;
+}
+
+.text-field{
+    -fx-background-color: #E8ECEF;
+    -fx-font-family: Ebrima;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-pref-height: 30;
+
+    -fx-border-width: 1;
+    -fx-border-color: #D2D5D8;
+
+    /*-fx-alignment: CENTER-RIGHT;*/
+}
+
+.detailPane{
+    -fx-border-width: 5 5 0 0;
+    -fx-border-color: #505c6d;
 }

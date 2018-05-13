@@ -21,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.product.Product;
 import model.product.Status;
 import model.receipts.Category;
@@ -269,7 +270,7 @@ public class AddSellReceiptController implements Initializable {
     {
         AtomicInteger selectedNumber = new AtomicInteger(0);
 
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Amount");
         window.setMinWidth(300);

@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.expense.Expense;
 import model.receipts.ItemOrder;
 
@@ -162,7 +163,7 @@ public class ExpensesController implements Initializable {
 
     private void displayAddExpenseBox()
     {
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Add New Expense");
         window.setMinWidth(600);

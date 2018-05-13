@@ -177,13 +177,11 @@ public class EmployeesController implements Initializable {
         {
             levelComboBox.getItems().add(s);
         }
-
-        levelComboBox.getItems().add("");
     }
 
     private void displayAddBox()
     {
-        Stage window = new Stage();
+        Stage window = new Stage(StageStyle.UNDECORATED);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Employee");
         window.setMinWidth(400);
@@ -254,7 +252,7 @@ public class EmployeesController implements Initializable {
     {
         resetButton.setOnAction(e -> {
             levelComboBox.setValue(null);
-            searchTextField.setText("");
+            searchTextField.setText(null);
         });
 
         refreshTable();

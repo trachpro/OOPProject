@@ -44,8 +44,13 @@ public class SettingsController implements Initializable {
     {
         idLabel.setText(user.getEmployeeID());
         nameTextField.setText(user.getName());
+
+        statusComboBox.getItems().add(user.getStatus().toString());
         statusComboBox.setValue(user.getStatus().toString());
+
+        levelComboBox.getItems().add(user.getLevel().toString());
         levelComboBox.setValue(user.getLevel().toString());
+
         datePicker.setValue(user.getDob());
         phoneNumberTextField.setText(user.getPhoneNumber());
         salaryTextField.setText(String.format("%.0f", user.getSalary()));
