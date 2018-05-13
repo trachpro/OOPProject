@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import controller.App;
+import controller.FinalPaths;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -275,7 +276,7 @@ public class AddSellReceiptController implements Initializable {
         window.setTitle("Amount");
         window.setMinWidth(300);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/sales/AmountBox.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.SALES_AMOUNT_BOX));
         AnchorPane amountLayout = null;
         try {
             amountLayout = fxmlLoader.load();

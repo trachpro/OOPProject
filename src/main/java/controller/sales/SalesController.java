@@ -1,6 +1,7 @@
 package controller.sales;
 
         import controller.App;
+        import controller.FinalPaths;
         import javafx.beans.binding.Bindings;
         import javafx.beans.property.*;
         import javafx.collections.FXCollections;
@@ -230,7 +231,7 @@ public class SalesController implements Initializable {
         window.setTitle("Add New SellReceipt");
         window.setMinWidth(1210);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/sales/AddSellReceipt.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.SALES_ADD_SELL_RECEIPT));
         AnchorPane addLayout = null;
         try {
             addLayout = fxmlLoader.load();

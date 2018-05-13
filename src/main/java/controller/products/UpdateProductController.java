@@ -1,6 +1,7 @@
 package controller.products;
 
 import controller.App;
+import controller.FinalPaths;
 import model.product.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -134,11 +135,11 @@ public class UpdateProductController {
 
     private void initializeLoaders()
     {
-        updateBookLoader = new FXMLLoader(getClass().getResource("/view/products/UpdateBook.fxml"));
+        updateBookLoader = new FXMLLoader(getClass().getResource(FinalPaths.PRODUCTS_UPDATE_BOOK));
 
-        updateMovieDiscLoader = new FXMLLoader(getClass().getResource("/view/products/UpdateMovieDisc.fxml"));
+        updateMovieDiscLoader = new FXMLLoader(getClass().getResource(FinalPaths.PRODUCTS_UPDATE_MOVIE_DISC));
 
-        updateMusicDiscLoader = new FXMLLoader(getClass().getResource("/view/products/UpdateMusicDisc.fxml"));
+        updateMusicDiscLoader = new FXMLLoader(getClass().getResource(FinalPaths.PRODUCTS_UPDATE_MUSIC_DISC));
 
         try {
             updateBookNode = updateBookLoader.load();
@@ -266,7 +267,7 @@ public class UpdateProductController {
 
                 getParentStage().close();
 
-                ProductsController pc = App.sceneManager.getLoader("products").getController();
+                ProductsController pc = App.sceneManager.getLoader("Products").getController();
                 pc.refreshTable();
             }
         });

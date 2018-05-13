@@ -1,6 +1,7 @@
 package controller.employees;
 
 import controller.App;
+import controller.FinalPaths;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 import javafx.collections.ListChangeListener;
@@ -18,19 +19,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.product.Product;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 
 public class EmployeesController implements Initializable {
@@ -186,7 +183,7 @@ public class EmployeesController implements Initializable {
         window.setTitle("Employee");
         window.setMinWidth(400);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employees/AddUpdateEmployee.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.EMPLOYEES_ADD_UPDATE_EMPLOYEE));
         AnchorPane addLayout = null;
         try {
             addLayout = fxmlLoader.load();
@@ -212,7 +209,7 @@ public class EmployeesController implements Initializable {
         window.setTitle("Employee");
         window.setMinWidth(400);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employees/AddUpdateEmployee.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.EMPLOYEES_ADD_UPDATE_EMPLOYEE));
         AnchorPane addLayout = null;
         try {
             addLayout = fxmlLoader.load();

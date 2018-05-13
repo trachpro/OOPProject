@@ -54,11 +54,20 @@
                         <Insets left="30.0" />
                     </HBox.margin>
                 </TableView>
-                <VBox fx:id="detailBox1" prefHeight="650.0" prefWidth="580.0" spacing="15.0">
+                <VBox fx:id="detailBox1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="580.0" spacing="15.0">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
                <children>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="580.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: #505c6d;">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="400.0" styleClass="customTextLabel" text="More detail here">
+                           <HBox.margin>
+                              <Insets left="80.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
                      <children>
                         <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Revenue">
@@ -196,7 +205,7 @@
                         <JFXButton fx:id="revenueDetailButton" prefHeight="25.0" prefWidth="70.0" styleClass="okbutton" stylesheets="@css/stylesheet.css" text="Detail" />
                      </children>
                      <VBox.margin>
-                        <Insets top="30.0" />
+                        <Insets top="80.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="40.0" prefHeight="40.0" prefWidth="200.0">

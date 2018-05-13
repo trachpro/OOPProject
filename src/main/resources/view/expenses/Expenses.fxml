@@ -66,8 +66,13 @@
                         <Insets left="10.0" />
                     </HBox.margin>
                 </TableView>
-                <VBox prefHeight="650.0" prefWidth="0.0" spacing="15.0">
+                <VBox fx:id="detailVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" spacing="15.0" visible="false">
                     <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="600.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: #505c6d;">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="600.0" styleClass="customTextLabel" text="Detail" />
+                     </children>
+                  </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="550.0">
                             <children>
                                 <Label prefHeight="17.0" prefWidth="200.0" text="Expense ID" />

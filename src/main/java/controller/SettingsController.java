@@ -93,16 +93,20 @@ public class SettingsController implements Initializable {
     private void handleSaveButton()
     {
         saveButton.setOnAction(e -> {
-            user = new Employee();
-            user.setEmployeeID(idLabel.getText());
-            user.setName(nameTextField.getText());
-            user.setStatus(Status.valueOf(statusComboBox.getValue()));
-            user.setLevel(Level.valueOf(levelComboBox.getValue()));
-            user.setDob(datePicker.getValue());
-            user.setPhoneNumber(phoneNumberTextField.getText());
-                user.setSalary(Double.valueOf(salaryTextField.getText()));
-            user.setUsername(usernameTextField.getText());
-            user.setPassword(passwordTextField.getText());
+            Employee changedUser = new Employee();
+            changedUser.setEmployeeID(idLabel.getText());
+            changedUser.setName(nameTextField.getText());
+            changedUser.setStatus(Status.valueOf(statusComboBox.getValue()));
+            changedUser.setLevel(Level.valueOf(levelComboBox.getValue()));
+            changedUser.setDob(datePicker.getValue());
+            changedUser.setPhoneNumber(phoneNumberTextField.getText());
+            changedUser.setSalary(Double.valueOf(salaryTextField.getText()));
+            changedUser.setUsername(usernameTextField.getText());
+            changedUser.setPassword(passwordTextField.getText());
+
+            App.dataManager.getEmployeesManager().addUpdateEmployee(changedUser);
+            user = changedUser;
+            App.setUser(changedUser);
 
             saveButton.setDisable(true);
         });

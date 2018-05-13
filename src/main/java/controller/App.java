@@ -4,13 +4,11 @@ import com.jfoenix.controls.JFXButton;
 import controller.login.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,9 +22,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Pattern;
 
 public class App extends Application {
 
@@ -109,7 +105,7 @@ public class App extends Application {
         window.setTitle("Confirm");
 //        window.setMinWidth(350);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/ConfirmBox.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(FinalPaths.CONFIRM_BOX));
         AnchorPane confirmBoxLayout = null;
         try {
             confirmBoxLayout = fxmlLoader.load();
@@ -143,7 +139,7 @@ public class App extends Application {
     public static void loadMainWindow()
     {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/MainStage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(FinalPaths.MAIN_STAGE));
         Parent root = null;
         try {
             root = fxmlLoader.load();
@@ -165,19 +161,11 @@ public class App extends Application {
             int selectionQuit = displayConfirmBox("Are you sure to quit ?");
             if(selectionQuit == 1)
             {
-                int selectionSave = displayConfirmBox("Do you want to save data ?");
-                if(selectionSave == 1)
-                {
-                    dataManager.writeData();
-                    primaryStage.close();
-                }
-                else if(selectionSave == 2)
-                {
-                    primaryStage.close();
-                }
+                dataManager.writeData();
+                primaryStage.close();
             }
         });
-        primaryStage.getIcons().add(new Image(App.class.getResourceAsStream("/image/logoapp.png")));
+        primaryStage.getIcons().add(new Image(App.class.getResourceAsStream(FinalPaths.ICON)));
 
         primaryStage.setScene(mainScene);
         primaryStage.setMaximized(true);
@@ -188,7 +176,7 @@ public class App extends Application {
     public static void loadLoginWindow()
     {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/Login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(FinalPaths.LOGIN));
         Parent root = null;
         try {
             root = fxmlLoader.load();
@@ -238,7 +226,7 @@ public class App extends Application {
         window.setTitle("Alert");
         window.setMinWidth(300);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/view/AlertBox.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(FinalPaths.ALERT_BOX));
         AnchorPane alertBoxLayout = null;
         try {
             alertBoxLayout = fxmlLoader.load();
@@ -294,8 +282,15 @@ public class App extends Application {
 
     public static void logout()
     {
-        primaryStage.close();
-        loadLoginWindow();
-        user = null;
+        int selectionQuit = displayConfirmBox("Are you sure to log out ?");
+        if(selectionQuit == 1)
+        {
+
+            dataManager.writeData();
+
+            primaryStage.close();
+            loadLoginWindow();
+            user = null;
+        }
     }
 }

@@ -1,6 +1,7 @@
 package controller.inventory;
 
 import controller.App;
+import controller.FinalPaths;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -236,7 +237,7 @@ public class InventoryController implements Initializable {
         window.setTitle("Add New BuyReceipt");
         window.setMinWidth(1210);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/inventory/AddBuyReceipt.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.INVENTORY_APP_BUY_RECEIPT));
         AnchorPane addLayout = null;
         try {
             addLayout = fxmlLoader.load();

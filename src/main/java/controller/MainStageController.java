@@ -18,9 +18,7 @@ public class MainStageController implements Initializable {
     private FXMLLoader productsLoader;
     private FXMLLoader salesLoader;
     private FXMLLoader employeesLoader;
-    private FXMLLoader stockorderLoader;
     private FXMLLoader inventoryLoader;
-    private FXMLLoader revenueLoader;
     private FXMLLoader cashflowLoader;
     private FXMLLoader expensesLoader;
     private FXMLLoader settingsLoader;
@@ -30,9 +28,7 @@ public class MainStageController implements Initializable {
     private Node products;
     private Node sales;
     private Node customers;
-    private Node stockorder;
     private Node inventory;
-    private Node revenue;
     private Node cashflow;
     private Node expenses;
     private Node settings;
@@ -41,11 +37,9 @@ public class MainStageController implements Initializable {
     @FXML private JFXButton productsButton;
     @FXML private JFXButton salesButton;
     @FXML private JFXButton inventoryButton;
-    @FXML private JFXButton revenueButton;
     @FXML private JFXButton expensesButton;
     @FXML private JFXButton cashflowButton;
     @FXML private JFXButton employeesButton;
-    @FXML private JFXButton stockorderButton;
     @FXML private JFXButton settingsButton;
 
     @FXML private Label menuLabel;
@@ -78,10 +72,6 @@ public class MainStageController implements Initializable {
             setPaneContent(salesButton.getText());
         });
 
-        revenueButton.setOnAction(e -> {
-            setPaneContent(revenueButton.getText());
-        });
-
         employeesButton.setOnAction(e -> {
             setPaneContent(employeesButton.getText());
         });
@@ -97,11 +87,6 @@ public class MainStageController implements Initializable {
 
         cashflowButton.setOnAction(e -> {
             setPaneContent(cashflowButton.getText());
-        });
-
-
-        stockorderButton.setOnAction(e -> {
-            setPaneContent(stockorderButton.getText());
         });
 
         settingsButton.setOnAction(e -> {
@@ -149,21 +134,9 @@ public class MainStageController implements Initializable {
                 break;
             }
 
-            case "Stock order":
-            {
-                result = stockorderLoader;
-                break;
-            }
-
             case "Inventory":
             {
                 result = inventoryLoader;
-                break;
-            }
-
-            case "Revenue":
-            {
-                result = revenueLoader;
                 break;
             }
 
@@ -196,7 +169,7 @@ public class MainStageController implements Initializable {
 
     private void initializeLoaders()
     {
-        dashboardLoader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
+        dashboardLoader = new FXMLLoader(getClass().getResource(FinalPaths.DASHBOARD));
         System.out.println("Load dashboard");
         try {
             dashboard = dashboardLoader.load();
@@ -205,7 +178,7 @@ public class MainStageController implements Initializable {
             e.printStackTrace();
         }
 
-        salesLoader = new FXMLLoader(getClass().getResource("/view/sales/Sales.fxml"));
+        salesLoader = new FXMLLoader(getClass().getResource(FinalPaths.SALES));
         System.out.println("Load sale");
         try {
             sales = salesLoader.load();
@@ -214,56 +187,42 @@ public class MainStageController implements Initializable {
             e.printStackTrace();
         }
 
-        productsLoader = new FXMLLoader(System.class.getResource("/view/products/Products.fxml"));
+        productsLoader = new FXMLLoader(System.class.getResource(FinalPaths.PRODUCTS));
         try {
             products = productsLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        employeesLoader = new FXMLLoader(getClass().getResource("/view/employees/Employees.fxml"));
+        employeesLoader = new FXMLLoader(getClass().getResource(FinalPaths.EMPLOYEES));
         try {
             customers = employeesLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        stockorderLoader = new FXMLLoader(getClass().getResource("/view/Stockorder.fxml"));
-        try {
-            stockorder = stockorderLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        inventoryLoader = new FXMLLoader(getClass().getResource("/view/inventory/Inventory.fxml"));
+        inventoryLoader = new FXMLLoader(getClass().getResource(FinalPaths.INVENTORY));
         try {
             inventory = inventoryLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        revenueLoader = new FXMLLoader(getClass().getResource("/view/Revenue.fxml"));
-        try {
-            revenue = revenueLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        cashflowLoader = new FXMLLoader(getClass().getResource("/view/Cashflow.fxml"));
+        cashflowLoader = new FXMLLoader(getClass().getResource(FinalPaths.CASHFLOW));
         try {
             cashflow = cashflowLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        expensesLoader = new FXMLLoader(getClass().getResource("/view/expenses/Expenses.fxml"));
+        expensesLoader = new FXMLLoader(getClass().getResource(FinalPaths.EXPENSES));
         try {
             expenses = expensesLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        settingsLoader = new FXMLLoader(getClass().getResource("/view/Settings.fxml"));
+        settingsLoader = new FXMLLoader(getClass().getResource(FinalPaths.SETTINGS));
         try {
             settings = settingsLoader.load();
         } catch (IOException e) {
@@ -310,24 +269,10 @@ public class MainStageController implements Initializable {
                     break;
                 }
 
-                case "Stock order":
-                {
-                    node = stockorder;
-                    button = stockorderButton;
-                    break;
-                }
-
                 case "Inventory":
                 {
                     node = inventory;
                     button = inventoryButton;
-                    break;
-                }
-
-                case "Revenue":
-                {
-                    node = revenue;
-                    button = revenueButton;
                     break;
                 }
 

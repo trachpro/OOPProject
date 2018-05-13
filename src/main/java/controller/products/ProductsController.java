@@ -1,10 +1,15 @@
 package controller.products;
 
 import controller.App;
+import controller.FinalPaths;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.StageStyle;
 import model.product.*;
 
@@ -27,6 +32,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.commons.lang3.text.WordUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,12 +59,30 @@ public class ProductsController implements Initializable {
     @FXML private JFXComboBox<String> categoryComboBox;
 
     @FXML private JFXTextField searchTextField;
+    @FXML private VBox detailVBox;
+    @FXML private Pane detailPane;
+    @FXML private ImageView imageView;
 
-    FilteredList<Product> filteredData;
+    private FilteredList<Product> filteredData;
 
+    private DetailBookController detailBookController;
+    private Node detailBookNode;
+
+    private DetailMovieDiscController detailMovieDiscController;
+    private Node detailMovieDiscNode;
+
+    private DetailMusicDiscController detailMusicDiscController;
+    private Node detailMusicDiscNode;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        new Thread() {
+            @Override
+            public void run() {
+                initializeLoaders();
+            }
+        }.start();
 
         addButton.setOnAction(e -> displayAddBox());
         editButton.setOnAction(e -> editButtonOnClick());
@@ -72,6 +96,33 @@ public class ProductsController implements Initializable {
 
         setCategoryComboBox();
         handleResetButton();
+    }
+
+    private void initializeLoaders()
+    {
+        FXMLLoader detailBookLoader = new FXMLLoader(getClass().getResource(FinalPaths.PRODUCTS_DETAIL_BOOK));
+        try {
+            detailBookNode = detailBookLoader.load();
+            detailBookController = detailBookLoader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FXMLLoader detailMovieDiscLoader = new FXMLLoader(getClass().getResource(FinalPaths.PRODUCTS_DETAIL_MOVIE_DISC));
+        try {
+            detailMovieDiscNode = detailMovieDiscLoader.load();
+            detailMovieDiscController = detailMovieDiscLoader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FXMLLoader detailMusicDiscLoader = new FXMLLoader(getClass().getResource(FinalPaths.PRODUCTS_DETAIL_MUSIC_DISC));
+        try {
+            detailMusicDiscNode = detailMusicDiscLoader.load();
+            detailMusicDiscController = detailMusicDiscLoader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleRowSelection()
@@ -93,19 +144,51 @@ public class ProductsController implements Initializable {
             {
                 editButton.setDisable(true);
                 deleteButton.setDisable(true);
+                detailVBox.setVisible(false);
             }
             else if(numberSelections == 1)
             {
+
                 editButton.setDisable(false);
                 deleteButton.setDisable(false);
+
+                Product p = productsTable.getSelectionModel().getSelectedItem();
+                displayDetail(p);
+                detailVBox.setVisible(true);
             }
             else
             {
+                detailVBox.setVisible(false);
                 editButton.setDisable(true);
                 deleteButton.setDisable(false);
             }
         });
 
+    }
+
+    private void displayDetail(Product p)
+    {
+        File f = new File(FinalPaths.IMAGE + p.getImageUrl());
+        Image g = new Image(f.toURI().toString());
+        imageView.setImage(g);
+        detailPane.getChildren().removeAll(detailPane.getChildren());
+
+        if(p.getCategory() == Category.BOOK)
+        {
+            detailPane.getChildren().add(detailBookNode);
+            detailBookController.displayDetail((Book) p);
+
+        }
+        else if(p.getCategory() == Category.MOVIE_DISC)
+        {
+            detailPane.getChildren().add(detailMovieDiscNode);
+            detailMovieDiscController.displayDetail((MovieDisc) p);
+        }
+        else
+        {
+            detailPane.getChildren().add(detailMusicDiscNode);
+            detailMusicDiscController.displayDetail((MusicDisc) p);
+        }
     }
 
     private void bindTableData()
@@ -248,17 +331,6 @@ public class ProductsController implements Initializable {
 //        });
     }
 
-    private void searchButtonOnClick()
-    {
-//        String _idOrName = nameTextField.getText();
-//        String _category = categoryComboBox.getSelectionModel().getSelectedItem();
-//        String _nation = nationComboBox.getSelectionModel().getSelectedItem();
-//        boolean _isDeleted = isDeletedCheckBox.selectedProperty().get();
-//        System.out.println(_idOrName + " " + _category + " " + _nation + " " + _isDeleted);
-
-        App.dataManager.writeProductsFile();
-    }
-
     private void displayAddBox()
     {
         Stage window = new Stage(StageStyle.UNDECORATED);
@@ -266,7 +338,7 @@ public class ProductsController implements Initializable {
         window.setTitle("Add New product");
         window.setMinWidth(400);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/products/Update.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.PRODUCTS_UPDATE));
         AnchorPane addLayout = null;
         try {
             addLayout = fxmlLoader.load();
@@ -292,7 +364,7 @@ public class ProductsController implements Initializable {
         window.setTitle("Edit product");
         window.setMinWidth(400);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/products/Update.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.PRODUCTS_UPDATE));
         AnchorPane addLayout = null;
         try {
             addLayout = fxmlLoader.load();
@@ -350,7 +422,7 @@ public class ProductsController implements Initializable {
         window.setTitle("Delete");
         window.setMinWidth(250);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/products/Delete.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.PRODUCTS_DELETE));
         VBox deleteLayout = null;
         try {
             deleteLayout = fxmlLoader.load();

@@ -4,9 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import controller.App;
+import controller.FinalPaths;
 import controller.products.UpdateProductController;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -272,7 +271,7 @@ public class AddBuyReceiptController implements Initializable {
         window.setTitle("Amount");
         window.setMinWidth(300);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/inventory/AmountBox.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.INVENTORY_AMOUNT_BOX));
         AnchorPane amountLayout = null;
         try {
             amountLayout = fxmlLoader.load();
@@ -468,7 +467,7 @@ public class AddBuyReceiptController implements Initializable {
         window.setTitle("Add New product");
         window.setMinWidth(400);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/products/Update.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.PRODUCTS_UPDATE));
         AnchorPane addLayout = null;
         try {
             addLayout = fxmlLoader.load();

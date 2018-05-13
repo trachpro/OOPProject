@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import controller.App;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.employee.Employee;
@@ -15,7 +16,7 @@ public class LoginController implements Initializable {
     private Stage stage;
 
     @FXML private TextField usernameTextField;
-    @FXML private TextField passwordTextField;
+    @FXML private PasswordField passwordField;
 
     @FXML private JFXButton loginButton;
     @FXML private JFXButton cancelButton;
@@ -30,7 +31,7 @@ public class LoginController implements Initializable {
     {
         loginButton.setOnAction(e -> {
             String username = usernameTextField.getText();
-            String password = passwordTextField.getText();
+            String password = passwordField.getText();
 
             Employee user = App.dataManager.getLoginManager().authenticate(username, password);
 

@@ -1,14 +1,13 @@
 package controller.expenses;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import controller.App;
 
+import controller.FinalPaths;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -18,11 +17,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.expense.Expense;
-import model.receipts.ItemOrder;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,7 +52,10 @@ public class ExpensesController implements Initializable {
     @FXML private Label purchaserLabel;
     @FXML private TextArea remarkTextArea;
 
-    FilteredList<Expense> filteredData;
+    @FXML private VBox detailVBox;
+
+    private FilteredList<Expense> filteredData;
+
 
 
     @Override
@@ -143,10 +145,12 @@ public class ExpensesController implements Initializable {
         expensesTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 bindDetailExpense(newSelection);
+                detailVBox.setVisible(true);
             }
             else
             {
                 bindDetailExpense(new Expense());
+                detailVBox.setVisible(false);
             }
         });
     }
@@ -168,7 +172,7 @@ public class ExpensesController implements Initializable {
         window.setTitle("Add New Expense");
         window.setMinWidth(600);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/expenses/AddExpense.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FinalPaths.EXPENSES_ADD_EXPENSE));
         AnchorPane addLayout = null;
         try {
             addLayout = fxmlLoader.load();

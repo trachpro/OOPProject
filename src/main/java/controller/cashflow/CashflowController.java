@@ -65,6 +65,7 @@ public class CashflowController implements Initializable {
 
         clearDetail();
         handleDetailButtons();
+        handleResetButton();
     }
 
     private void bindEntriesTable()
@@ -155,9 +156,9 @@ public class CashflowController implements Initializable {
         totalInventoryLabel.setText(String.format("%.0f", _entry.getInventory()));
         totalProductsBoughtLabel.setText(Integer.toString(_entry.getNo0fProductsBought()));
 
-        totalExpensesLabel.setText(String.format("%.0f", _entry.getInventory()));
+        totalExpensesLabel.setText(String.format("%.0f", _entry.getExpense()));
 
-        totalProfitLabel.setText(String.format("%.0f", _entry.getRevenue() -  _entry.getInventory() - _entry.getInventory()));
+        totalProfitLabel.setText(String.format("%.0f", _entry.getRevenue() -  _entry.getInventory() - _entry.getExpense()));
     }
 
     private void clearDetail()
@@ -211,6 +212,14 @@ public class CashflowController implements Initializable {
             expensesController.setDates(selectedEntry.getDate(), selectedEntry.getDate());
 
             App.sceneManager.setPaneContent("Expenses");
+        });
+    }
+
+    private void handleResetButton()
+    {
+        resetButton.setOnAction(e -> {
+            fromDate.setValue(null);
+            toDate.setValue(null);
         });
     }
 }
